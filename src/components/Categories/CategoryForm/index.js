@@ -29,7 +29,7 @@ export default function CategoryForm() {
         handleChange,
         isSend,
         errors,
-        setForm,
+        // setForm,
         handleSubmit,
         isEmpty
     } = useForm("category", initialForm, setImgCharge)
