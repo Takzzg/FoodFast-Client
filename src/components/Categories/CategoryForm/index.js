@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import {
     ErrorMsg,
     GlobalContainer,
@@ -34,9 +34,9 @@ export default function CategoryForm() {
         isEmpty
     } = useForm("category", initialForm, setImgCharge)
 
-    useEffect(() => {
-        setForm({ ...form })
-    }, [form, setForm])
+    // useEffect(() => {
+    //     setForm({ ...form })
+    // }, [form, setForm])
 
     const handleChangeFile = (e) => {
         const newFile = e.target.files[0]
