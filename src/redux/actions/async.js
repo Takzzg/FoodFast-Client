@@ -15,6 +15,7 @@ import {
 // FUNCTIONS AND CONSTS
 
 const baseUrl = `${process.env.API_URL || "http://localhost:3001"}/api/v1`
+console.log(process.env.NODE_ENV)
 console.log(process.env.API_URL, baseUrl)
 
 const fetch = (url, type) => (dispatch) =>
