@@ -15,10 +15,10 @@ import {
 // FUNCTIONS AND CONSTS
 
 const baseUrl = `${
-    process.env.REACT_APP_API_URL || "http://localhost:3001"
+    process.env.NODE_ENV === "production"
+        ? "https://food-fast-api.herokuapp.com/"
+        : "http://localhost:3001"
 }/api/v1`
-console.log(process.env.NODE_ENV)
-console.log(process.env.REACT_APP_API_URL, baseUrl)
 
 const fetch = (url, type) => (dispatch) =>
     axios
