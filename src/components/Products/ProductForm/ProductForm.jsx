@@ -30,12 +30,12 @@ const initialForm = {
     price: 0,
     stock: 0,
     categories: [],
-    img: null
+    img: ""
 }
 
 export default function ProductForm() {
     // Usando el hook personalizado
-    const [file, setFile] = useState(null)
+    const [file, setFile] = useState("")
     const [imgCharge, setImgCharge] = useState(false)
 
     const {

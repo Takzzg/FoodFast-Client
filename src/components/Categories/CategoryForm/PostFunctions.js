@@ -25,9 +25,9 @@ export const CleanCategoryImputs = (
     setForm({
         name: "",
         description: "",
-        img: null
+        img: ""
     })
     setIsAvailable(false)
     setImgCharge(false)
-    document.getElementById("imageCategory").value = null
+    document.getElementById("imageCategory").value = ""
 }
