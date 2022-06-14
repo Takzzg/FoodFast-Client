@@ -9,6 +9,7 @@ import {
     FETCH_PRODUCTS,
     FILTER_BY_CATEGORY,
     FILTER_PRODUCTS,
+    FIND_CAT_BY_ID,
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     SEARCH_PRODUCT,
@@ -53,7 +54,8 @@ const initialState = {
     },
     categories: {
         all: [],
-        filtered: []
+        filtered: [],
+        detail: []
     },
     tags: {
         all: [],
@@ -73,6 +75,10 @@ const main = (state = initialState, action) => {
             break
 
         // CATEGORIES
+
+        case FIND_CAT_BY_ID:
+            newState.categories.detail = action.payload
+            break
 
         case FETCH_CATEGORIES:
             newState.categories.all = action.payload
@@ -112,9 +118,11 @@ const main = (state = initialState, action) => {
                 (a, b) => compareProducts(a, b, action.form)
             )
             break
+
         case CLEAN_SELECT_PRODUCT:
-            newState.products.selected = {};
+            newState.products.selected = {}
             break
+
         case FILTER_PRODUCTS:
             newState.products.filtered = []
             !!action.payload.length &&

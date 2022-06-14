@@ -8,7 +8,8 @@ import {
     SEARCH_PRODUCT,
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
-    NEWFILTER_PRODUCTS
+    NEWFILTER_PRODUCTS,
+    FIND_CAT_BY_ID
 } from "./types"
 
 // FUNCTIONS AND CONSTS
@@ -45,6 +46,9 @@ export const newFilterProduct = (filterOrder, sortOrder) =>
     )
 
 // CATEGORIES
+
+export const findCatById = (id) =>
+    fetch(`${baseUrl}/categories/${id}`, FIND_CAT_BY_ID)
 
 export const fetchAllCategories = () =>
     fetch(`${baseUrl}/categories`, FETCH_CATEGORIES)
