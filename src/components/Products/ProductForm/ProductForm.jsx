@@ -22,7 +22,6 @@ import useForm from "../../CustomHooks/useForm"
 import SelectedList from "./selectedList"
 import { CgUnavailable } from "react-icons/cg"
 import { MdOutlineEventAvailable } from "react-icons/md"
-import { useEffect } from "react"
 import { Message } from "rsuite"
 
 const initialForm = {
@@ -49,10 +48,6 @@ export default function ProductForm() {
         handleSubmit,
         isEmpty
     } = useForm("product", initialForm, setImgCharge)
-
-    //   useEffect(()=> {
-    //     setForm({...form})
-    //   }, [form, setForm])
 
     const handleChangeFile = (e) => {
         const newFile = e.target.files[0]
