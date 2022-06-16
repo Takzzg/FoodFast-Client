@@ -21,6 +21,7 @@ import { switchTheme } from "../../redux/actions/sync"
 
 const NavBar = () => {
     const dispatch = useDispatch()
+    const userId = useSelector((state) => state.user._id)
     const theme = useSelector((state) => state.theme.selectedTheme)
 
     const [showNavbar, setShowNavbar] = useState(false)
@@ -50,17 +51,15 @@ const NavBar = () => {
                 </MainIconContainer>
 
                 <ButtonsContainer theme={theme}>
-                
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to='/login'>
+                        <NavLink to="/login">
                             <FaUserAlt />
                             Login
                         </NavLink>
                     </LoginRegisterButton>
-            
 
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to='/logup'>
+                        <NavLink to="/logup">
                             <GiArchiveRegister />
                             Register
                         </NavLink>
@@ -78,8 +77,13 @@ const NavBar = () => {
                         <RouteItem>Products</RouteItem>
                     </NavLink>
 
-
                     <RouteItem>My orders</RouteItem>
+                    <NavLink
+                        to={`/user/${userId}/reviews`}
+                        onClick={handleSelectRoute}
+                    >
+                        <RouteItem>My Reviews</RouteItem>
+                    </NavLink>
                     <RouteItem>Oferts</RouteItem>
                     <RouteItem>Contact</RouteItem>
                     <hr />
