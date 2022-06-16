@@ -58,7 +58,8 @@ const NavBar = () => {
                         </NavLink>
                     </LoginRegisterButton>
             
-
+                {/* Considerar remover este botón de Registro,
+                así directamente desde el link del login puedan registrarse */}
                     <LoginRegisterButton theme={theme}>
                         <NavLink to='/logup'>
                             <GiArchiveRegister />

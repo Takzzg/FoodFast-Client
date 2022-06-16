@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"; 
 import toast, { Toaster } from 'react-hot-toast';
 import { IoFastFoodSharp } from "react-icons/io5"
@@ -21,7 +21,7 @@ function validate(input) {
     errors.password = "Password is required";
   } else if (input.password.length < 4) {
     errors.password = "contraseña demasiado corta";
-  } else if (/[^A-z\s\d][\\\^]?/g.test(input.password)){
+  } else if (/[^A-z\s\d][\\]?/g.test(input.password)){
     errors.password = "no puede contener caracteres especiales."
   }
 
@@ -62,7 +62,7 @@ export default function SignUp() {
 
     if(Object.keys(errors).length > 0){ 
       return toast.error('Debes rellenar todos los campos de forma correcta.')
-    }else{ //tremendo toast me mandé... :O
+    }else{
         toast.promise(axios.post("http://localhost:3001/api/v1/user", {
             name: input.name,
             email: input.email,

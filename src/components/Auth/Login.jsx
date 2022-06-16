@@ -15,7 +15,7 @@ function validate(input){
         errors.password = "Tu contraseña es requerida.";
     } else if (input.password.length < 4) {
         errors.password = "contraseña demasiado corta";
-    } else if (/[^A-z\s\d][\\\^]?/g.test(input.password)){
+    } else if (/[^A-z\s\d][\\]?/g.test(input.password)){
         errors.password = "No puede contener caracteres especiales."
     }
     return errors;
@@ -80,7 +80,7 @@ export default function Login(){
                         <span className="btn-text"><b>Sign in with Google</b></span>
                     </GoogleButton>
 
-                    <Link to='/resetPassword' className="anchor">Forgot your password?</Link> <br />
+                    <Link to='/passwordReset' className="anchor">Forgot your password?</Link> <br />
                     <Link to='/logup' className="anchor">No registered yet? Sign Up now!</Link>
                 </form>
             </LoginBox>

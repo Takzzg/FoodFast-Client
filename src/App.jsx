@@ -24,6 +24,7 @@ import {
 import GlobalStyle from "./GlobalStyles"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
+import PasswordReset from "./components/Auth/PasswordReset"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -117,6 +118,8 @@ function App() {
                         <Route path="/login" element={<Login/>}/>
                         {/* REGISTER */}
                         <Route path="/logup" element={<Logup/>}/>
+                        {/* PASS RESET */}
+                        <Route path="/passwordReset" element={<PasswordReset/>}/>
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>

@@ -71,3 +71,5 @@ export const deleteCategory = (id) => (dispatch) =>
         .delete(`${baseUrl}/categories/${id}`)
         .then(() => dispatch(fetchAllCategories()))
         .catch((err) => dispatch({ type: ERROR, payload: err }))
+
+
