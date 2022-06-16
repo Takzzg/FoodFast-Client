@@ -5,7 +5,6 @@ import { fetchAllCategories, fetchAllProducts } from "./redux/actions/async"
 import { useDispatch, useSelector } from "react-redux"
 import DisplayProducts from "./components/DisplayProducts/index"
 import {
-    Auth,
     Categories,
     CategoryForm,
     Dashboard,
@@ -51,7 +50,7 @@ function App() {
                 <ScrollToTop>
                     <NavBar />
 
-                    <Routes> 
+                    <Routes>
                         <Route path="/" element={<Landing />} />
                         <Route path="/products" element={<DisplayProducts />} />
                         <Route
@@ -62,8 +61,7 @@ function App() {
                             path="/category/:idCategory"
                             element={<DetailCategory />}
                         />
-                        
-                        
+
                         <Route path="/dashboard">
                             <Route index element={<Dashboard />} />
                             <Route
@@ -76,7 +74,7 @@ function App() {
                             />
                         </Route>
 
-                    {/* Hay dos dashboards */}
+                        {/* Hay dos dashboards */}
                         <Route path="/dashboard/products">
                             <Route index element={<Products />} />
                             <Route
@@ -92,8 +90,6 @@ function App() {
                                 element={<DetailCategory />}
                             />
                         </Route>
-
-                        <Route path="/auth" element={<Auth />} />
 
                         <Route path="user/:idUser">
                             <Route index element={<Profile />} />
@@ -114,9 +110,9 @@ function App() {
                         </Route>
 
                         {/* LOGIN */}
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/login" element={<Login />} />
                         {/* REGISTER */}
-                        <Route path="/logup" element={<Logup/>}/>
+                        <Route path="/logup" element={<Logup />} />
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>

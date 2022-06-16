@@ -5,7 +5,6 @@ import Landing from "./Landing/Landing"
 
 // User
 import Dashboard from "./User/Dashboard/Dashboard"
-import Auth from "./User/Auth"
 import Profile from "./User/Profile"
 
 // Products
@@ -32,7 +31,6 @@ export {
     Dashboard,
     Products,
     Categories,
-    Auth,
     Profile,
     Orders,
     DetailOrder,
