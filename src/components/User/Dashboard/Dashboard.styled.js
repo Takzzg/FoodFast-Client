@@ -41,30 +41,31 @@ export const StyledDashboard = styled.div`
         .allCategories {
             overflow-y: auto;
             &::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
+                -webkit-appearance: none;
+            }
 
-&::-webkit-scrollbar:vertical {
-    width:10px;
-}
+            &::-webkit-scrollbar:vertical {
+                width: 10px;
+            }
 
-&::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-    display: none;
-} 
+            &::-webkit-scrollbar-button:increment,
+            .contenedor::-webkit-scrollbar-button {
+                display: none;
+            }
 
-&::-webkit-scrollbar:horizontal {
-    height: 10px;
-}
+            &::-webkit-scrollbar:horizontal {
+                height: 10px;
+            }
 
-&::-webkit-scrollbar-thumb {
-    background-color: #797979;
-    border-radius: 20px;
-    border: 2px solid #f1f2f3;
-}
+            &::-webkit-scrollbar-thumb {
+                background-color: #797979;
+                border-radius: 20px;
+                border: 2px solid #f1f2f3;
+            }
 
-&::-webkit-scrollbar-track {
-    border-radius: 10px;  
-}
+            &::-webkit-scrollbar-track {
+                border-radius: 10px;
+            }
         }
     }
 
@@ -75,30 +76,31 @@ export const StyledDashboard = styled.div`
         .allProducts {
             overflow-y: auto;
             &::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
+                -webkit-appearance: none;
+            }
 
-&::-webkit-scrollbar:vertical {
-    width:10px;
-}
+            &::-webkit-scrollbar:vertical {
+                width: 10px;
+            }
 
-&::-webkit-scrollbar-button:increment,.contenedor::-webkit-scrollbar-button {
-    display: none;
-} 
+            &::-webkit-scrollbar-button:increment,
+            .contenedor::-webkit-scrollbar-button {
+                display: none;
+            }
 
-&::-webkit-scrollbar:horizontal {
-    height: 10px;
-}
+            &::-webkit-scrollbar:horizontal {
+                height: 10px;
+            }
 
-&::-webkit-scrollbar-thumb {
-    background-color: #797979;
-    border-radius: 20px;
-    border: 2px solid #f1f2f3;
-}
+            &::-webkit-scrollbar-thumb {
+                background-color: #797979;
+                border-radius: 20px;
+                border: 2px solid #f1f2f3;
+            }
 
-&::-webkit-scrollbar-track {
-    border-radius: 10px;  
-}
+            &::-webkit-scrollbar-track {
+                border-radius: 10px;
+            }
         }
     }
 `
