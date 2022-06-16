@@ -19,10 +19,7 @@ const ReviewForm = () => {
         if (!form.title || !form.comment || !form.score)
             return alert("missing info")
 
-        console.log("creando review")
-
         let review = { userId, productId: idProduct, date: new Date(), ...form }
-        console.log(review)
         dispatch(postReview(review))
     }
 
