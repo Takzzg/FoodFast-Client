@@ -9,7 +9,9 @@ import {
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     NEWFILTER_PRODUCTS,
-    FIND_CAT_BY_ID
+    FIND_CAT_BY_ID,
+    GET_REVIEW,
+    FETCH_REVIEWS
 } from "./types"
 
 // FUNCTIONS AND CONSTS
@@ -71,3 +73,24 @@ export const deleteCategory = (id) => (dispatch) =>
         .delete(`${baseUrl}/categories/${id}`)
         .then(() => dispatch(fetchAllCategories()))
         .catch((err) => dispatch({ type: ERROR, payload: err }))
+
+// REVIEWS
+
+export const getReview = (id) => fetch(`${baseUrl}/reviews/${id}`, GET_REVIEW)
+
+export const fetchReviews = (target, id) =>
+    fetch(`${baseUrl}/reviews/${target}/${id}`, FETCH_REVIEWS)
+
+export const deleteReview = (id) => (dispatch) =>
+    axios
+        .delete(`${baseUrl}/reviews/${id}`)
+        .then(() => console.log("Review deleted correctly"))
+        .catch((err) => dispatch({ type: ERROR, payload: err }))
+
+export const postReview = (review) => (dispatch) =>
+    axios
+        .post(`${baseUrl}/reviews`, { ...review })
+        .then(() => dispatch(fetchReviews("product", review.productId)))
+        .catch((err) => dispatch({ type: ERROR, payload: err }))
+
+// ORDERS

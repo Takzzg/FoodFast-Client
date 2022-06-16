@@ -1,16 +1,18 @@
 import {
     CLEAN_CATEGORIES,
     CLEAN_PRODUCTS,
-    CLEAN_SELECT_PRODUCT,
+    // CLEAN_SELECT_PRODUCT,
     DELETE_CATEGORY,
     DELETE_PRODUCT,
     ERROR,
     FETCH_CATEGORIES,
     FETCH_PRODUCTS,
+    FETCH_REVIEWS,
     FILTER_BY_CATEGORY,
     FILTER_PRODUCTS,
     FIND_CAT_BY_ID,
     FIND_PRODUCT_BY_ID,
+    GET_REVIEW,
     SEARCH_CATEGORY,
     SEARCH_PRODUCT,
     SORTBYPRICE
@@ -50,16 +52,21 @@ const initialState = {
     error: null,
     products: {
         all: [],
-        filtered: []
+        filtered: [],
+        detail: {}
     },
     categories: {
         all: [],
         filtered: [],
-        detail: []
+        detail: {}
     },
     tags: {
         all: [],
         filtered: []
+    },
+    reviews: {
+        all: [],
+        detail: {}
     }
 }
 
@@ -119,9 +126,9 @@ const main = (state = initialState, action) => {
             )
             break
 
-        case CLEAN_SELECT_PRODUCT:
-            newState.products.selected = {}
-            break
+        // case CLEAN_SELECT_PRODUCT:
+        //     newState.products.detail = {}
+        //     break
 
         case FILTER_PRODUCTS:
             newState.products.filtered = []
@@ -160,7 +167,17 @@ const main = (state = initialState, action) => {
             break
 
         case FIND_PRODUCT_BY_ID:
-            newState.products.selected = action.payload
+            newState.products.detail = action.payload
+            break
+
+        // REVIEWS
+
+        case FETCH_REVIEWS:
+            newState.reviews.all = action.payload
+            break
+
+        case GET_REVIEW:
+            newState.reviews.detail = action.payload
             break
     }
 

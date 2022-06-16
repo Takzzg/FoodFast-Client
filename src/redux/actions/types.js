@@ -22,4 +22,12 @@ export const SORTBYPRICE = "sortbyprice"
 export const SEARCH_PRODUCT = "search_product"
 export const CLEAN_PRODUCTS = "clean_products"
 export const DELETE_PRODUCT = "delete_product"
-export const CLEAN_SELECT_PRODUCT = "clean_select_product"
+// export const CLEAN_SELECT_PRODUCT = "clean_select_product"
+
+// Reviews
+
+export const FETCH_REVIEWS = "fetch_reviews"
+export const GET_REVIEW = "get_review"
+export const DELETE_REVIEW = "delete_review"
+
+// Orders
