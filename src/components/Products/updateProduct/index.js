@@ -28,8 +28,8 @@ import { Message } from 'rsuite';
 import { findProductById } from "../../../redux/actions/async";
 import { useDispatch, useSelector } from "react-redux";
 import { validateForm } from "../../CustomHooks/validateForm";
-import { useParams } from "react-router-dom";
-
+import { useParams, Link } from "react-router-dom";
+import { PatchProduct} from "./updateFunctions";
 
 export default function UpdateProduct() {
 
@@ -91,11 +91,13 @@ export default function UpdateProduct() {
       <img src={require("../../../assets/pizza.png")}   id="pizza" alt="pizza"/>
       <img src={require("../../../assets/chicken.png")} id="chicken"alt="chicken"/>
     </OrnamentContainer>
+    {console.log(isSend)}
     {isSend  &&  <MessageContainer color={"green"}>
       <Message showIcon type="success" header="Success" full>
-        The product is created correctly
+        Product modify correctly!
       </Message> 
     </MessageContainer>}
+
     
     {isEmpty && <MessageContainer color={"red"}>
     <Message showIcon type="error" header="Error">
@@ -165,13 +167,15 @@ export default function UpdateProduct() {
                 <img src={URL.createObjectURL(file)} alt="preview"/>
               </PrevImgContainer>
               </PrevContainer>:<PrevContainer>
-                  <PrevEmptyImgContainer>Preview of your image</PrevEmptyImgContainer>
+                  <PrevImgContainer>
+                    <img src={form.img} alt="preview"/>
+                  </PrevImgContainer>
                 </PrevContainer>}
 
       </SecondColumnContainer>
     </MainContainer>    
             {/* LE paso la condicion de que no debe existir error para que se muestre el boton de crear */}
-    <ButtonCreate isAvailable={Object.keys(errors).length === 0}>Update Product</ButtonCreate> 
+    <Link to="/dashboard"><ButtonCreate isAvailable={Object.keys(errors).length === 0} onClick={()=>PatchProduct(form, imgCharge, file , setIsSend, setForm, setIsAvailable, setImgCharge)}>Update Product</ButtonCreate></Link>
   </GlobalContainer>
   );
 }

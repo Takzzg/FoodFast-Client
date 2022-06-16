@@ -202,7 +202,7 @@ export const InputTextArea = styled.textarea`
     resize: none;
     height: 3rem;
     border-radius: .4rem;
-    background-color: rgba(201, 147, 62);
+    background-color: rgba(201, 147, 62); 
     color: wheat;
     padding: .6rem;
     font-size: 1rem;
@@ -229,7 +229,7 @@ export const ErrorMsg = styled.div`
 `
 export const TagsProduct = styled.div`
     background-color: transparent;
-    border: 2px solid orange;
+    border: 2px solid ${({color})=> color};
     border-radius: 1rem;
     margin: auto;
     color: white;
@@ -272,7 +272,7 @@ export const TagsProduct = styled.div`
 
 
 export const TagCard = styled.div`
-    background-color: #f58220;
+    background-color: ${({color})=> color};
     margin: .4rem;
     height: 1.5rem;
     color: white;
@@ -355,7 +355,7 @@ export const OrnamentContainer = styled.div`
     }   
 `
 export const ButtonCreate = styled.button`
-    background-color: orange;
+    background-color: ${({color})=> color};
     width: 50%;
     height: ${(props)=> props.isAvailable ? "2rem":"0px"};
     color: ${(props)=> props.isAvailable ? "black":"transparent"};

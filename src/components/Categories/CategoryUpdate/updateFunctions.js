@@ -6,12 +6,27 @@ export const PostCategoryImg = (img) =>
         body: img
     })
 
-export const PatchCategory = (id, name, description, routeResponse) => 
-    axios.patch(`http://localhost:3001/api/v1/categories/${id}`, {
-    name: name,
-    description: description, 
-    img: routeResponse.img
-    })
+export const PatchCategory = (form, file) =>{
+    if(!file) {
+        axios.patch(`http://localhost:3001/api/v1/categories/${form._id}`, {
+            name: form.name,
+            description: form.description, 
+            img: form.img
+            })
+    } else {
+        const formdata = new FormData(); 
+        formdata.append('imageCategory', file)
+        PostCategoryImg(formdata)
+        .then(res=> res.json())
+        .then(json=> 
+            axios.patch(`http://localhost:3001/api/v1/categories/${form._id}`, {
+                name: form.name,
+                description: form.description, 
+                img: json.img
+                })
+            ) 
+    }} 
+    
 
 export const CleanCategoryImputs = (setIsSend, setForm, setIsAvailable, setImgCharge) => {
     setTimeout(()=> {

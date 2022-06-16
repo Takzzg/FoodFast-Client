@@ -110,6 +110,7 @@ export default function CategoryForm() {
 
         <div>
           <CreateButton
+          color={"orange"}
             onClick={() => handleSubmit(file)}
             id={styles.createStore}
           >

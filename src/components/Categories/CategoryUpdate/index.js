@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { findCatById } from "../../../redux/actions/async";
 import { validateForm } from "../../CustomHooks/validateForm";
 import { Message } from "rsuite";
@@ -18,8 +18,8 @@ import {
     Label,
     MainContainer,
     MessageContainer } from "./updateElements";
-import { PatchCategory, PostCategoryImg } from "./updateFunctions";
-import { handleUpdate } from "./updateControllers";
+import { PatchCategory} from "./updateFunctions";
+
 
 export default function ModifyCategory (){
 
@@ -110,7 +110,7 @@ export default function ModifyCategory (){
               </ErrorMsg>
             }
           </InputContainer>
-  
+            {console.log(form.img)}
           <InputContainer>
             <Label>Image:</Label>
             <InputFiled
@@ -119,22 +119,28 @@ export default function ModifyCategory (){
               id="imageCategory"
               name="imageCategory"
             />
-            {form.img ? <PrevContainer>
+            {file ? <PrevContainer>
               <button onClick={handleDeletePrev}>X</button>
+              <PrevImgContainer>
+                <img src={URL.createObjectURL(file)} alt="prevView" />
+              </PrevImgContainer>
+            </PrevContainer>:<PrevContainer>
               <PrevImgContainer>
                 <img src={form.img} alt="prevView" />
               </PrevImgContainer>
-            </PrevContainer>:<PrevContainer>
-              <PrevEmptyImgContainer>Preview of your image</PrevEmptyImgContainer>
               </PrevContainer>}
           </InputContainer>
   
           <div>
-            <CreateButton
-            onClick={(e)=>handleUpdate(e, file, PostCategoryImg, PatchCategory, setIsSend, form)}
-            >
-              Update Category
-            </CreateButton>
+            <Link to={"/dashboard"}>
+              <CreateButton
+              color="green"
+              onClick={()=>PatchCategory(form, file)}
+              >
+                Update Category
+              </CreateButton>
+            </Link>
+
           </div>
         </MainContainer>
       </GlobalContainer>

@@ -173,10 +173,10 @@ export default function ProductForm() {
                         <Label>Categories:</Label>
                         <SelectedList setFormCategories={setForm} form={form} />
 
-                        <TagsProduct>
+                        <TagsProduct color="orange">
                             Tags for this product:
                             {form.categories.map((el) => (
-                                <TagCard key={el}>
+                                <TagCard key={el} color="orange">
                                     <div id="tag">{el}</div>
                                     <div id="button">
                                         <button
@@ -217,6 +217,7 @@ export default function ProductForm() {
     </MainContainer>    
             {/* LE paso la condicion de que no debe existir error para que se muestre el boton de crear */}
             <ButtonCreate
+            color="orange"
                 isAvailable={Object.keys(errors).length === 0}
                 onClick={() => handleSubmit(file, setFile)}
             >
