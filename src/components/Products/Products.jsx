@@ -1,11 +1,10 @@
-import {  useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 
 import { AiOutlineSearch } from "react-icons/ai"
 
 import { StyledProducts, StyledSideBar } from "./Products.styled"
 import ProductCard from "./ProductCard/ProductCard"
 import { Link } from "react-router-dom"
-
 
 const Products = () => {
     const theme = useSelector((state) => state.theme.selectedTheme)
@@ -42,7 +41,7 @@ const Products = () => {
             <div className="productsContainer">
                 {!!products.length &&
                     products.map((p) => (
-                            <ProductCard key={p._id} product={p} />                    
+                        <ProductCard key={p._id} product={p} />
                     ))}
             </div>
         </StyledProducts>
