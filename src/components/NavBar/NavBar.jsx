@@ -51,18 +51,14 @@ const NavBar = () => {
                 </MainIconContainer>
 
                 <ButtonsContainer theme={theme}>
-                    <LoginRegisterButton theme={theme}>
-                        <NavLink to="/login">
-                            <FaUserAlt />
-                            Login
-                        </NavLink>
+                    <LoginRegisterButton to="/login" theme={theme}>
+                        <FaUserAlt />
+                        Login
                     </LoginRegisterButton>
 
-                    <LoginRegisterButton theme={theme}>
-                        <NavLink to="/logup">
-                            <GiArchiveRegister />
-                            Register
-                        </NavLink>
+                    <LoginRegisterButton to="/logup" theme={theme}>
+                        <GiArchiveRegister />
+                        Register
                     </LoginRegisterButton>
                 </ButtonsContainer>
 

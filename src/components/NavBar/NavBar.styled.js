@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom"
 
 export const GlobalContainer = styled.section`
     z-index: 2;
@@ -64,17 +65,18 @@ export const ButtonsContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.background};
     border-bottom: 1px solid black;
     margin-bottom: 1.5rem;
-    a{
+    a {
         text-decoration: none;
         color: black;
     }
 `
-export const LoginRegisterButton = styled.button`
-    height: 70%; text-decoration: none;
+export const LoginRegisterButton = styled(Link)`
+    height: 70%;
+    text-decoration: none;
     width: 40%;
     cursor: pointer;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     font-size: 1rem;
     background-color: ${({ theme }) => theme.colors.background};
