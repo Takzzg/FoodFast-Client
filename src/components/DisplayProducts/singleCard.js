@@ -11,7 +11,7 @@ import {
   import {AiOutlineShoppingCart} from "react-icons/ai"
   import {Link} from "react-router-dom";
 
-export default function SingleProductCard ({id, name, price, img}){
+export default function SingleProductCard ({id, name, price, stock}){
     return(
     <CardContainer>
         <TitleDiv>
@@ -20,7 +20,7 @@ export default function SingleProductCard ({id, name, price, img}){
 
         <ImageContainer > 
             <Link to={`/products/${id}`}>
-                <img src={img} alt="imagen"/> 
+                <img src={`http://localhost:3001/api/v1/products/img/${id}`} alt="imagen"/> 
             </Link>
         </ImageContainer>
 

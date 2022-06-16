@@ -5,6 +5,7 @@ import { fetchProductsByCat, findCatById } from "../../../redux/actions/async"
 import { StyledCategoryDetail } from "./DetailCategory.styled"
 import ProductCard from "../../Products/ProductCard/ProductCard"
 import { clean_categories, clean_products } from "../../../redux/actions/sync"
+import { IMAGE_CATEGORY } from "../../../consts/images"
 
 const DetailCategory = () => {
     const { idCategory } = useParams()
@@ -44,7 +45,8 @@ const DetailCategory = () => {
     })
 
     return !!category ? (
-        <StyledCategoryDetail theme={theme} img={category.img}>
+        <StyledCategoryDetail theme={theme}>
+            <img src={IMAGE_CATEGORY + idCategory} alt="Imagen XD" height={"200"}/>
             <div className="banner">{category.name}</div>
             <div className="products">
                 {products().length !== 0 &&

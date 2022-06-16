@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   ErrorMsg,
   GlobalContainer,
@@ -8,6 +8,7 @@ import {
   Label,
   MainContainer,
   MessageContainer,
+  Title,
 } from "../../Products/ProductForm/formElements";
 import styles from "./category.module.scss";
 import useForm from "../../CustomHooks/useForm";
@@ -42,23 +43,9 @@ export default function CategoryForm() {
 
   return (
     <GlobalContainer>
-      {isSend && (
-        <MessageContainer color={"green"}>
-          <Message showIcon type="success" header="Success" full>
-            The product is created correctly
-          </Message>
-        </MessageContainer>
-      )}
-
-      {isEmpty && (
-        <MessageContainer color={"red"}>
-          <Message showIcon type="error" header="Error">
-            Product could not be created because of empty fields
-          </Message>
-        </MessageContainer>
-      )}
+      <Title>CREATE CATEGORY</Title>
       <MainContainer id={styles.MainContainer}>
-        <InputContainer>
+        <InputContainer color={"rgba(201, 147, 62)"}>
           <Label>Category Name:</Label>
           <InputSimple
             onChange={handleChange}
@@ -74,7 +61,7 @@ export default function CategoryForm() {
           }
         </InputContainer>
 
-        <InputContainer>
+        <InputContainer color={"rgba(201, 147, 62)"}>
           <Label>Description:</Label>
           <InputSimple
             onChange={handleChange}

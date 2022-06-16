@@ -1,17 +1,13 @@
 import { useSelector } from "react-redux"
 import { FaDollarSign, FaPlus } from "react-icons/fa"
 import { StyledProductCard } from "./ProductCard.styled"
-
-const randomImg =
-    "https://orlandoinformer.com/wp-content/uploads/2014/07/ollivanders-wand-shop-universal-studios-florida-8211-oi.jpg"
-
+import { IMAGE_PRODUCT } from "../../../consts/images"
 const ProductCard = ({ product }) => {
     const {
         _id,
         name,
         price,
         description,
-        img = randomImg,
         available
     } = product
 
@@ -22,9 +18,8 @@ const ProductCard = ({ product }) => {
             theme={theme}
             key={_id}
             to={`/products/${_id}`}
-            img={img}
         >
-            <span className="img" img={img} />
+            <img className="img" src={IMAGE_PRODUCT +_id} alt="img" height={"100"}/>
             <div className="header">
                 <span className="name">{name}</span>
                 <span className="price">

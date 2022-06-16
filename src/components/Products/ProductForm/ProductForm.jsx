@@ -15,17 +15,16 @@ import {
   AvailableContainer,
   ErrorMsg,
   ButtonCreate,
-  MessageContainer,
   PrevContainer,
   PrevImgContainer,
-  PrevEmptyImgContainer
+  PrevEmptyImgContainer,
+  Title
 } from "./formElements";
 import useForm from "../../CustomHooks/useForm";
 import SelectedList from "./selectedList";
 import {CgUnavailable} from "react-icons/cg"
 import {MdOutlineEventAvailable} from "react-icons/md"
-import { useEffect } from "react";
-import { Message } from 'rsuite';
+
 
 const initialForm = {
     name: "",
@@ -65,23 +64,12 @@ export default function ProductForm() {
       <img src={require("../../../assets/pizza.png")}   id="pizza" alt="pizza"/>
       <img src={require("../../../assets/chicken.png")} id="chicken"alt="chicken"/>
     </OrnamentContainer>
-    {isSend  &&  <MessageContainer color={"green"}>
-      <Message showIcon type="success" header="Success" full>
-        The product is created correctly
-      </Message> 
-    </MessageContainer>}
-      
-      {
-        isEmpty && <MessageContainer color={"red"}>
-    <Message showIcon type="error" header="Error">
-      Product could not be created because of empty fields
-    </Message>
-      </MessageContainer>
-      }
 
+      
+    <Title>CREATE PRODUCT</Title>
             <MainContainer>
                 <FirstColumnContainer>
-                    <InputContainer>
+                    <InputContainer color={"rgba(201, 147, 62)"}>
                         <Label>Name:</Label>
                         <InputSimple
                             type={"text"}
@@ -97,9 +85,10 @@ export default function ProductForm() {
                         }
                     </InputContainer>
 
-                    <InputContainer>
+                    <InputContainer color={"rgba(201, 147, 62)"}>
                         <Label>Description:</Label>
                         <InputTextArea
+                        color={"rgba(201, 147, 62)"}
                             name="description"
                             value={form.description}
                             onChange={handleChange}
@@ -111,7 +100,7 @@ export default function ProductForm() {
                         }
                     </InputContainer>
 
-                    <InputContainer className="row">
+                    <InputContainer className="row" color={"rgba(201, 147, 62)"}>
                         <Label>Price:</Label>
                         <div
                             style={{
@@ -146,7 +135,7 @@ export default function ProductForm() {
                         </div>
                     </InputContainer>
 
-                    <InputContainer className="row">
+                    <InputContainer className="row" color={"rgba(201, 147, 62)"}>
                         <Label>Stock:</Label>
                         <InputSimple
                             type={"number"}
@@ -169,9 +158,9 @@ export default function ProductForm() {
                 </FirstColumnContainer>
 
                 <SecondColumnContainer>
-                    <InputContainer>
+                    <InputContainer color={"rgba(201, 147, 62)"}>
                         <Label>Categories:</Label>
-                        <SelectedList setFormCategories={setForm} form={form} />
+                        <SelectedList setFormCategories={setForm} form={form} color={"orange"}/>
 
                         <TagsProduct color="orange">
                             Tags for this product:

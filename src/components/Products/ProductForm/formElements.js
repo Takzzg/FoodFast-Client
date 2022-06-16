@@ -21,7 +21,14 @@ export const GlobalContainer = styled.section`
         flex-direction: column;
 
 `
-
+export const Title = styled.div`
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 1rem; 
+    color: white; 
+    font-size: 3rem;
+`
 export const MainContainer = styled.section`    
     height: 30rem;
     width: 50rem;
@@ -146,7 +153,7 @@ export const InputContainer = styled.div`
 
     input {
         border-radius: .4rem;
-        background-color: rgba(201, 147, 62);
+        background-color: ${({color})=> color};
         color: wheat;
         padding-left: 1rem;
         font-size: 1rem;
@@ -202,7 +209,7 @@ export const InputTextArea = styled.textarea`
     resize: none;
     height: 3rem;
     border-radius: .4rem;
-    background-color: rgba(201, 147, 62); 
+    background-color: ${({color})=> color};
     color: wheat;
     padding: .6rem;
     font-size: 1rem;

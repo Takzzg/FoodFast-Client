@@ -18,7 +18,7 @@ import {
   MessageContainer,
   PrevContainer,
   PrevImgContainer,
-  PrevEmptyImgContainer
+  Title
 } from "../ProductForm/formElements";
 import SelectedList from "../ProductForm/selectedList";
 import {CgUnavailable} from "react-icons/cg"
@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { validateForm } from "../../CustomHooks/validateForm";
 import { useParams, Link } from "react-router-dom";
 import { PatchProduct} from "./updateFunctions";
+import { IMAGE_PRODUCT } from "../../../consts/images";
 
 export default function UpdateProduct() {
 
@@ -91,7 +92,6 @@ export default function UpdateProduct() {
       <img src={require("../../../assets/pizza.png")}   id="pizza" alt="pizza"/>
       <img src={require("../../../assets/chicken.png")} id="chicken"alt="chicken"/>
     </OrnamentContainer>
-    {console.log(isSend)}
     {isSend  &&  <MessageContainer color={"green"}>
       <Message showIcon type="success" header="Success" full>
         Product modify correctly!
@@ -104,22 +104,24 @@ export default function UpdateProduct() {
       Product could not be created because of empty fields
     </Message>
       </MessageContainer>}
-
+      <Title>
+        MODIFY PRODUCT
+      </Title>
       <MainContainer>
         <FirstColumnContainer>
-          <InputContainer>
+          <InputContainer color={"green"}>
             <Label>Name:</Label>
             <InputSimple type={"text"} placeholder="Pizza..." name="name" value={form.name} onChange={handleChange}/>
             {<ErrorMsg error={errors.name ? true:false}>{errors.name}</ErrorMsg>}
           </InputContainer>
 
-          <InputContainer>
+          <InputContainer color={"green"}>
             <Label>Description:</Label>
-            <InputTextArea name="description" value={form.description} onChange={handleChange}/>
+            <InputTextArea name="description" value={form.description} onChange={handleChange} color="green"/>
             {<ErrorMsg error={errors.description ? true:false}>{errors.description}</ErrorMsg>}
           </InputContainer>
 
-          <InputContainer className="row">
+          <InputContainer className="row" color={"green"}>
             <Label>Price:</Label>
             <div style={{display: "flex", flexDirection: "column", alignItems:"center", justifyContent:"center"}}>
               <div id="priceContainer">
@@ -129,7 +131,7 @@ export default function UpdateProduct() {
             </div>
           </InputContainer>
 
-          <InputContainer className="row">
+          <InputContainer className="row" color={"green"}>
             <Label>Stock:</Label>
             <InputSimple type={"number"} name="stock" id="number" value={form.stock} onChange={handleChange}/>
             <AvailableContainer isAvailable={isAvailable}>         
@@ -142,11 +144,11 @@ export default function UpdateProduct() {
       <SecondColumnContainer>
       <InputContainer>
           <Label>Categories:</Label>
-          <SelectedList setFormCategories={setForm} form={form}/>
-            <TagsProduct>
+          <SelectedList setFormCategories={setForm} form={form} color={"green"}/>
+            <TagsProduct color="green">
               Tags for this product:
               {form.categories && form.categories.map(el=> 
-                <TagCard key={el}>
+                <TagCard key={el} color="green">
                   <div id="tag">{el}</div>
                   <div id="button">
                     <button id="deleteButton" onClick={()=> handleDeleteCategory(el)}>X</button>
@@ -168,14 +170,14 @@ export default function UpdateProduct() {
               </PrevImgContainer>
               </PrevContainer>:<PrevContainer>
                   <PrevImgContainer>
-                    <img src={form.img} alt="preview"/>
+                    <img src={IMAGE_PRODUCT +id} alt="preview"/>
                   </PrevImgContainer>
                 </PrevContainer>}
 
       </SecondColumnContainer>
     </MainContainer>    
             {/* LE paso la condicion de que no debe existir error para que se muestre el boton de crear */}
-    <Link to="/dashboard"><ButtonCreate isAvailable={Object.keys(errors).length === 0} onClick={()=>PatchProduct(form, imgCharge, file , setIsSend, setForm, setIsAvailable, setImgCharge)}>Update Product</ButtonCreate></Link>
+    <ButtonCreate color="green" isAvailable={Object.keys(errors).length === 0} onClick={()=>PatchProduct(id,form, imgCharge, file , setIsSend, setForm, setIsAvailable, setImgCharge)}>Update Product</ButtonCreate>
   </GlobalContainer>
   );
 }

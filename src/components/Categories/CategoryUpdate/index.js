@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react"; 
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import { findCatById } from "../../../redux/actions/async";
 import { validateForm } from "../../CustomHooks/validateForm";
 import { Message } from "rsuite";
+import { IMAGE_CATEGORY } from "../../../consts/images";
 
 import {    
     CreateButton, 
     PrevContainer, 
-    PrevImgContainer, 
-    PrevEmptyImgContainer,    
+    PrevImgContainer,   
     ErrorMsg,
     GlobalContainer,
     InputContainer,
@@ -19,6 +19,7 @@ import {
     MainContainer,
     MessageContainer } from "./updateElements";
 import { PatchCategory} from "./updateFunctions";
+import { Title } from "../../Products/ProductForm/formElements";
 
 
 export default function ModifyCategory (){
@@ -62,14 +63,6 @@ export default function ModifyCategory (){
     
     return(
         <GlobalContainer>
-        {isSend && (
-          <MessageContainer color={"green"}>
-            <Message showIcon type="success" header="Success" full>
-              The product is updated correctly
-            </Message>
-          </MessageContainer>
-        )}
-  
         {isEmpty && (
           <MessageContainer color={"red"}>
             <Message showIcon type="error" header="Error">
@@ -77,9 +70,9 @@ export default function ModifyCategory (){
             </Message>
           </MessageContainer>
         )}
-
+      <Title>MODIFY CATEGORY</Title>
         <MainContainer style={{display: "flex", flexDirection: "column"}}>
-          <InputContainer>
+          <InputContainer color={"green"}>
             <Label>Category Name:</Label>
             <InputSimple
               onChange={handleChange}
@@ -95,7 +88,7 @@ export default function ModifyCategory (){
             }
           </InputContainer>
   
-          <InputContainer>
+          <InputContainer color={"green"}>
             <Label>Description:</Label>
             <InputSimple
               onChange={handleChange}
@@ -126,21 +119,19 @@ export default function ModifyCategory (){
               </PrevImgContainer>
             </PrevContainer>:<PrevContainer>
               <PrevImgContainer>
-                <img src={form.img} alt="prevView" />
+                <img src={IMAGE_CATEGORY + id} alt="prevView" />
               </PrevImgContainer>
               </PrevContainer>}
           </InputContainer>
   
           <div>
-            <Link to={"/dashboard"}>
               <CreateButton
               color="green"
+              style={{marginLeft: "20rem"}}
               onClick={()=>PatchCategory(form, file)}
               >
                 Update Category
               </CreateButton>
-            </Link>
-
           </div>
         </MainContainer>
       </GlobalContainer>
