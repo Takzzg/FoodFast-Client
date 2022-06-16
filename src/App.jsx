@@ -22,6 +22,8 @@ import {
     Reviews
 } from "./components"
 import GlobalStyle from "./GlobalStyles"
+import ModifyCategory from "./components/Categories/CategoryUpdate"
+import UpdateProduct from "./components/Products/updateProduct"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -71,6 +73,16 @@ function App() {
                             <Route
                                 path="createCategory"
                                 element={<CategoryForm />}
+                            />
+
+                            <Route 
+                                path="modifyCategory/:id"
+                                element={<ModifyCategory />}
+                            />
+                            
+                            <Route 
+                                path="updateProduct/:id"
+                                element={<UpdateProduct />}
                             />
                         </Route>
 

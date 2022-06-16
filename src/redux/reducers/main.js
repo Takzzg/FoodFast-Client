@@ -50,7 +50,8 @@ const initialState = {
     error: null,
     products: {
         all: [],
-        filtered: []
+        filtered: [],
+        selected: []
     },
     categories: {
         all: [],

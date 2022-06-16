@@ -44,17 +44,17 @@ const Dashboard = () => {
                             filterCategories.map((c) => (
                                 <div key={c._id}>
                                     <CategoryCard
-                                        key={c._id}
                                         category={c}
                                         url={`/categories/${c._id}`}
                                     />
                                     <button
                                         onClick={() =>
-                                            handleDelete("categories", c._id)
+                                            handleDelete("categories", c._id, c.img)
                                         }
                                     >
                                         Delete
                                     </button>
+                                    <Link to={`/dashboard/modifyCategory/${c._id}`}><div>Edit</div></Link>
                                 </div>
                             ))
                         )}
@@ -77,11 +77,12 @@ const Dashboard = () => {
                                     <ProductCard product={p} />
                                     <button
                                         onClick={() =>
-                                            handleDelete("products", p._id)
+                                            handleDelete("products", p._id, p.img)
                                         }
                                     >
                                         Delete
                                     </button>
+                                    <Link to={`/dashboard/updateProduct/${p._id}`}><div>Edit</div></Link>       
                                 </div>
                             ))
                         )}

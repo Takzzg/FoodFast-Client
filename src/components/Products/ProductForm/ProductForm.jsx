@@ -16,7 +16,9 @@ import {
   ErrorMsg,
   ButtonCreate,
   MessageContainer,
-  ImgMessageContainer
+  PrevContainer,
+  PrevImgContainer,
+  PrevEmptyImgContainer
 } from "./formElements";
 import useForm from "../../CustomHooks/useForm";
 import SelectedList from "./selectedList";
@@ -38,14 +40,7 @@ export default function ProductForm() {
   // Usando el hook personalizado
   const [file, setFile] = useState(null);
   const [imgCharge, setImgCharge] = useState(false); 
-  
   const { form, handleChange, isSend, errors, setForm,  isAvailable, handleSubmit, isEmpty } = useForm("product", initialForm, setImgCharge);
-
-
-
-  useEffect(()=> {
-    setForm({...form})
-  }, [form, setForm])
 
   const handleChangeFile = (e)=> {
     const newFile = e.target.files[0]; 
@@ -57,6 +52,11 @@ export default function ProductForm() {
   const handleDeleteCategory = (value)=> {
     setForm({...form, categories: form.categories.filter(el=> el !== value)})
   }
+
+  const handleDeletePrev = () => {
+    document.getElementById("fileinput").value = null; 
+    setFile(null)
+  }
   
   return (
   <GlobalContainer>
@@ -65,7 +65,6 @@ export default function ProductForm() {
       <img src={require("../../../assets/pizza.png")}   id="pizza" alt="pizza"/>
       <img src={require("../../../assets/chicken.png")} id="chicken"alt="chicken"/>
     </OrnamentContainer>
-
     {isSend  &&  <MessageContainer color={"green"}>
       <Message showIcon type="success" header="Success" full>
         The product is created correctly
@@ -139,11 +138,14 @@ export default function ProductForm() {
           <InputFiled type={"file"} name="imageProduct" value={form.img} onChange={handleChangeFile} id="fileinput"/>
         </InputContainer>
 
-        {imgCharge  &&  <ImgMessageContainer>
-        <Message showIcon type="success">
-          Image uploaded successfully
-        </Message>
-        </ImgMessageContainer>}
+            {file ? <PrevContainer>
+              <button onClick={handleDeletePrev}>X</button>
+              <PrevImgContainer>
+                <img src={URL.createObjectURL(file)} alt="preview"/>
+              </PrevImgContainer>
+              </PrevContainer>:<PrevContainer>
+                  <PrevEmptyImgContainer>Preview of your image</PrevEmptyImgContainer>
+                </PrevContainer>}
     
       </SecondColumnContainer>
     </MainContainer>    

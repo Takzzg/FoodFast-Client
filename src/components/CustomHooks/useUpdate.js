@@ -3,7 +3,7 @@ import { CleanCategoryImputs, PostCategory, PostCategoryImg } from "../Categorie
 import { CleanProductsInput, PostProduct, PostProductImg } from "../Products/ProductForm/PostFunctions";
 import { validateForm } from "./validateForm";
 
-export default function useForm(type, initialForm, setImgCharge) {
+export default function useUpdate(type, initialForm, setImgCharge) {
 
     const [form, setForm] = useState(initialForm); 
     const [errors, setErrors] = useState({});
@@ -18,9 +18,9 @@ export default function useForm(type, initialForm, setImgCharge) {
         const {name, value} = e.target; 
         setForm({...form, [name]: value})
 
-        // La función validateForm devuelve un objeto
-        let currentErrors = validateForm({...form, [name]: value}, type)
+
         // Que después seteo en mi estado de errores
+        let currentErrors = validateForm({...form, [name]: value}, type)
         setErrors(currentErrors)
         if(type === "product" && name === "stock") {
             if (value > 0) setIsAvailable(true)
