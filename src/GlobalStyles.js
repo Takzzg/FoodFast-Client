@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
         flex-direction: column;
         overflow: hidden;
 
-        background-color: ${({ theme }) => theme.colors.background};
+        background-color: ${({ theme }) => theme.colors.bgPage};
 
         & > * {
             overflow: auto;
