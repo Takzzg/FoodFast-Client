@@ -64,9 +64,13 @@ export const ButtonsContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.background};
     border-bottom: 1px solid black;
     margin-bottom: 1.5rem;
+    a{
+        text-decoration: none;
+        color: black;
+    }
 `
 export const LoginRegisterButton = styled.button`
-    height: 70%;
+    height: 70%; text-decoration: none;
     width: 40%;
     cursor: pointer;
     display: flex;

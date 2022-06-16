@@ -24,6 +24,8 @@ import {
 import GlobalStyle from "./GlobalStyles"
 import ModifyCategory from "./components/Categories/CategoryUpdate"
 import UpdateProduct from "./components/Products/updateProduct"
+import Login from "./components/Auth/Login"
+import Logup from "./components/Auth/Logup"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -51,7 +53,7 @@ function App() {
                 <ScrollToTop>
                     <NavBar />
 
-                    <Routes>
+                    <Routes> 
                         <Route path="/" element={<Landing />} />
                         <Route path="/products" element={<DisplayProducts />} />
                         <Route
@@ -86,6 +88,7 @@ function App() {
                             />
                         </Route>
 
+                    {/* Hay dos dashboards */}
                         <Route path="/dashboard/products">
                             <Route index element={<Products />} />
                             <Route
@@ -121,6 +124,11 @@ function App() {
                                 />
                             </Route>
                         </Route>
+
+                        {/* LOGIN */}
+                        <Route path="/login" element={<Login/>}/>
+                        {/* REGISTER */}
+                        <Route path="/logup" element={<Logup/>}/>
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>
