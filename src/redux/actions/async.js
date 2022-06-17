@@ -39,8 +39,8 @@ export const fetchAllUsers = () => fetch(`${baseUrl}/user`, FETCH_ALL_USERS)
 
 export const logIn = (email, password) => (dispatch) =>
     axios
-        .post(`${baseUrl}/user/login`, { email, password })
-        .then((res) => dispatch({ type: LOG_IN, payload: res.data }))
+        .post(`${baseUrl}/auth/login`, { email, password })
+        .then((res) => dispatch({ type: LOG_IN, payload: res.data.user }))
         .catch((err) => dispatch({ type: ERROR, payload: err }))
 
 // PRODUCTS
