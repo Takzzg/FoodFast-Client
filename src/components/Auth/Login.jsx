@@ -18,7 +18,7 @@ function validate(input) {
         errors.password = "Tu contraseña es requerida."
     } else if (input.password.length < 4) {
         errors.password = "contraseña demasiado corta"
-    } else if (/[^A-z\s\d][\\\^]?/g.test(input.password)) {
+    } else if (/[^A-z\s\d][\\^]?/g.test(input.password)) {
         errors.password = "No puede contener caracteres especiales."
     }
     return errors
