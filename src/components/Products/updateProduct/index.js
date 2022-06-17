@@ -32,27 +32,32 @@ import { useParams } from "react-router-dom"
 import { PatchProduct } from "./updateFunctions"
 // import { IMAGE_PRODUCT } from "../../../consts/images";
 
+import burger from "../../../assets/burger.png"
+import pizza from "../../../assets/pizza.png"
+import chicken from "../../../assets/chicken.png"
+
 export default function UpdateProduct() {
-    const { id } = useParams()
-    const [form, setForm] = useState({
-        name: "",
-        description: "",
-        price: 0,
-        stock: 0,
-        categories: [],
-        img: null
-    })
+    const { idProduct } = useParams()
+
+    const [form, setForm] = useState({})
 
     const [errors, setErrors] = useState({})
     const [isSend, setIsSend] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
-
-    const dispatch = useDispatch()
-    const product = useSelector((state) => state.main.products.selected)
     const [isAvailable, setIsAvailable] = useState(false)
-
     const [file, setFile] = useState(null)
     const [imgCharge, setImgCharge] = useState(false)
+
+    const dispatch = useDispatch()
+    const product = useSelector((state) => state.main.products.detail)
+
+    useEffect(() => {
+        dispatch(findProductById(idProduct))
+    }, [dispatch, idProduct])
+
+    useEffect(() => {
+        !!product && setForm({ ...product })
+    }, [product])
 
     const handleDeleteCategory = (value) => {
         setForm({
@@ -60,6 +65,7 @@ export default function UpdateProduct() {
             categories: form.categories.filter((el) => el !== value)
         })
     }
+
     const handleDeletePrev = () => {
         document.getElementById("imageCategory").value = null
         setFile(null)
@@ -83,30 +89,14 @@ export default function UpdateProduct() {
         setErrors(currentErrors)
     }
 
-    useEffect(() => {
-        dispatch(findProductById(id))
-        setForm(product)
-    }, [dispatch, id, product.name])
-
     return (
         <GlobalContainer>
             <OrnamentContainer>
-                <img
-                    src={require("../../../assets/burger.png")}
-                    id="burguer"
-                    alt="burguer"
-                />
-                <img
-                    src={require("../../../assets/pizza.png")}
-                    id="pizza"
-                    alt="pizza"
-                />
-                <img
-                    src={require("../../../assets/chicken.png")}
-                    id="chicken"
-                    alt="chicken"
-                />
+                <img src={burger} id="burguer" alt="burguer" />
+                <img src={pizza} id="pizza" alt="pizza" />
+                <img src={chicken} id="chicken" alt="chicken" />
             </OrnamentContainer>
+
             {isSend && (
                 <MessageContainer color={"green"}>
                     <Message showIcon type="success" header="Success" full>
@@ -122,7 +112,9 @@ export default function UpdateProduct() {
                     </Message>
                 </MessageContainer>
             )}
+
             <Title>MODIFY PRODUCT</Title>
+
             <MainContainer>
                 <FirstColumnContainer>
                     <InputContainer color={"green"}>
@@ -143,6 +135,7 @@ export default function UpdateProduct() {
 
                     <InputContainer color={"green"}>
                         <Label>Description:</Label>
+
                         <InputTextArea
                             name="description"
                             value={form.description}
@@ -158,6 +151,7 @@ export default function UpdateProduct() {
 
                     <InputContainer className="row" color={"green"}>
                         <Label>Price:</Label>
+
                         <div
                             style={{
                                 display: "flex",
@@ -267,7 +261,7 @@ export default function UpdateProduct() {
                             <PrevImgContainer>
                                 {/* <img src={IMAGE_PRODUCT +id} alt="preview"/> */}
                                 <img
-                                    src={`${baseUrl}/products/img/${id}`}
+                                    src={`${baseUrl}/products/img/${idProduct}`}
                                     alt="preview"
                                 />
                             </PrevImgContainer>
@@ -281,7 +275,7 @@ export default function UpdateProduct() {
                 isAvailable={Object.keys(errors).length === 0}
                 onClick={() =>
                     PatchProduct(
-                        id,
+                        idProduct,
                         form,
                         imgCharge,
                         file,

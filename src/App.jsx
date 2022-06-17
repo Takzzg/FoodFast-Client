@@ -50,11 +50,13 @@ function App() {
 
                     <Routes>
                         <Route path="/" element={<Landing />} />
-                        <Route path="/products" element={<DisplayProducts />} />
-                        <Route
-                            path="/products/:idProduct"
-                            element={<DetailProduct />}
-                        />
+                        <Route path="/products">
+                            <Route index element={<DisplayProducts />} />
+                            <Route
+                                path=":idProduct"
+                                element={<DetailProduct />}
+                            />
+                        </Route>
                         <Route
                             path="/category/:idCategory"
                             element={<DetailCategory />}
@@ -69,6 +71,14 @@ function App() {
                             <Route
                                 path="createCategory"
                                 element={<CategoryForm />}
+                            />
+                            <Route
+                                path="updateProduct/:idProduct"
+                                element={<UpdateProduct />}
+                            />
+                            <Route
+                                path="modifyCategory/:idCategory"
+                                element={<ModifyCategory />}
                             />
                         </Route>
 

@@ -22,7 +22,7 @@ import { PatchCategory } from "./updateFunctions"
 import { Title } from "../../Products/ProductForm/formElements"
 
 export default function ModifyCategory() {
-    const { id } = useParams()
+    const { idCategory } = useParams()
     const [form, setForm] = useState({ name: "", description: "", img: null })
     const [errors, setErrors] = useState({})
     // const [isSend, setIsSend] = useState(false)
@@ -54,9 +54,12 @@ export default function ModifyCategory() {
     }
 
     useEffect(() => {
-        dispatch(findCatById(id))
+        dispatch(findCatById(idCategory))
+    }, [dispatch, idCategory])
+
+    useEffect(() => {
         setForm(category)
-    }, [dispatch, id, category.name])
+    }, [category])
 
     return (
         <GlobalContainer>
@@ -100,7 +103,6 @@ export default function ModifyCategory() {
                         </ErrorMsg>
                     }
                 </InputContainer>
-                {console.log(form.img)}
                 <InputContainer>
                     <Label>Image:</Label>
                     <InputFiled
@@ -109,7 +111,7 @@ export default function ModifyCategory() {
                         id="imageCategory"
                         name="imageCategory"
                     />
-                    {file ? (
+                    {/* {file ? (
                         <PrevContainer>
                             <button onClick={handleDeletePrev}>X</button>
                             <PrevImgContainer>
@@ -119,16 +121,16 @@ export default function ModifyCategory() {
                                 />
                             </PrevImgContainer>
                         </PrevContainer>
-                    ) : (
-                        <PrevContainer>
-                            <PrevImgContainer>
-                                <img
-                                    src={`${baseUrl}/categories/img/${id}`}
-                                    alt="preview"
-                                />
-                            </PrevImgContainer>
-                        </PrevContainer>
-                    )}
+                    ) : ( */}
+                    <PrevContainer>
+                        <PrevImgContainer>
+                            <img
+                                src={`${baseUrl}/categories/img/${idCategory}`}
+                                alt="preview"
+                            />
+                        </PrevImgContainer>
+                    </PrevContainer>
+                    {/* )} */}
                 </InputContainer>
 
                 <div>

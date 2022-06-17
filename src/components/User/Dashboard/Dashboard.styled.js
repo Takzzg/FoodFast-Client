@@ -16,7 +16,7 @@ export const StyledDashboard = styled.div`
         justify-content: center;
         overflow: hidden;
         & > div {
-            background-color: ${({ theme }) => theme.colors.background};
+            background-color: ${({ theme }) => theme.colors.bgPage};
             display: flex;
             flex-direction: column;
             gap: 1rem;

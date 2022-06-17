@@ -38,12 +38,12 @@ const Landing = () => {
             <CategoriesContainer>
                 {filterCategories.length === 0
                     ? categories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
+                          <Link key={c._id} to={`/category/${c._id}`}>
                               <CategoryCard key={c._id} category={c} />
                           </Link>
                       ))
                     : filterCategories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
+                          <Link key={c._id} to={`/category/${c._id}`}>
                               <CategoryCard key={c._id} category={c} />
                           </Link>
                       ))}
