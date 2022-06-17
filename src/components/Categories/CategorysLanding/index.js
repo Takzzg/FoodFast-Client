@@ -2,7 +2,7 @@ import React from "react"
 import { MainContainer, NameCategory } from "./categoryElements"
 import styles from "./category.module.scss"
 import { baseUrl } from "../../../redux/actions/async"
-// import { IMAGE_CATEGORY } from "../../../consts/images";
+
 const colors = [
     "#990000",
     "#37E2D5",
@@ -24,7 +24,6 @@ export default function CategoryCard({ category }) {
     const BGCOLOR = colors[colorRandom()]
     return (
         <MainContainer bgColor={BGCOLOR}>
-            {/* <img src={IMAGE_CATEGORY + category._id} height="100" alt="img"/> */}
             <img
                 src={`${baseUrl}/categories/img/${category._id}`}
                 height="100"

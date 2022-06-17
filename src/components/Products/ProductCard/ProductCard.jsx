@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { FaDollarSign, FaPlus } from "react-icons/fa"
 import { StyledProductCard } from "./ProductCard.styled"
 import { baseUrl } from "../../../redux/actions/async"
+
 const ProductCard = ({ product }) => {
     const { _id, name, price, description, available } = product
 

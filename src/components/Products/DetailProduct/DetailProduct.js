@@ -18,13 +18,8 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { AiOutlineCreditCard } from "react-icons/ai"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import {
-    baseUrl,
-    // fetchImg,
-    findProductById
-} from "../../../redux/actions/async"
+import { baseUrl, findProductById } from "../../../redux/actions/async"
 import { clean_select_product } from "../../../redux/actions/sync"
-// import { IMAGE_PRODUCT } from "../../../consts/images"
 
 const DetailProduct = () => {
     const { idProduct } = useParams()
@@ -47,7 +42,6 @@ const DetailProduct = () => {
             <TitleContainer>{product.name}</TitleContainer>
             <MainContainer>
                 <ImageContainer>
-                    {/* <img src={IMAGE_PRODUCT + idProduct} alt="..." /> */}
                     <img
                         src={`${baseUrl}/products/img/${idProduct}`}
                         alt="Foto del producto"
@@ -55,10 +49,6 @@ const DetailProduct = () => {
                 </ImageContainer>
 
                 <SecondMainContainer>
-                    {/* <div style={{ display: "flex", width: "100%" }}>
-                        <StoreName>{storeName}</StoreName>
-                    </div> */}
-
                     <DescriptionContainer>
                         <ListItem>
                             <Etiqueta>DESCRIPTION:</Etiqueta>

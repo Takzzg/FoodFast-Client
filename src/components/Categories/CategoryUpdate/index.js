@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom"
 import { baseUrl, findCatById } from "../../../redux/actions/async"
 import { validateForm } from "../../CustomHooks/validateForm"
 import { Message } from "rsuite"
-// import { IMAGE_CATEGORY } from "../../../consts/images";
 
 import {
     CreateButton,
@@ -26,7 +25,7 @@ export default function ModifyCategory() {
     const { id } = useParams()
     const [form, setForm] = useState({ name: "", description: "", img: null })
     const [errors, setErrors] = useState({})
-    const [isSend, setIsSend] = useState(false)
+    // const [isSend, setIsSend] = useState(false)
     const [isEmpty, setIsEmpty] = useState(false)
 
     const dispatch = useDispatch()
@@ -123,10 +122,9 @@ export default function ModifyCategory() {
                     ) : (
                         <PrevContainer>
                             <PrevImgContainer>
-                                {/* <img src={IMAGE_CATEGORY + id} alt="prevView" /> */}
                                 <img
                                     src={`${baseUrl}/categories/img/${id}`}
-                                    alt="prevView"
+                                    alt="preview"
                                 />
                             </PrevImgContainer>
                         </PrevContainer>
