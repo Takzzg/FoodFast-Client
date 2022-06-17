@@ -14,7 +14,7 @@ const CategoryCard = ({ category, url }) => {
         <StyledCategoryCard theme={theme} key={_id} to={url}>
             {/* <img src={IMAGE_CATEGORY + _id} alt="XD" height={"100"}/> */}
             <img
-                src={`${baseUrl}/categories/img/${_id}`}
+                src={`url(${baseUrl}/categories/img/${_id})`}
                 alt="XD"
                 height={"100"}
             />
