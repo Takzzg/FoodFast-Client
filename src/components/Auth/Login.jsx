@@ -103,9 +103,12 @@ export default function Login() {
                             <option value="default" defaultValue>
                                 seleccionar cuenta
                             </option>
-                            {allUsers.map((u) => (
-                                <option value={u.email}>{u.name}</option>
-                            ))}
+                            {!!allUsers.length &&
+                                allUsers.map((u) => (
+                                    <option key={u.email} value={u.email}>
+                                        {u.name}
+                                    </option>
+                                ))}
                         </select>
                     </div>
                     <input type="submit" value="Log In" />
