@@ -28,7 +28,7 @@ import { Message } from 'rsuite';
 import { findProductById } from "../../../redux/actions/async";
 import { useDispatch, useSelector } from "react-redux";
 import { validateForm } from "../../CustomHooks/validateForm";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { PatchProduct} from "./updateFunctions";
 import { IMAGE_PRODUCT } from "../../../consts/images";
 
