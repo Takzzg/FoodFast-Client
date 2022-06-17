@@ -9,7 +9,7 @@ import {
 import { StyledCategoryDetail } from "./DetailCategory.styled"
 import ProductCard from "../../Products/ProductCard/ProductCard"
 import { clean_categories, clean_products } from "../../../redux/actions/sync"
-import { IMAGE_CATEGORY } from "../../../consts/images"
+// import { IMAGE_CATEGORY } from "../../../consts/images"
 
 const DetailCategory = () => {
     const { idCategory } = useParams()
@@ -50,11 +50,11 @@ const DetailCategory = () => {
 
     return !!category ? (
         <StyledCategoryDetail theme={theme}>
-            <img
+            {/* <img
                 src={IMAGE_CATEGORY + idCategory}
                 alt="Imagen XD"
                 height={"200"}
-            />
+            /> */}
             <img
                 src={`${baseUrl}/categories/img/${idCategory}`}
                 alt="Imagen XD"
