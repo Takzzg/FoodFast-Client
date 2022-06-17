@@ -1,13 +1,11 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 
 export const GlobalContainer = styled.section`
-    height: 100vh;
-    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    justify-content: center;
-    background-color: #ccc;
+    color: ${({ theme }) => theme.text.highContrast};
+    background-color: ${({ theme }) => theme.colors.bgPage};
+    min-height: 100vh;
 `
 export const TitleContainer = styled.section`
     display: flex;
@@ -16,6 +14,9 @@ export const TitleContainer = styled.section`
     justify-content: center;
     font-family: "Concert One", cursive;
     font-size: 3.5rem;
+    padding: 1rem;
+    background-color: ${({ theme }) => theme.colors.main};
+    color: ${({ theme }) => theme.text.highContrast};
 `
 export const StoreName = styled.div`
     background-color: black;
@@ -35,11 +36,17 @@ export const MainContainer = styled.section`
     display: flex;
     justify-content: space-around;
     align-items: center;
+`
+export const ReviewsContainer = styled.section`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     .productReviews {
         display: flex;
         flex-direction: column;
         gap: 2rem;
+        padding: 1rem;
     }
 `
 
@@ -65,7 +72,8 @@ export const ImageContainer = styled.section`
 `
 
 export const DescriptionContainer = styled.section`
-    background-color: #fff;
+    background-color: ${({ theme }) =>
+        theme.name === "light" ? theme.text.light : theme.colors.background};
     height: 100%;
     width: 100%;
     display: flex;
@@ -102,15 +110,22 @@ export const ButtonsContainer = styled.div`
         margin: 1rem;
         border-radius: 1rem;
         cursor: pointer;
+        background-color: ${({ theme }) =>
+            theme.name === "light" ? theme.text.light : theme.colors.main};
         svg {
             height: 100%;
             width: auto;
-            color: green;
+            color: ${({ theme }) =>
+                theme.name === "light" ? theme.colors.main : theme.text.light};
         }
         &:hover {
-            background-color: green;
+            background-color: ${({ theme }) =>
+                theme.name === "light" ? theme.colors.main : theme.text.light};
             svg {
-                color: white;
+                color: ${({ theme }) =>
+                    theme.name === "light"
+                        ? theme.text.light
+                        : theme.colors.main};
             }
         }
     }

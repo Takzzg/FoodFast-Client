@@ -12,7 +12,8 @@ import {
     CarShop,
     BuyButton,
     ButtonsContainer,
-    SecondMainContainer
+    SecondMainContainer,
+    ReviewsContainer
 } from "./detailElements"
 
 import { AiOutlineShoppingCart } from "react-icons/ai"
@@ -30,6 +31,7 @@ const DetailProduct = () => {
     const dispatch = useDispatch()
     const product = useSelector((state) => state.main.products.detail)
     const reviews = useSelector((state) => state.main.reviews.all)
+    const theme = useSelector((state) => state.theme.selectedTheme)
 
     useEffect(() => {
         if (!idProduct) return
@@ -45,8 +47,8 @@ const DetailProduct = () => {
         return <h1>Loading...</h1>
 
     return (
-        <GlobalContainer>
-            <TitleContainer>{product.name}</TitleContainer>
+        <GlobalContainer theme={theme}>
+            <TitleContainer theme={theme}>{product.name}</TitleContainer>
             <MainContainer>
                 <ImageContainer>
                     <img src={product.img} alt="..." />
@@ -57,7 +59,7 @@ const DetailProduct = () => {
                         <StoreName>{storeName}</StoreName>
                     </div> */}
 
-                    <DescriptionContainer>
+                    <DescriptionContainer theme={theme}>
                         <ListItem>
                             <Etiqueta>DESCRIPTION:</Etiqueta>
                             <Data>{product.description}</Data>
@@ -96,7 +98,7 @@ const DetailProduct = () => {
                         </ListItem>
                     </DescriptionContainer>
 
-                    <ButtonsContainer>
+                    <ButtonsContainer theme={theme}>
                         <CarShop>
                             <AiOutlineShoppingCart />
                         </CarShop>
@@ -107,7 +109,7 @@ const DetailProduct = () => {
                 </SecondMainContainer>
             </MainContainer>
 
-            <MainContainer>
+            <ReviewsContainer>
                 <h1>Reviews</h1>
                 <ReviewForm />
 
@@ -118,7 +120,7 @@ const DetailProduct = () => {
                         ))}
                     </div>
                 )}
-            </MainContainer>
+            </ReviewsContainer>
         </GlobalContainer>
     )
 }
