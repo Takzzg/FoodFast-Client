@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { CleanCategoryImputs, PostCategory } from "../Categories/CategoryForm/PostFunctions";
-import { CleanProductsInput, PostProduct } from "../Products/ProductForm/PostFunctions";
+import { CleanCategoryImputs, PostCategory, PostCategoryImg } from "../Categories/CategoryForm/PostFunctions";
+import { CleanProductsInput, PostProduct, PostProductImg } from "../Products/ProductForm/PostFunctions";
 import { validateForm } from "./validateForm";
-import swal from 'sweetalert';
 
-export default function useForm(type, initialForm, setImgCharge) {
+export default function useUpdate(type, initialForm, setImgCharge) {
 
     const [form, setForm] = useState(initialForm); 
     const [errors, setErrors] = useState({});
@@ -19,9 +18,9 @@ export default function useForm(type, initialForm, setImgCharge) {
         const {name, value} = e.target; 
         setForm({...form, [name]: value})
 
-        // La función validateForm devuelve un objeto
-        let currentErrors = validateForm({...form, [name]: value}, type)
+
         // Que después seteo en mi estado de errores
+        let currentErrors = validateForm({...form, [name]: value}, type)
         setErrors(currentErrors)
         if(type === "product" && name === "stock") {
             if (value > 0) setIsAvailable(true)
@@ -33,30 +32,27 @@ export default function useForm(type, initialForm, setImgCharge) {
         if(!file || form.name === "" || form.description  === "") { 
           setIsEmpty(true)
           setTimeout(()=> setIsEmpty(false), 5000)
-          swal(type + " don´t created", "You have empty required imputs", "warning");
         }
         else {  
           const formdata = new FormData()
           if(type === "product") {
             formdata.append('imageProduct', file)
-            PostProduct(form, formdata)
-
-            swal("Product Created!", "The product is now in your dashboard", "success")
-            .then(()=> 
-              CleanProductsInput(setIsSend, setForm, setIsAvailable, setImgCharge)
-            )
+            PostProductImg(formdata).then(res=> res.json())
+            .then(json=> PostProduct(form, json))
+            .then(res=> setIsSend(true)).catch(err=> console.log(err))
+            CleanProductsInput(setIsSend, setForm, setIsAvailable, setImgCharge)
 
           } else {
+
             formdata.append('imageCategory', file);
-            PostCategory(form, formdata)
-
-            swal("Category Created!", "The category is now in your dashboard", "success")
-            .then(()=> 
-              CleanProductsInput(setIsSend, setForm, setIsAvailable, setImgCharge)
-            )
-
-          }     
-           
+            PostCategoryImg(formdata).then(res=> res.json())
+            .then(json=> PostCategory(form, json))
+            .then(json=> setIsSend(true))
+            .catch(err=> console.log(err))
+            .finally(err=> {            
+              CleanCategoryImputs(setIsSend, setForm, setIsAvailable, setImgCharge)
+            })
+          }      
     }
   }
     return {

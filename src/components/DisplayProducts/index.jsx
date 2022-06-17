@@ -18,7 +18,7 @@ export default function DisplayProducts() {
     </FilterContainer>
     <CardsContainer >
       {filterProducts.length ===0 ? <div>Not results found</div>: filterProducts.map(p=> <SingleProductCard 
-        key={p._id} id={p._id} name={p.name} price={p.price} img={p.img}/>)}
+        key={p._id} id={p._id} name={p.name} price={p.price} stock={p.stock}/>)}
     </CardsContainer>
   </GlobalContainer>
   )

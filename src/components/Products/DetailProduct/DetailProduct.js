@@ -8,7 +8,6 @@ import {
     ListItem,
     Etiqueta,
     Data,
-    // StoreName,
     CarShop,
     BuyButton,
     ButtonsContainer,
@@ -21,6 +20,7 @@ import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { findProductById } from "../../../redux/actions/async"
 import { clean_select_product } from "../../../redux/actions/sync"
+import { IMAGE_PRODUCT } from "../../../consts/images"
 
 const DetailProduct = () => {
     const { idProduct } = useParams()
@@ -44,7 +44,7 @@ const DetailProduct = () => {
             <TitleContainer>{product.name}</TitleContainer>
             <MainContainer>
                 <ImageContainer>
-                    <img src={product.img} alt="..." />
+                    <img src={IMAGE_PRODUCT + idProduct} alt="..." />
                 </ImageContainer>
 
                 <SecondMainContainer>
@@ -75,18 +75,10 @@ const DetailProduct = () => {
                                 <Data>{`$/ ${product.price}`}</Data>
                             </ListItem>
                         </div>
-
-                        {/* <ListItem>
-                            <Etiqueta>Category:</Etiqueta>
-                            <Data>{product.category}</Data>
-                        </ListItem> */}
-
                         <ListItem>
                             <Etiqueta>Categories:</Etiqueta>
                             <Data>
-                                {product.categories.map((el, i) => (
-                                    <span key={i}>{`  ${el}- `}</span>
-                                ))}
+                                {product.categories.join(", ")}
                             </Data>
                         </ListItem>
                     </DescriptionContainer>

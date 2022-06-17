@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./select.module.scss"
 import {useSelector} from "react-redux"
 
-export default function SelectedList({setFormCategories, form}) {
+export default function SelectedList({setFormCategories, form, color}) {
     const categories = useSelector(state=> state.main.categories.all)
 
     const handleChange = (e)=> {
@@ -15,8 +15,7 @@ export default function SelectedList({setFormCategories, form}) {
 
     return(
     <section className={styles.container}>
-        {console.log(categories)}
-        <select onChange={handleChange} className={styles.selected}>
+        <select onChange={handleChange} className={styles.selected} style={{backgroundColor: color}}>
             <option value={""} className={styles.option}>--Select Categories--</option>
             {categories.map(el=> <option key={el._id} value={el.name} className={styles.option}>{el.name}</option>)}
 

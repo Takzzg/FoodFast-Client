@@ -1,17 +1,11 @@
-import axios from "axios"
 
-export const PostCategoryImg = (img) =>
-    fetch("http://localhost:3001/api/v1/categories/image", {
-        method: "POST",
-        body: img
+export const PostCategory = (input, formdata) => {
+    const url = `http://localhost:3001/api/v1/categories?name=${input.name}&description=${input.description}`
+    fetch(url, {
+        method: "POST", 
+        body: formdata
     })
-
-export const PostCategory = (input, routeResponse) =>
-    axios.post("http://localhost:3001/api/v1/categories", {
-        name: input.name,
-        description: input.description,
-        img: routeResponse.img
-    })
+}
 
 export const CleanCategoryImputs = (
     setIsSend,

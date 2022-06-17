@@ -22,6 +22,8 @@ import {
     Reviews
 } from "./components"
 import GlobalStyle from "./GlobalStyles"
+import ModifyCategory from "./components/Categories/CategoryUpdate"
+import UpdateProduct from "./components/Products/updateProduct"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
 
@@ -73,6 +75,16 @@ function App() {
                             <Route
                                 path="createCategory"
                                 element={<CategoryForm />}
+                            />
+
+                            <Route 
+                                path="modifyCategory/:id"
+                                element={<ModifyCategory />}
+                            />
+                            
+                            <Route 
+                                path="updateProduct/:id"
+                                element={<UpdateProduct />}
                             />
                         </Route>
 
