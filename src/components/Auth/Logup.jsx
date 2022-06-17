@@ -59,10 +59,10 @@ export default function SignUp() {
 
   const register = (e) => {
     e.preventDefault();
-
     if(Object.keys(errors).length > 0){ 
       return toast.error('Debes rellenar todos los campos de forma correcta.')
     }else{
+      /* dispatch una action, donde le pasamos el input del form */
         toast.promise(axios.post("http://localhost:3001/api/v1/user", {
             name: input.name,
             email: input.email,

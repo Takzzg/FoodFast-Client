@@ -30,7 +30,6 @@ export default function Login(){
 
     function handleInputChange(e){
         e.preventDefault();
-        console.log("Si se handlea :v");
         setInput({
             ...input, [e.target.name]: e.target.value
         });

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Container, ResetDivBox } from './PasswordReset.styled';
 import { ErrorP } from "./Login.styled";
 import { IoFastFoodSharp } from "react-icons/io5"
 /* import { postPasswordReset } from "../../redux/actions/actions"; */
 
-export function validate(input) {
+function validate(input) {
   let errors = {};
 
   if (!input.username) {
@@ -24,6 +24,7 @@ export default function PasswordReset() {
   const [errors, setErrors] = useState({});
 
   /* const dispatch = useDispatch(); */
+  const navigate = useNavigate();
 
   const handleInputChange = function (e) {
     setInput({
@@ -38,7 +39,7 @@ export default function PasswordReset() {
     );
   };
 
-  const handleSumbit = async (e) => {
+  const handleSubmit = async (e) => {
     try {
       e.preventDefault();
       if (Object.keys(errors).length > 0) {
@@ -46,6 +47,7 @@ export default function PasswordReset() {
       }else{
         /* dispatch(postPasswordReset(input)); */
         toast.success("Link de verificación enviado!");
+        navigate('/newPassword');
       }
     } catch (e) {
       toast.error("Usuario incorrecto.");
@@ -58,7 +60,7 @@ export default function PasswordReset() {
         <ResetDivBox>
           <IoFastFoodSharp/>
           <h1>Password Reset</h1>
-          <form onSubmit={handleSumbit}>
+          <form onSubmit={handleSubmit}>
             <label>Username</label>
             <input
               onChange={handleInputChange}

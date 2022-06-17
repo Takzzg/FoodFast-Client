@@ -15,11 +15,15 @@ import { IoFastFoodSharp } from "react-icons/io5"
 import { FaUserAlt } from "react-icons/fa"
 import { GiHamburgerMenu, GiArchiveRegister } from "react-icons/gi"
 import { AiFillCloseCircle } from "react-icons/ai"
+import { FiLogOut, FiLogIn } from "react-icons/fi"
 
 import { useDispatch, useSelector } from "react-redux"
 import { switchTheme } from "../../redux/actions/sync"
 
 const NavBar = () => {
+
+    const user = null; //{result:{email: "gonza@gmail.com"}}
+
     const dispatch = useDispatch()
     const theme = useSelector((state) => state.theme.selectedTheme)
 
@@ -50,22 +54,27 @@ const NavBar = () => {
                 </MainIconContainer>
 
                 <ButtonsContainer theme={theme}>
-                
+                {/* con esto muestra "Login" si no existe usuario activo, sino,
+                el correo del usuario logeado y un boton de "Logout". */}
+                {user ? (
+                <ButtonsContainer theme={theme}>
+                    <span>{user?.result.email}  </span>
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to='/login'>
-                            <FaUserAlt />
-                            Login
+                        <NavLink to='/logup'> {/* cambiar ruta por /logout */}
+                            LogOut
+                            <FiLogOut />
                         </NavLink>
                     </LoginRegisterButton>
-            
-                {/* Considerar remover este botón de Registro,
-                así directamente desde el link del login puedan registrarse */}
-                    <LoginRegisterButton theme={theme}>
-                        <NavLink to='/logup'>
-                            <GiArchiveRegister />
-                            Register
-                        </NavLink>
-                    </LoginRegisterButton>
+                </ButtonsContainer>
+                ) : (
+                <LoginRegisterButton theme={theme}>
+                    <NavLink to='/login'>
+                        Login
+                     <FiLogIn />
+                    </NavLink>
+                </LoginRegisterButton>
+                )}
+
                 </ButtonsContainer>
 
                 <ListRoutes>
@@ -106,3 +115,15 @@ const NavBar = () => {
 }
 
 export default NavBar
+
+/* Borrador :v */
+/*  Botón de "Registro" (deprecado)
+
+    <FaUserAlt/>
+                    <LoginRegisterButton theme={theme}>
+                        <NavLink to='/logup'>
+                            <GiArchiveRegister />
+                            Register
+                        </NavLink>
+                    </LoginRegisterButton>
+*/
