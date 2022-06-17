@@ -18,9 +18,9 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { AiOutlineCreditCard } from "react-icons/ai"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { findProductById } from "../../../redux/actions/async"
+import { fetchImg, findProductById } from "../../../redux/actions/async"
 import { clean_select_product } from "../../../redux/actions/sync"
-import { IMAGE_PRODUCT } from "../../../consts/images"
+// import { IMAGE_PRODUCT } from "../../../consts/images"
 
 const DetailProduct = () => {
     const { idProduct } = useParams()
@@ -32,10 +32,9 @@ const DetailProduct = () => {
         idProduct && dispatch(findProductById(idProduct))
     }, [dispatch, idProduct])
 
-    useEffect(()=> {
-        return ()=> dispatch(clean_select_product())
+    useEffect(() => {
+        return () => dispatch(clean_select_product())
     }, [dispatch])
-
 
     if (!product || !product.name) return <h1>Loading...</h1>
 
@@ -44,7 +43,11 @@ const DetailProduct = () => {
             <TitleContainer>{product.name}</TitleContainer>
             <MainContainer>
                 <ImageContainer>
-                    <img src={IMAGE_PRODUCT + idProduct} alt="..." />
+                    {/* <img src={IMAGE_PRODUCT + idProduct} alt="..." /> */}
+                    <img
+                        src={fetchImg("products", idProduct)}
+                        alt="Foto del producto"
+                    />
                 </ImageContainer>
 
                 <SecondMainContainer>
@@ -77,9 +80,7 @@ const DetailProduct = () => {
                         </div>
                         <ListItem>
                             <Etiqueta>Categories:</Etiqueta>
-                            <Data>
-                                {product.categories.join(", ")}
-                            </Data>
+                            <Data>{product.categories.join(", ")}</Data>
                         </ListItem>
                     </DescriptionContainer>
 

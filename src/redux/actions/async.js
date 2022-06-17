@@ -29,6 +29,16 @@ const fetch = (url, type) => (dispatch) =>
             dispatch({ type: ERROR, payload: err })
         })
 
+export const fetchImg = (type, id) =>
+    axios
+        .get(`${baseUrl}/${type}/img/${id}`)
+        .then((res) => res.data)
+        .catch((err) => {
+            console.log(
+                `error en FETCH_IMAGE \n url = ${baseUrl}/${type}/img/${id} \n mensaje = ${err}`
+            )
+        })
+
 // PRODUCTS
 
 export const fetchAllProducts = () =>
