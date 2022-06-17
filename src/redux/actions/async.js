@@ -18,7 +18,7 @@ import {
 
 // FUNCTIONS AND CONSTS
 
-const baseUrl = `${
+export const baseUrl = `${
     process.env.NODE_ENV === "production"
         ? "https://food-fast-api.herokuapp.com"
         : "http://localhost:3001"

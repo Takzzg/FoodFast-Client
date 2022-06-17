@@ -10,10 +10,12 @@ import { searchCategory, searchProduct } from "../../redux/actions/async"
 
 const Landing = () => {
     const categories = useSelector((state) => state.main.categories.all)
-    const filterCategories = useSelector((state)=> state.main.categories.filtered);
+    const filterCategories = useSelector(
+        (state) => state.main.categories.filtered
+    )
     const dispatch = useDispatch()
-    
-    useEffect(()=> {
+
+    useEffect(() => {
         dispatch(searchProduct(""))
         dispatch(searchCategory(""))
     }, [dispatch])
@@ -23,20 +25,28 @@ const Landing = () => {
     // })
     return (
         <GlobalContainer>
-
             <Banner />
-            <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
+            <div
+                style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "center"
+                }}
+            >
                 <CategoryBar className="LocationBar" />
             </div>
             <CategoriesContainer>
-                          {filterCategories.length ===0 ? categories.map(c=> 
+                {filterCategories.length === 0
+                    ? categories.map((c) => (
                           <Link key={c._id} to={`/categories/${c._id}`}>
-                                <CategoryCard key={c._id} category={c} />
-                          </Link>):filterCategories.map(c=> 
-                            <Link key={c._id} to={`/categories/${c._id}`}>
-                            <CategoryCard key={c._id} category={c} />
-                        </Link>
-                          )}
+                              <CategoryCard key={c._id} category={c} />
+                          </Link>
+                      ))
+                    : filterCategories.map((c) => (
+                          <Link key={c._id} to={`/categories/${c._id}`}>
+                              <CategoryCard key={c._id} category={c} />
+                          </Link>
+                      ))}
             </CategoriesContainer>
         </GlobalContainer>
     )

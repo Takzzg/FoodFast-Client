@@ -21,7 +21,14 @@ export const GlobalContainer = styled.section`
         flex-direction: column;
 
 `
-
+export const Title = styled.div`
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 1rem; 
+    color: white; 
+    font-size: 3rem;
+`
 export const MainContainer = styled.section`    
     height: 30rem;
     width: 50rem;
@@ -48,17 +55,61 @@ export const MessageContainer = styled.div`
     text-align: center;
 
 `
+export const PrevContainer = styled.div`
+    display: flex;
+    flex-direction: row-reverse;
+    width: 40%;
+    margin: auto;
+    margin-top: .2rem;
+    button {
+        height: 5%;
+        width: 1rem;
+        background-color: red;
+        color: white;
+        border: 0px;
+        cursor: pointer;
+        &:hover {
+            background-color: white;
+            color: red;
+        }
+    }
+`
 
-export const ImgMessageContainer = styled.div`
-    background-color: green;
-    border-radius: 2rem;
+export const PrevEmptyImgContainer = styled.div`
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .8rem;
+    width: 100%;
+    height: 7rem;
+    border: 2px dashed #ffff00;
+    color: #ffff00;
+`
+export const PrevImgContainer = styled.div`
+    overflow:hidden;
     display: flex;
     margin: auto;
-    margin-top: 2rem;
+    margin-top: .8rem;
     width: 70%;
     color: white;
     justify-content: center;
     text-align: center;
+    height: 7rem;
+    width: max-content;
+    -webkit-box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 7px 0px 0px rgba(0,0,0,0.75);
+    img {
+        height:100%;
+        width: auto;
+        transition: 1s transform;
+        cursor: pointer;
+    }
+    &:hover img {
+        -webkit-transform:scale(1.3);transform:scale(1.3);
+    }
+
 `
 
 export const FirstColumnContainer = styled.div`
@@ -102,7 +153,7 @@ export const InputContainer = styled.div`
 
     input {
         border-radius: .4rem;
-        background-color: rgba(201, 147, 62);
+        background-color: ${({color})=> color};
         color: wheat;
         padding-left: 1rem;
         font-size: 1rem;
@@ -158,7 +209,7 @@ export const InputTextArea = styled.textarea`
     resize: none;
     height: 3rem;
     border-radius: .4rem;
-    background-color: rgba(201, 147, 62);
+    background-color: ${({color})=> color};
     color: wheat;
     padding: .6rem;
     font-size: 1rem;
@@ -171,6 +222,7 @@ export const InputTextArea = styled.textarea`
 `
 export const InputFiled = styled.input`
     color: white;
+    cursor: pointer;
 `
 
 export const ErrorMsg = styled.div`
@@ -184,7 +236,7 @@ export const ErrorMsg = styled.div`
 `
 export const TagsProduct = styled.div`
     background-color: transparent;
-    border: 2px solid orange;
+    border: 2px solid ${({color})=> color};
     border-radius: 1rem;
     margin: auto;
     color: white;
@@ -227,7 +279,7 @@ export const TagsProduct = styled.div`
 
 
 export const TagCard = styled.div`
-    background-color: #f58220;
+    background-color: ${({color})=> color};
     margin: .4rem;
     height: 1.5rem;
     color: white;
@@ -310,7 +362,7 @@ export const OrnamentContainer = styled.div`
     }   
 `
 export const ButtonCreate = styled.button`
-    background-color: orange;
+    background-color: ${({color})=> color};
     width: 50%;
     height: ${(props)=> props.isAvailable ? "2rem":"0px"};
     color: ${(props)=> props.isAvailable ? "black":"transparent"};

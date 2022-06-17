@@ -1,28 +1,26 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
-
 import { fetchAllCategories, fetchAllProducts } from "./redux/actions/async"
 import { useDispatch, useSelector } from "react-redux"
-import DisplayProducts from "./components/DisplayProducts/index"
-import {
-    Categories,
-    CategoryForm,
-    Dashboard,
-    DetailCategory,
-    DetailOrder,
-    DetailProduct,
-    DetailReview,
-    Landing,
-    NavBar,
-    Orders,
-    ProductForm,
-    Products,
-    Profile,
-    Reviews
-} from "./components"
+
 import GlobalStyle from "./GlobalStyles"
+import DisplayProducts from "./components/DisplayProducts/index"
+import ModifyCategory from "./components/Categories/CategoryUpdate"
+import UpdateProduct from "./components/Products/updateProduct"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
+import NavBar from "./components/NavBar/NavBar"
+import Landing from "./components/Landing/Landing"
+import DetailProduct from "./components/Products/DetailProduct/DetailProduct"
+import DetailCategory from "./components/Categories/DetailCategory/DetailCategoty"
+import Dashboard from "./components/User/Dashboard/Dashboard"
+import ProductForm from "./components/Products/ProductForm/ProductForm"
+import CategoryForm from "./components/Categories/CategoryForm"
+import Profile from "./components/User/Profile"
+import Orders from "./components/Orders/Orders"
+import DetailOrder from "./components/Orders/DetailOrder/DetailOrder"
+import Reviews from "./components/Reviews/Reviews"
+import DetailReview from "./components/Reviews/DetailReview/DetailReview"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -71,23 +69,6 @@ function App() {
                             <Route
                                 path="createCategory"
                                 element={<CategoryForm />}
-                            />
-                        </Route>
-
-                        {/* Hay dos dashboards */}
-                        <Route path="/dashboard/products">
-                            <Route index element={<Products />} />
-                            <Route
-                                path=":idProduct"
-                                element={<DetailProduct />}
-                            />
-                        </Route>
-
-                        <Route path="categories">
-                            <Route index element={<Categories />} />
-                            <Route
-                                path=":idCategory"
-                                element={<DetailCategory />}
                             />
                         </Route>
 

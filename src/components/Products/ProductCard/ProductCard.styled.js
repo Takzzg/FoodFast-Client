@@ -17,9 +17,6 @@ export const StyledProductCard = styled(Link)`
 
     .img {
         grid-area: img;
-        background-image: url(${({ img }) => img});
-        background-position: center;
-        background-size: cover;
     }
 
     .header {

@@ -1,21 +1,12 @@
-import axios from "axios"
 
-export const PostProductImg = (img) =>
-    fetch("http://localhost:3001/api/v1/products/image", {
-        method: "POST",
-        body: img
+
+export const PostProduct = (form, formdata) => {
+    const url = `http://localhost:3001/api/v1/products?name=${form.name}&description=${form.description}&stock=${form.stock}&price=${form.price}&categories=${form.categories}`
+    fetch(url, {
+        method: "POST", 
+        body: formdata
     })
-
-export const PostProduct = (form, routeResponse) =>
-    axios.post("http://localhost:3001/api/v1/products", {
-        name: form.name,
-        description: form.description,
-        img: routeResponse.img,
-        price: form.price,
-        categories: form.categories,
-        stock: form.stock
-    })
-
+}
 export const CleanProductsInput = (
     setIsSend,
     setForm,

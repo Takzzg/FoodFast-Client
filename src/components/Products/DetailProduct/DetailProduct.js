@@ -8,7 +8,6 @@ import {
     ListItem,
     Etiqueta,
     Data,
-    // StoreName,
     CarShop,
     BuyButton,
     ButtonsContainer,
@@ -20,7 +19,11 @@ import { AiOutlineShoppingCart } from "react-icons/ai"
 import { AiOutlineCreditCard } from "react-icons/ai"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchReviews, findProductById } from "../../../redux/actions/async"
+import {
+    baseUrl,
+    fetchReviews,
+    findProductById
+} from "../../../redux/actions/async"
 import ReviewForm from "../../Reviews/ReviewForm/ReviewForm"
 import ReviewCard from "../../Reviews/ReviewCard/ReviewCard"
 // import { clean_select_product } from "../../../redux/actions/sync"
@@ -51,15 +54,14 @@ const DetailProduct = () => {
             <TitleContainer theme={theme}>{product.name}</TitleContainer>
             <MainContainer>
                 <ImageContainer>
-                    <img src={product.img} alt="..." />
+                    <img
+                        src={`${baseUrl}/products/img/${idProduct}`}
+                        alt="Foto del producto"
+                    />
                 </ImageContainer>
 
                 <SecondMainContainer>
-                    {/* <div style={{ display: "flex", width: "100%" }}>
-                        <StoreName>{storeName}</StoreName>
-                    </div> */}
-
-                    <DescriptionContainer theme={theme}>
+                    <DescriptionContainer>
                         <ListItem>
                             <Etiqueta>DESCRIPTION:</Etiqueta>
                             <Data>{product.description}</Data>
@@ -82,19 +84,9 @@ const DetailProduct = () => {
                                 <Data>{`$/ ${product.price}`}</Data>
                             </ListItem>
                         </div>
-
-                        {/* <ListItem>
-                            <Etiqueta>Category:</Etiqueta>
-                            <Data>{product.category}</Data>
-                        </ListItem> */}
-
                         <ListItem>
                             <Etiqueta>Categories:</Etiqueta>
-                            <Data>
-                                {product.categories.map((el, i) => (
-                                    <span key={i}>{`  ${el}- `}</span>
-                                ))}
-                            </Data>
+                            <Data>{product.categories.join(", ")}</Data>
                         </ListItem>
                     </DescriptionContainer>
 
