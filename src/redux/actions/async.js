@@ -11,7 +11,9 @@ import {
     NEWFILTER_PRODUCTS,
     FIND_CAT_BY_ID,
     GET_REVIEW,
-    FETCH_REVIEWS
+    FETCH_REVIEWS,
+    FETCH_ALL_USERS,
+    LOG_IN
 } from "./types"
 
 // FUNCTIONS AND CONSTS
@@ -30,6 +32,16 @@ const fetch = (url, type) => (dispatch) =>
             console.log(`error en ${type} \n url = ${url} \n mensaje = ${err}`)
             dispatch({ type: ERROR, payload: err })
         })
+
+// USERS
+
+export const fetchAllUsers = () => fetch(`${baseUrl}/user`, FETCH_ALL_USERS)
+
+export const logIn = (email, password) => (dispatch) =>
+    axios
+        .post(`${baseUrl}/user/login`, { email, password })
+        .then((res) => dispatch({ type: LOG_IN, payload: res.data }))
+        .catch((err) => dispatch({ type: ERROR, payload: err }))
 
 // PRODUCTS
 

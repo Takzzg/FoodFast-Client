@@ -3,6 +3,12 @@
 export const SWITCH_THEME = "switch_theme"
 export const ERROR = "error"
 
+// Users
+
+export const LOG_IN = "log_in"
+export const LOG_OUT = "log_out"
+export const FETCH_ALL_USERS = "fetch_all_users"
+
 // Categories
 
 export const FETCH_CATEGORIES = "fetch_categories"
