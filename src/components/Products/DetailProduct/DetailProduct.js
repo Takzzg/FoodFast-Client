@@ -61,7 +61,7 @@ const DetailProduct = () => {
                 </ImageContainer>
 
                 <SecondMainContainer>
-                    <DescriptionContainer>
+                    <DescriptionContainer theme={theme}>
                         <ListItem>
                             <Etiqueta>DESCRIPTION:</Etiqueta>
                             <Data>{product.description}</Data>
