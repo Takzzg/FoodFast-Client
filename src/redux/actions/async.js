@@ -14,7 +14,7 @@ import {
 
 // FUNCTIONS AND CONSTS
 
-const baseUrl = `${
+export const baseUrl = `${
     process.env.NODE_ENV === "production"
         ? "https://food-fast-api.herokuapp.com"
         : "http://localhost:3001"
@@ -27,16 +27,6 @@ const fetch = (url, type) => (dispatch) =>
         .catch((err) => {
             console.log(`error en ${type} \n url = ${url} \n mensaje = ${err}`)
             dispatch({ type: ERROR, payload: err })
-        })
-
-export const fetchImg = (type, id) =>
-    axios
-        .get(`${baseUrl}/${type}/img/${id}`)
-        .then((res) => res.data)
-        .catch((err) => {
-            console.log(
-                `error en FETCH_IMAGE \n url = ${baseUrl}/${type}/img/${id} \n mensaje = ${err}`
-            )
         })
 
 // PRODUCTS
