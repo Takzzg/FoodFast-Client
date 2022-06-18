@@ -9,7 +9,8 @@ import {
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     NEWFILTER_PRODUCTS,
-    FIND_CAT_BY_ID
+    FIND_CAT_BY_ID,
+    AUTH_USER
 } from "./types"
 
 // FUNCTIONS AND CONSTS
@@ -73,3 +74,27 @@ export const deleteCategory = (id) => (dispatch) =>
         .catch((err) => dispatch({ type: ERROR, payload: err }))
 
 
+// USER
+/* en su api/"index" tiene:
+export const login = (data)=> axios.post('http://localhost:3001/api/vi/auth/login')
+export const logup = (data)=> axios.post('http://localhost:3001/api/vi/user/logup') */
+export const login = (input)=> async (dispatch)=>{
+    try{
+        //log in the user...
+        const {data} = await axios.post(`${baseUrl}/auth/login`, input)
+        dispatch({type: AUTH_USER, data: data})
+    }catch(e){
+        console.log("Error en la action login. ",e.message);
+    }
+}
+export const logup = (input)=> async (dispatch)=>{
+    
+    try{
+        //log up the user...
+        const { data } = await axios.post(`${baseUrl}/user/logup`, input)
+        
+        dispatch({type: AUTH_USER, data})
+    }catch(e){
+        console.log("Error en la action logup. ",e);
+    }
+}

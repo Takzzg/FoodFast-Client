@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"; 
 import toast, { Toaster } from 'react-hot-toast';
 import { IoFastFoodSharp } from "react-icons/io5"
+import { useDispatch } from "react-redux";
 
 import {SignUpContainer, SignUpDivContainer} from "./Logup.styled"
+import { logup } from "../../redux/actions/async";
 
 //valida los datos al ser ingresados y crea un objeto "errors" si falta o es incorrecto alguno.
 function validate(input) {
@@ -43,6 +45,7 @@ export default function SignUp() {
   const [errors, setErrors] = useState({});
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = function (e) {
     setInput({
@@ -63,23 +66,12 @@ export default function SignUp() {
       return toast.error('Debes rellenar todos los campos de forma correcta.')
     }else{
       /* dispatch una action, donde le pasamos el input del form */
-        toast.promise(axios.post("http://localhost:3001/api/v1/user", {
-            name: input.name,
-            email: input.email,
-            password: input.password,
-        }),{
-            loading: "Registrando...",
-            success: (resp)=>{
-                setTimeout(()=>{
-                    navigate("/login");
-                },4000);
-                return (<b>Registrado con éxito. Bienvenido {resp.data.name}!</b>)
-            },
-            error: <b>No se pudo registrar. Intente nuevamente.</b>
-        },{
-            style: { minWidth: '250px'}, success: {duration: 5000, icon: '🔥'}
-        }
-        );
+      dispatch(logup({
+        name: input.name,
+        email: input.email,
+        password: input.password,
+    }));
+    alert("Registrado pai :O"); 
     }
   };
 
@@ -135,3 +127,24 @@ export default function SignUp() {
     </SignUpDivContainer>
   )
 }
+
+/* Borrador toaster register
+
+        toast.promise(axios.post("http://localhost:3001/api/v1/user", {
+            name: input.name,
+            email: input.email,
+            password: input.password,
+        }),{
+            loading: "Registrando...",
+            success: (resp)=>{
+                setTimeout(()=>{
+                    navigate("/login");
+                },4000);
+                return (<b>Registrado con éxito. Bienvenido {resp.data.name}!</b>)
+            },
+            error: <b>No se pudo registrar. Intente nuevamente.</b>
+        },{
+            style: { minWidth: '250px'}, success: {duration: 5000, icon: '🔥'}
+        }
+        );
+*/

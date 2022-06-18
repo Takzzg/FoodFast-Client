@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Container, LoginBox, GoogleButton, ErrorP} from "./Login.styled";
 import { IoFastFoodSharp } from "react-icons/io5"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast, {Toaster} from 'react-hot-toast';
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/actions/async";
 
 //Validación
 function validate(input){
@@ -27,7 +29,10 @@ export default function Login(){
         email: "", password: ""
     });
     const [errors, setErrors] = useState({})
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+/*     const authData = useSelector(state=> state.user.authData);
+    console.log("el estado global authData es: ",authData); */
     function handleInputChange(e){
         e.preventDefault();
         setInput({
@@ -46,9 +51,19 @@ export default function Login(){
         toast.success("Successfully loged whit Google!");
     }
     function handleSubmit(e){
-        e.preventDefault();
-        /* Toda la lógica de loguearse, JWT y toda la wea */
-        toast.success("Successfully loged in!");
+        try{
+            e.preventDefault();
+            if(Object.keys(errors).length > 0){
+                toast.error('Debes completar correctamente los campos.')
+            }else{
+                dispatch(login(input))
+                //verificar de alguna forma al usuario logueado.
+            }
+            navigate('/')
+        }catch(e){
+            console.log(e);
+            toast.error("Contraseña o usuario incorrecto.");
+        }
     }
 
     return(
