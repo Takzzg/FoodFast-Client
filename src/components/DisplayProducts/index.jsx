@@ -20,10 +20,7 @@ export default function DisplayProducts() {
                     filterProducts.map((p) => (
                         <SingleProductCard
                             key={p._id}
-                            id={p._id}
-                            name={p.name}
-                            price={p.price}
-                            stock={p.stock}
+                            product = {p}
                         />
                     ))
                 )}

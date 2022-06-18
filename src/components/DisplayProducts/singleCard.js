@@ -11,26 +11,35 @@ import { MdReadMore } from "react-icons/md"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import { baseUrl } from "../../redux/actions/async"
+import { useDispatch } from "react-redux"
+import { add_item_car } from "../../redux/actions/sync"
 
-export default function SingleProductCard({ id, name, price, stock }) {
+export default function SingleProductCard({ product}) {
+    
+    const dispatch = useDispatch(); 
+
+    const addItem = (e) => {
+        e.preventDefault(); 
+        const item = {...product, img: {}}
+        dispatch(add_item_car(item))
+    }
+    
     return (
         <CardContainer>
-            <TitleDiv>{name}</TitleDiv>
+            <TitleDiv>{product.name}</TitleDiv>
 
             <ImageContainer>
-                <Link to={`/products/${id}`}>
-                    <img src={`${baseUrl}/products/img/${id}`} alt="imagen" />
+                <Link to={`/products/${product._id}`}>
+                    <img src={`${baseUrl}/products/img/${product._id}`} alt="imagen" />
                 </Link>
             </ImageContainer>
 
             <FooterContainer>
-                <PriceContainer>${price}</PriceContainer>
+                <PriceContainer>${product.price}</PriceContainer>
                 <ButtonsContainer>
-                    <Link to={`/products/${id}`}>
-                        <AiOutlineShoppingCart id="car" />
-                    </Link>
+                        <AiOutlineShoppingCart id="car" onClick={addItem}/>
 
-                    <Link to={`/products/${id}`} id="details">
+                    <Link to={`/products/${product._id}`} id="details">
                         <MdReadMore />
                     </Link>
                 </ButtonsContainer>

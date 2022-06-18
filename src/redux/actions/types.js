@@ -23,3 +23,9 @@ export const SEARCH_PRODUCT = "search_product"
 export const CLEAN_PRODUCTS = "clean_products"
 export const DELETE_PRODUCT = "delete_product"
 export const CLEAN_SELECT_PRODUCT = "clean_select_product"
+
+
+// Shop Cart
+export const ADD_ITEM_CAR = "add_item_car"; 
+export const REMOVE_ITEM_CAR = "remoce_item_car"; 
+export const EMPTY_CAR = "empty_car"

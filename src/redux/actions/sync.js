@@ -6,7 +6,10 @@ import {
     DELETE_PRODUCT,
     FILTER_BY_CATEGORY,
     SORTBYPRICE,
-    CLEAN_SELECT_PRODUCT
+    CLEAN_SELECT_PRODUCT,
+    ADD_ITEM_CAR,
+    REMOVE_ITEM_CAR,
+    EMPTY_CAR
 } from "./types"
 
 export const switchTheme = () => ({ type: SWITCH_THEME })
@@ -27,3 +30,8 @@ export const clean_products = () => ({ type: CLEAN_PRODUCTS })
 export const delete_product = (id) => ({ type: DELETE_PRODUCT, id })
 export const sortbyPrice = (price) => ({ type: SORTBYPRICE, price })
 export const clean_select_product = () => ({ type: CLEAN_SELECT_PRODUCT })
+
+// shopCart
+export const add_item_car = (product) => ({type: ADD_ITEM_CAR, product});
+export const remove_item_car = (id) => ({type: REMOVE_ITEM_CAR, id}); 
+export const empty_car = () => ({type: EMPTY_CAR})

@@ -21,6 +21,7 @@ import Orders from "./components/Orders/Orders"
 import DetailOrder from "./components/Orders/DetailOrder/DetailOrder"
 import Reviews from "./components/Reviews/Reviews"
 import DetailReview from "./components/Reviews/DetailReview/DetailReview"
+import ShoppingCart from "./components/shopCart"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -98,6 +99,10 @@ function App() {
                                     element={<DetailReview />}
                                 />
                             </Route>
+                        </Route>
+
+                        <Route path="/user">
+                            <Route path="shoppingCart" element={<ShoppingCart />}/>
                         </Route>
 
                         {/* LOGIN */}
