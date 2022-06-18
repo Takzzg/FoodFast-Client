@@ -42,17 +42,18 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <GlobalStyle theme={theme} />
-
                 <ScrollToTop />
+
                 <NavBar />
 
                 <Routes>
-                    <Route path="/" element={<Landing />} />
-                    <Route path="/products" element={<DisplayProducts />} />
-                    <Route
-                        path="/products/:idProduct"
-                        element={<DetailProduct />}
-                    />
+                    <Route index element={<Landing />} />
+
+                    <Route path="/products">
+                        <Route index element={<DisplayProducts />} />
+                        <Route path=":idProduct" element={<DetailProduct />} />
+                    </Route>
+
                     <Route
                         path="/categories/:idCategory"
                         element={<DetailCategory />}
@@ -79,10 +80,12 @@ function App() {
 
                     <Route path="user/:idUser">
                         <Route index element={<Profile />} />
+
                         <Route path="orders">
                             <Route index element={<Orders />} />
                             <Route path=":idOrder" element={<DetailOrder />} />
                         </Route>
+
                         <Route path="reviews">
                             <Route index element={<Reviews />} />
                             <Route
