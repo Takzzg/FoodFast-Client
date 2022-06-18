@@ -57,7 +57,7 @@ function App() {
                             element={<DetailProduct />}
                         />
                         <Route
-                            path="/category/:idCategory"
+                            path="/categories/:idCategory"
                             element={<DetailCategory />}
                         />
 
