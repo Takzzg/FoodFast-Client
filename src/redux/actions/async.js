@@ -1,5 +1,9 @@
 import axios from "axios"
 
+
+
+
+
 import {
     ERROR,
     FETCH_CATEGORIES,
@@ -9,10 +13,14 @@ import {
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     NEWFILTER_PRODUCTS,
-    FIND_CAT_BY_ID
+    FIND_CAT_BY_ID,
+  
 } from "./types"
 
-// FUNCTIONS AND CONSTS
+
+
+
+
 
 const baseUrl = `${
     process.env.NODE_ENV === "production"

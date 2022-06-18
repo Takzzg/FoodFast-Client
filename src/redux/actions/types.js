@@ -23,3 +23,6 @@ export const SEARCH_PRODUCT = "search_product"
 export const CLEAN_PRODUCTS = "clean_products"
 export const DELETE_PRODUCT = "delete_product"
 export const CLEAN_SELECT_PRODUCT = "clean_select_product"
+
+
+

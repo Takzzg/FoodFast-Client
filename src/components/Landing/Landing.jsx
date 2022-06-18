@@ -8,7 +8,10 @@ import CategoryCard from "../Categories/CategorysLanding"
 import { useEffect } from "react"
 import { searchCategory, searchProduct } from "../../redux/actions/async"
 
+
+
 const Landing = () => {
+    
     const categories = useSelector((state) => state.main.categories.all)
     const filterCategories = useSelector((state)=> state.main.categories.filtered);
     const dispatch = useDispatch()
@@ -17,17 +20,22 @@ const Landing = () => {
         dispatch(searchProduct(""))
         dispatch(searchCategory(""))
     }, [dispatch])
-
+   
     // useEffect(()=> {
     //  return ()=> { dispatch(clean_categories()); dispatch(clean_products())}
     // })
     return (
+    
         <GlobalContainer>
-
+                 {/* <p>{user?.displayName}</p> */}
+             
             <Banner />
+           
+          
             <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
                 <CategoryBar className="LocationBar" />
             </div>
+           
             <CategoriesContainer>
                           {filterCategories.length ===0 ? categories.map(c=> 
                           <Link key={c._id} to={`/categories/${c._id}`}>

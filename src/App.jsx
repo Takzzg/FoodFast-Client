@@ -24,6 +24,7 @@ import {
 import GlobalStyle from "./GlobalStyles"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
+import { useStateValue } from "./components/Stateprovider"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -35,6 +36,7 @@ const ScrollToTop = (props) => {
 }
 
 function App() {
+    // const [{isopen,user},dispatch]=useStateValue()
     const dispatch = useDispatch()
     const theme = useSelector((state) => state.theme.selectedTheme)
 

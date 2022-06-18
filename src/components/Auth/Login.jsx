@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { Container, LoginBox, GoogleButton, ErrorP} from "./Login.styled";
 import { IoFastFoodSharp } from "react-icons/io5"
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import toast, {Toaster} from 'react-hot-toast';
+import {useDispatch} from "react-redux"
+
+import { useEffect } from "react";
+import { UserAuth } from "../../context/AuthContext";
+
 
 //Validación
 function validate(input){
+
+
     let errors = {};
     if(!input.email){errors.email="Tu correo es requerido."}
     else if (!/\S+@\S+\.\S+/.test(input.email)) {
@@ -22,6 +29,9 @@ function validate(input){
 }
 
 export default function Login(){
+    const { logOut} = UserAuth();
+    const { googleSignIn, user } = UserAuth();
+    const Navigate = useNavigate();
 
     const [input, setInput] = useState({
         email: "", password: ""
@@ -39,17 +49,27 @@ export default function Login(){
                 {...input, [e.target.name]: e.target.value}
             )
         )
+    }  
+   
+    
+    const handleGoogleLogin=async(e)=>{
+      e.preventDefault()
+        try {
+             await googleSignIn();
+          } catch (error) {
+            console.log(error);
+          } 
+          Navigate('/');
     }
-
-    function handleGoogleLogin(e){
-        e.preventDefault();
-        /* La lógca de sign in con Google */
-        toast.success("Successfully loged whit Google!");
-    }
+    // useEffect(() => {
+    //     if (user != null) {
+    //       Navigate('/');
+    //     }
+    //   }, [user]);
     function handleSubmit(e){
         e.preventDefault();
         /* Toda la lógica de loguearse, JWT y toda la wea */
-        toast.success("Successfully loged in!");
+       
     }
 
     return(
@@ -75,7 +95,7 @@ export default function Login(){
                     fontFamily: "sans-serif",
                     marginLeft:"120px"}}>or</span>
 
-                    <GoogleButton onClick={e=>{handleGoogleLogin(e)}}>
+                    <GoogleButton onClick={(e)=>handleGoogleLogin(e)}>
                         <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                         <span className="btn-text"><b>Sign in with Google</b></span>
                     </GoogleButton>
@@ -83,6 +103,7 @@ export default function Login(){
                     <Link to='/resetPassword' className="anchor">Forgot your password?</Link> <br />
                     <Link to='/logup' className="anchor">No registered yet? Sign Up now!</Link>
                 </form>
+               
             </LoginBox>
         </Container>
     )

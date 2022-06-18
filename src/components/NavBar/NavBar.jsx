@@ -15,11 +15,15 @@ import { IoFastFoodSharp } from "react-icons/io5"
 import { FaUserAlt } from "react-icons/fa"
 import { GiHamburgerMenu, GiArchiveRegister } from "react-icons/gi"
 import { AiFillCloseCircle } from "react-icons/ai"
-
+import { AiOutlineLogout } from 'react-icons/ai'
 import { useDispatch, useSelector } from "react-redux"
 import { switchTheme } from "../../redux/actions/sync"
+import { UserAuth } from "../../context/AuthContext"
+import style from "./style/google.module.scss"
+
 
 const NavBar = () => {
+    const { user,logOut } = UserAuth();
     const dispatch = useDispatch()
     const theme = useSelector((state) => state.theme.selectedTheme)
 
@@ -27,6 +31,14 @@ const NavBar = () => {
     const handleSelectRoute = () => {
         setShowNavbar(false)
     }
+    
+    const handleSignOut = async () => {
+        try {
+          await logOut()
+        } catch (error) {
+          console.log(error)
+        }
+      }
 
     return (
         <GlobalContainer>
@@ -49,13 +61,24 @@ const NavBar = () => {
                     <Title theme={theme}>Fast Food APP</Title>
                 </MainIconContainer>
 
+                {user?.displayName ? (
+               <ButtonsContainer theme={theme}>   
+          <img className={style.auth_google_photo}src={user?.photoURL} alt="picture" />
+          <p>{user?.displayName}</p>
+          <p className={style.auth_google_email}>{user?.email}</p>
+          <button  className={style.auth_google_logout}  onClick={handleSignOut} >
+           <AiOutlineLogout/>
+              Logout
+          </button>
+          </ButtonsContainer>  
+      ) : 
                 <ButtonsContainer theme={theme}>
-                
-                    <LoginRegisterButton theme={theme}>
-                        <NavLink to='/login'>
-                            <FaUserAlt />
+                <LoginRegisterButton theme={theme}>
+                      <NavLink to='/login'>
+                        <FaUserAlt />
                             Login
-                        </NavLink>
+                      </NavLink>
+                        
                     </LoginRegisterButton>
             
 
@@ -66,7 +89,7 @@ const NavBar = () => {
                         </NavLink>
                     </LoginRegisterButton>
                 </ButtonsContainer>
-
+}
                 <ListRoutes>
                     <hr />
                     <h3>CONSUMER</h3>
