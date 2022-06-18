@@ -6,7 +6,7 @@ import CategoryBar from "./UbicationBar/UbicationBar"
 import { CategoriesContainer, GlobalContainer } from "./landingElements"
 import CategoryCard from "../Categories/CategorysLanding"
 import { useEffect } from "react"
-import { searchCategory, searchProduct } from "../../redux/actions/async"
+import { searchCategory } from "../../redux/actions/async"
 
 const Landing = () => {
     const categories = useSelector((state) => state.main.categories.all)
@@ -16,13 +16,9 @@ const Landing = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(searchProduct(""))
         dispatch(searchCategory(""))
     }, [dispatch])
 
-    // useEffect(()=> {
-    //  return ()=> { dispatch(clean_categories()); dispatch(clean_products())}
-    // })
     return (
         <GlobalContainer>
             <Banner />
