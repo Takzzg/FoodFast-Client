@@ -2,21 +2,34 @@ import React, { useEffect, useState } from "react";
 import { FifthColumn, FirstColumn, FourthColumn, MainContainer, SecondColumn, ThirdColumn } from "./cardElements";
 import { baseUrl } from "../../../redux/actions/async";
 import {AiFillPlusCircle, AiFillMinusCircle} from "react-icons/ai"; 
+import { useDispatch } from "react-redux";
+import { add_item_car, remove_item_car } from "../../../redux/actions/sync";
+import {TbShoppingCartOff} from "react-icons/tb"
 
-export default function ShopProductCard({product, setItems, setMount}) {
+export default function ShopProductCard({product, setCharge, charge}) {
+
     const [quantity, setQuantity] = useState(1); 
-    const [total, setTotal] = useState(product.price); 
 
-    const Increment = () => {
+    const dispatch = useDispatch(); 
+    const addItem = () => {
+        dispatch(add_item_car(product))
         setQuantity(Number(quantity) + 1)
-        setTotal(quantity*product.price)
+        setCharge(!charge);
+    }
+    const removeItem = (all=false) => {
+        if(!all) {
+            dispatch(remove_item_car(product))
+            setQuantity(Number(quantity) - 1)
+        } else {
+            dispatch(remove_item_car(product, all))
+            setQuantity(0)
+        }
+        setCharge(!charge);
     }
 
-    const Decrement = () => {
-        setQuantity(Number(quantity) - 1)
-        setTotal(quantity*product.price)
-    }
-
+    useEffect(()=> {
+        setQuantity(product.quantity)
+    }, [])
 
     return(
     <MainContainer>
@@ -29,9 +42,14 @@ export default function ShopProductCard({product, setItems, setMount}) {
         </SecondColumn>
         
         <ThirdColumn>
-            <AiFillMinusCircle onClick={Decrement}/>
-            {quantity}
-            <AiFillPlusCircle onClick={Increment}/>
+            <div>
+                <AiFillMinusCircle  onClick={()=>removeItem()}/>
+                    {product.quantity}
+                <AiFillPlusCircle onClick={addItem}/>
+            </div>
+            <div>
+                <TbShoppingCartOff onClick={()=>removeItem(true)} />
+            </div>
         </ThirdColumn>
 
         <FourthColumn>
@@ -39,7 +57,7 @@ export default function ShopProductCard({product, setItems, setMount}) {
         </FourthColumn>
 
         <FifthColumn>
-           $/ {total}
+           $/ {product.price * product.quantity}
         </FifthColumn>
     </MainContainer>)
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   TitleMainContainer,
@@ -7,32 +7,50 @@ import {
   ShopContainer,
   OrderContainer,
   Header,
-  Footer
+  OrderRealContainer
 } from "./displayElements";
+import OrdenSumary from "./orderResume";
 import ShopProductCard from "./shopCard/shopCard";
 
 export default function ShoppingCart() {
   const products = useSelector((state) => state.shopCart.shopCart);
-  const [items, setItems] = useState(1); 
-  const [mount, setMount] = useState(0); 
+  const [items, setItems] = useState(1);
+  const [subTotal, setSubTotal] = useState(1); 
+  const [charge, setCharge] = useState(false); 
+
+  useEffect(()=> {
+    const actualice = (p) => {
+      let newArray = p.map(el=> {return {quantity: el.quantity, totalPrice: el.quantity*el.price}})
+      let valueItems= newArray.reduce((prev, curr) => prev= prev + curr.quantity ,0)
+       setItems(valueItems)
+      
+      let priceSum = newArray.reduce((prev, curr) => prev= prev + curr.totalPrice,0)
+      setSubTotal(priceSum)}
+    actualice(products)
+  }, [charge])
+
   return (
     <GlobalContainer>
       <TitleMainContainer>SHOPPING CART</TitleMainContainer>
 
       <TablesContainer>
         <ShopContainer>
-          <Header>
-            <div id="product">PRODUCT DETAILS</div>
-            <div id="quantity">QUANTITY</div>
-            <div id="price">PRICE</div>
-            <div id="total">TOTAL</div>
-          </Header>
-          <ShopProductCard product={products[0]} setItems={setItems} setMount={setMount}/>
+          <div id="containerMain">
+            <Header>
+              <div id="product">PRODUCT DETAILS</div>
+              <div id="quantity">AMOUNT</div>
+              <div id="price">PRICE</div>
+              <div id="total">TOTAL</div>
+            </Header>
+
+              {products.map(p=><ShopProductCard key={p._id} product={p} setCharge={setCharge} charge={charge}/>  )}
+          </div> 
         </ShopContainer>
 
         <OrderContainer>
-            {items} ---
-            {mount}
+          <OrderRealContainer>
+             <OrdenSumary products={products} items={items} subTotal={subTotal}/>
+          </OrderRealContainer>
         </OrderContainer>
       </TablesContainer>
     </GlobalContainer>

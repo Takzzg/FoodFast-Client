@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MainContainer = styled.section`
     display: flex;
-    width: 80%;
+    width: 100%;
     border-top: 2px solid gray;
     border-bottom: 2px solid gray;
     div{
@@ -13,7 +13,7 @@ export const MainContainer = styled.section`
 `
 
 export const FirstColumn = styled.div`
-    flex-grow: 1.5;
+    width: 35%;
     img {
         height: 5rem;
         width: auto;
@@ -21,13 +21,17 @@ export const FirstColumn = styled.div`
 `
 
 export const SecondColumn = styled.div`
-    flex-grow: 2;
+    width: 35%;
     font-family: 'Acme', sans-serif;
 `
 
 export const ThirdColumn = styled.div`
-    flex-grow: 1;
+    width: 10%;
     font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     svg {
         height: 1.2rem;
         width: auto;
@@ -39,12 +43,12 @@ export const ThirdColumn = styled.div`
 `
 
 export const FourthColumn = styled.div`
-    flex-grow: 1;
+    width: 10%;
     font-family: 'Domine', serif;
 `
 
 export const FifthColumn = styled.div`
-    flex-grow: 1;
+    width: 10%;
     font-family: 'Domine', serif;
 
 `
