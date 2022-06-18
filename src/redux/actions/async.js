@@ -37,6 +37,8 @@ const fetch = (url, type) => (dispatch) =>
 
 export const fetchAllUsers = () => fetch(`${baseUrl}/user`, FETCH_ALL_USERS)
 
+export const postUser = (user) => axios.post(`${baseUrl}/user`, { ...user })
+
 export const logIn = (email, password) => (dispatch) =>
     axios
         .post(`${baseUrl}/auth/login`, { email, password })
@@ -74,9 +76,9 @@ export const fetchAllCategories = () =>
 export const searchCategory = (name) =>
     fetch(`${baseUrl}/categories/category?name=${name}`, SEARCH_CATEGORY)
 
-export const postCategory = (name) => (dispatch) =>
+export const postCategory = (category) => (dispatch) =>
     axios
-        .post(`${baseUrl}/categories`, { name })
+        .post(`${baseUrl}/categories`, { ...category })
         .then(() => dispatch(fetchAllCategories()))
         .catch((err) => dispatch({ type: ERROR, payload: err }))
 
