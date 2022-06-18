@@ -43,12 +43,12 @@ export default function ShopProductCard({product, setCharge, charge}) {
         
         <ThirdColumn>
             <div>
-                <AiFillMinusCircle  onClick={()=>removeItem()}/>
+                <AiFillMinusCircle  id="remove" onClick={()=>removeItem()}/>
                     {product.quantity}
-                <AiFillPlusCircle onClick={addItem}/>
+                <AiFillPlusCircle id="add" onClick={addItem}/>
             </div>
             <div>
-                <TbShoppingCartOff onClick={()=>removeItem(true)} />
+                <TbShoppingCartOff id="remove_all" onClick={()=>removeItem(true)} />
             </div>
         </ThirdColumn>
 

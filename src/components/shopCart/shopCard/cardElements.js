@@ -27,17 +27,30 @@ export const SecondColumn = styled.div`
 
 export const ThirdColumn = styled.div`
     width: 10%;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     svg {
-        height: 1.2rem;
+        height: 1rem;
         width: auto;
         cursor: pointer;
+        color: gray;
+    }
+    #remove{
+        &:hover {
+            color: orange;
+        }
+    }
+    #add{
         &:hover{
-            color: white;
+            color: greenyellow
+        }
+    }
+    #remove_all{
+        &:hover{
+            color: red
         }
     }
 `

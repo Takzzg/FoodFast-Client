@@ -1,4 +1,6 @@
 import React from "react";
+import axios from "axios"; 
+
 import {
   MainContainer,
 TitleContainer,
@@ -11,6 +13,13 @@ GoPayContainer
 
 export default function OrdenSumary({items, subTotal}) {
 
+  // const handlePay = async (mount) => {
+  //   const response = await axios.post("http://localhost:3001/api/v1/paypal/createOrden", {
+  //     value: mount.toString()
+  //   } )
+  //   const data = await response.data
+  //   console.log(data)
+  // }
   return (
     <MainContainer>
         <TitleContainer>Order Sumary</TitleContainer>
@@ -35,7 +44,7 @@ export default function OrdenSumary({items, subTotal}) {
         </TotalContainer>
 
         <GoPayContainer>
-            <button>Go pay</button>
+            <button >Go pay</button>
         </GoPayContainer>
     </MainContainer>
   );
