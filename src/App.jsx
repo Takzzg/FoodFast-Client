@@ -22,13 +22,11 @@ import DetailOrder from "./components/Orders/DetailOrder/DetailOrder"
 import Reviews from "./components/Reviews/Reviews"
 import DetailReview from "./components/Reviews/DetailReview/DetailReview"
 
-const ScrollToTop = (props) => {
+const ScrollToTop = () => {
     const location = useLocation()
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [location])
-
-    return <>{props.children}</>
 }
 
 function App() {
@@ -45,67 +43,60 @@ function App() {
             <BrowserRouter>
                 <GlobalStyle theme={theme} />
 
-                <ScrollToTop>
-                    <NavBar />
+                <ScrollToTop />
+                <NavBar />
 
-                    <Routes>
-                        <Route path="/" element={<Landing />} />
-                        <Route path="/products" element={<DisplayProducts />} />
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/products" element={<DisplayProducts />} />
+                    <Route
+                        path="/products/:idProduct"
+                        element={<DetailProduct />}
+                    />
+                    <Route
+                        path="/categories/:idCategory"
+                        element={<DetailCategory />}
+                    />
+
+                    <Route path="/dashboard">
+                        <Route index element={<Dashboard />} />
+                        <Route path="createProduct" element={<ProductForm />} />
                         <Route
-                            path="/products/:idProduct"
-                            element={<DetailProduct />}
+                            path="createCategory"
+                            element={<CategoryForm />}
                         />
+
                         <Route
-                            path="/categories/:idCategory"
-                            element={<DetailCategory />}
+                            path="modifyCategory/:id"
+                            element={<ModifyCategory />}
                         />
 
-                        <Route path="/dashboard">
-                            <Route index element={<Dashboard />} />
-                            <Route
-                                path="createProduct"
-                                element={<ProductForm />}
-                            />
-                            <Route
-                                path="createCategory"
-                                element={<CategoryForm />}
-                            />
+                        <Route
+                            path="updateProduct/:id"
+                            element={<UpdateProduct />}
+                        />
+                    </Route>
 
+                    <Route path="user/:idUser">
+                        <Route index element={<Profile />} />
+                        <Route path="orders">
+                            <Route index element={<Orders />} />
+                            <Route path=":idOrder" element={<DetailOrder />} />
+                        </Route>
+                        <Route path="reviews">
+                            <Route index element={<Reviews />} />
                             <Route
-                                path="modifyCategory/:id"
-                                element={<ModifyCategory />}
-                            />
-
-                            <Route
-                                path="updateProduct/:id"
-                                element={<UpdateProduct />}
+                                path=":idReview"
+                                element={<DetailReview />}
                             />
                         </Route>
+                    </Route>
 
-                        <Route path="user/:idUser">
-                            <Route index element={<Profile />} />
-                            <Route path="orders">
-                                <Route index element={<Orders />} />
-                                <Route
-                                    path=":idOrder"
-                                    element={<DetailOrder />}
-                                />
-                            </Route>
-                            <Route path="reviews">
-                                <Route index element={<Reviews />} />
-                                <Route
-                                    path=":idReview"
-                                    element={<DetailReview />}
-                                />
-                            </Route>
-                        </Route>
-
-                        {/* LOGIN */}
-                        <Route path="/login" element={<Login />} />
-                        {/* REGISTER */}
-                        <Route path="/logup" element={<Logup />} />
-                    </Routes>
-                </ScrollToTop>
+                    {/* LOGIN */}
+                    <Route path="/login" element={<Login />} />
+                    {/* REGISTER */}
+                    <Route path="/logup" element={<Logup />} />
+                </Routes>
             </BrowserRouter>
         </div>
     )
