@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
-import { fetchAllCategories, fetchAllProducts } from "./redux/actions/async"
+import { fetchAllCategories } from "./redux/actions/async"
 import { useDispatch, useSelector } from "react-redux"
 
 import GlobalStyle from "./GlobalStyles"
@@ -34,7 +34,6 @@ function App() {
     const theme = useSelector((state) => state.theme.selectedTheme)
 
     useEffect(() => {
-        dispatch(fetchAllProducts())
         dispatch(fetchAllCategories())
     }, [dispatch])
 
