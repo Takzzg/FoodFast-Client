@@ -1,4 +1,5 @@
 import axios from "axios"
+import { clean_categories } from "./sync"
 
 import {
     ERROR,
@@ -58,7 +59,9 @@ export const fetchAllCategories = () =>
     fetch(`${baseUrl}/categories`, FETCH_CATEGORIES)
 
 export const searchCategory = (name) =>
-    fetch(`${baseUrl}/categories/category?name=${name}`, SEARCH_CATEGORY)
+    name
+        ? fetch(`${baseUrl}/categories/category?name=${name}`, SEARCH_CATEGORY)
+        : clean_categories()
 
 export const postCategory = (name) => (dispatch) =>
     axios
