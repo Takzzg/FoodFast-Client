@@ -3,20 +3,23 @@ import styled from "styled-components"
 export const StyledDashboard = styled.div`
     display: flex;
     flex-direction: column;
+    background-color: ${({ theme }) => theme.colors.bgPage};
 
     .title {
-        text-align: center;
+        min-height: 6rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         background-color: ${({ theme }) => theme.colors.main};
-        padding: 1rem;
     }
 
     .content {
         display: flex;
         gap: 1rem;
-        justify-content: center;
+        /* justify-content: center; */
         overflow: hidden;
+
         & > div {
-            background-color: ${({ theme }) => theme.colors.background};
             display: flex;
             flex-direction: column;
             gap: 1rem;

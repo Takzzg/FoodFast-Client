@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const GlobalContainer = styled.section`
     display: flex;
     width: 100%;
-    max-width: 30rem;
+    /* max-width: 30rem; */
 `
 
 export const SearchIcon = styled.div`

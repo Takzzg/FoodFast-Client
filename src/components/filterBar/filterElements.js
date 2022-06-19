@@ -11,6 +11,10 @@ export const GlobalContainer = styled.section`
     justify-content: space-evenly;
     gap: 2rem;
     padding: 0 6rem; /* padding tambien hardcodeado */
+
+    & > * {
+        max-width: 50%;
+    }
 `
 
 export const FilterContainer = styled.section`
