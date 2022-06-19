@@ -46,6 +46,13 @@ function compareProducts(a, b, form) {
     }
 }
 
+const sortByName = (arr) => {
+    arr.sort((a, b) => {
+        if (a.name > b.name) return 1
+        else return -1
+    })
+}
+
 const initialState = {
     error: null,
     products: {
@@ -82,7 +89,7 @@ const main = (state = initialState, action) => {
             break
 
         case FETCH_CATEGORIES:
-            newState.categories.all = action.payload
+            newState.categories.all = sortByName(action.payload)
             newState.categories.filtered = action.payload
             break
 
@@ -110,7 +117,7 @@ const main = (state = initialState, action) => {
         // PRODUCTS
 
         case FETCH_PRODUCTS:
-            newState.products.all = action.payload
+            newState.products.all = sortByName(action.payload)
             newState.products.filtered = action.payload
             break
 

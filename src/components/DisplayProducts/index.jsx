@@ -14,7 +14,7 @@ export default function DisplayProducts() {
     const filterProducts = useSelector((state) => state.main.products.filtered)
 
     useEffect(() => {
-        !allProducts.length && dispatch(fetchAllProducts())
+        !allProducts?.length && dispatch(fetchAllProducts())
     }, [dispatch, allProducts])
 
     return (
