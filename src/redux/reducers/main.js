@@ -46,12 +46,14 @@ function compareProducts(a, b, form) {
     }
 }
 
-const sortByName = (arr) => {
+const sortByName = (arr) =>
     arr.sort((a, b) => {
-        if (a.name > b.name) return 1
-        else return -1
+        const nameA = a.name?.trim().toLowerCase()
+        const nameB = b.name?.trim().toLowerCase()
+        if (nameA > nameB) return 1
+        if (nameA < nameB) return -1
+        return 0
     })
-}
 
 const initialState = {
     error: null,
