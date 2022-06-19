@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const GlobalContainer = styled.section`
     z-index: 2;
     text-align: center;
+    color: ${({ theme }) => theme.text.highContrast};
 
     a {
         color: ${({ theme }) => theme.text.highContrast};
@@ -50,7 +51,6 @@ export const CloseButton = styled.div`
 
 export const NavBarContainer = styled.section`
     background-color: ${({ theme }) => theme.colors.bgPage};
-    color: ${({ theme }) => theme.text.highContrast};
 
     position: absolute;
     height: 100vh;
