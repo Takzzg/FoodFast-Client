@@ -96,11 +96,8 @@ const main = (state = initialState, action) => {
             break
 
         case SEARCH_CATEGORY:
-            if (action.payload.error) {
-                newState.categories.filtered = []
-            } else {
-                newState.categories.filtered = action.payload
-            }
+            if (action.payload.error) newState.categories.filtered = []
+            else newState.categories.filtered = sortByName(action.payload)
             break
 
         case CLEAN_CATEGORIES:
@@ -149,11 +146,8 @@ const main = (state = initialState, action) => {
             break
 
         case SEARCH_PRODUCT:
-            if (action.payload.error) {
-                newState.products.filtered = []
-            } else {
-                newState.products.filtered = action.payload
-            }
+            if (action.payload.error) newState.products.filtered = []
+            else newState.products.filtered = sortByName(action.payload)
             break
 
         case DELETE_PRODUCT:
