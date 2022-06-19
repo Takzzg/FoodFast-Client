@@ -37,6 +37,7 @@ const ScrollToTop = (props) => {
 }
 
 function App() {
+    // const [{isopen,user},dispatch]=useStateValue()
     const dispatch = useDispatch()
     const theme = useSelector((state) => state.theme.selectedTheme)
 

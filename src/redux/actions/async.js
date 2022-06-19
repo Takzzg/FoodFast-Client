@@ -1,5 +1,9 @@
 import axios from "axios"
 
+
+
+
+
 import {
     ERROR,
     FETCH_CATEGORIES,
@@ -13,7 +17,10 @@ import {
     AUTH_USER
 } from "./types"
 
-// FUNCTIONS AND CONSTS
+
+
+
+
 
 const baseUrl = `${
     process.env.NODE_ENV === "production"
@@ -81,8 +88,8 @@ export const logup = (data)=> axios.post('http://localhost:3001/api/vi/user/logu
 export const login = (input)=> async (dispatch)=>{
     try{
         //log in the user...
-        const {data} = await axios.post(`${baseUrl}/auth/login`, input)
-        dispatch({type: AUTH_USER, data: data})
+        const data = await axios.post(`${baseUrl}/auth/login`, input)
+        dispatch({type: AUTH_USER, data: data?.data})
     }catch(e){
         console.log("Error en la action login. ",e.message);
     }

@@ -14,26 +14,30 @@ import {
 } from "./NavBar.styled"
 import { IoFastFoodSharp } from "react-icons/io5"
 /* import { FaUserAlt } from "react-icons/fa" */
-import { GiHamburgerMenu, GiArchiveRegister } from "react-icons/gi"
+import { GiHamburgerMenu } from "react-icons/gi"
 import { AiFillCloseCircle } from "react-icons/ai"
 import { FiLogOut, FiLogIn } from "react-icons/fi"
 
 import { useDispatch, useSelector } from "react-redux"
 import { switchTheme } from "../../redux/actions/sync"
 import { LOG_OUT } from "../../redux/actions/types"
+    
+import { AiOutlineLogout } from 'react-icons/ai'
+import { UserAuth } from "../../context/AuthContext"
+import style from "./style/google.module.scss"
+
 
 const NavBar = () => {
-
     /* const user = null; //{result:{email: "gonza@gmail.com"}} */
     const [userData, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    
+    const { user,logOut } = UserAuth();
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
     const theme = useSelector((state) => state.theme.selectedTheme)
     
     useEffect(()=>{
-        const token = userData?.token;
+        //const token = userData?.token;
         //JWT
         setUser(JSON.parse(localStorage.getItem('profile')))
     },[location])
@@ -41,6 +45,14 @@ const NavBar = () => {
     const handleSelectRoute = () => {
         setShowNavbar(false)
     }
+    
+    const handleSignOut = async () => {
+        try {
+          await logOut()
+        } catch (error) {
+          console.log(error)
+        }
+      }
 
     function handleLogout(){
         setUser(null)
@@ -75,9 +87,18 @@ const NavBar = () => {
                     <Title theme={theme}>Fast Food APP</Title>
                 </MainIconContainer>
 
+                {user?.displayName ? (
+               <ButtonsContainer theme={theme}>   
+          <img className={style.auth_google_photo}src={user?.photoURL} alt="picture" />
+          <p>{user?.displayName}</p>
+          <p className={style.auth_google_email}>{user?.email}</p>
+          <LoginRegisterButton  className={style.auth_google_logout}  onClick={handleSignOut} >
+           <AiOutlineLogout/>
+              Logout
+          </LoginRegisterButton>
+          </ButtonsContainer>  
+      ) : 
                 <ButtonsContainer theme={theme}>
-                {/* con esto muestra "Login" si no existe usuario activo, sino,
-                el correo del usuario logeado y un botón de "Logout". */}
                 {userData ? (
                 <ButtonsContainer theme={theme}>
                     <span>{userData?.user?.name}  </span>
@@ -96,7 +117,7 @@ const NavBar = () => {
                 )}
 
                 </ButtonsContainer>
-
+}
                 <ListRoutes>
                     <hr />
                     <h3>CONSUMER</h3>
@@ -116,11 +137,17 @@ const NavBar = () => {
 
                     <hr />
                     <h3>SELLER</h3>
-                    <NavLink to="/dashboard" onClick={handleSelectRoute}>
+                    {userData?.user.rol === 'ADMIN' ? (
+                        <NavLink to="/dashboard" onClick={handleSelectRoute}>
                         <RouteItem onClick={handleSelectRoute}>
-                            DashBoard
+                        DashBoard
                         </RouteItem>
-                    </NavLink>
+                        </NavLink>
+                    ): userData?.user.rol === 'USER' ? (
+                        <h5>Debes tener permisos de Administrador!</h5>
+                    ):(
+                        <h5>Logueate para más funciones! ♥</h5>
+                    )}
 
                     <RouteItem>Contact</RouteItem>
                     <hr />

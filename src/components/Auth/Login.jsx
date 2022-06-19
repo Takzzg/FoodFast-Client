@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { Container, LoginBox, GoogleButton, ErrorP} from "./Login.styled";
 import { IoFastFoodSharp } from "react-icons/io5"
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import toast, {Toaster} from 'react-hot-toast';
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux"
 import { login } from "../../redux/actions/async";
+import { useEffect } from "react";
+import { UserAuth } from "../../context/AuthContext";
+
 
 //Validación
 function validate(input){
+
+
     let errors = {};
     if(!input.email){errors.email="Tu correo es requerido."}
     else if (!/\S+@\S+\.\S+/.test(input.email)) {
@@ -24,15 +29,18 @@ function validate(input){
 }
 
 export default function Login(){
+    //const { logOut} = UserAuth();
+    const { googleSignIn, user } = UserAuth();
+    const Navigate = useNavigate();
 
     const [input, setInput] = useState({
         email: "", password: ""
     });
+    //const [authUser, setAuthUser] = useState(null);
     const [errors, setErrors] = useState({})
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-/*     const authData = useSelector(state=> state.user.authData);
-    console.log("el estado global authData es: ",authData); */
+    //const location = useLocation();
+    const authData = useSelector(state=> state.user.authData);
     function handleInputChange(e){
         e.preventDefault();
         setInput({
@@ -43,13 +51,33 @@ export default function Login(){
                 {...input, [e.target.name]: e.target.value}
             )
         )
+    }  
+   
+    
+    const handleGoogleLogin=async(e)=>{
+      e.preventDefault()
+        try {
+             await googleSignIn();
+          } catch (error) {
+            console.log(error);
+          } 
+          Navigate('/');
     }
+    // useEffect(() => {
+    //     if (user != null) {
+    //       Navigate('/');
+    //     }
+    //   }, [user]);
 
-    function handleGoogleLogin(e){
-        e.preventDefault();
-        /* La lógca de sign in con Google */
-        toast.success("Successfully loged whit Google!");
-    }
+    useEffect(()=>{
+        if(authData?.token){
+            toast.success(`Bienvenido ${authData.user.name}!!`)
+            Navigate('/')
+        }else{
+            toast.error("Contraseña o usuario incorrecto.");
+        }
+    },[authData])
+
     function handleSubmit(e){
         try{
             e.preventDefault();
@@ -57,9 +85,10 @@ export default function Login(){
                 toast.error('Debes completar correctamente los campos.')
             }else{
                 dispatch(login(input))
+                
                 //verificar de alguna forma al usuario logueado.
+                //me falta saber cómo hacer para darme cuenta que falló la autenticación e informarlo.
             }
-            navigate('/')
         }catch(e){
             console.log(e);
             toast.error("Contraseña o usuario incorrecto.");
@@ -68,7 +97,7 @@ export default function Login(){
 
     return(
         <Container>
-            <Toaster/>
+            
             <LoginBox>
                 <IoFastFoodSharp/>
                 <h1>Login here</h1>
@@ -89,7 +118,7 @@ export default function Login(){
                     fontFamily: "sans-serif",
                     marginLeft:"120px"}}>or</span>
 
-                    <GoogleButton onClick={e=>{handleGoogleLogin(e)}}>
+                    <GoogleButton onClick={(e)=>handleGoogleLogin(e)}>
                         <img className="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="google button" />
                         <span className="btn-text"><b>Sign in with Google</b></span>
                     </GoogleButton>
@@ -97,6 +126,7 @@ export default function Login(){
                     <Link to='/passwordReset' className="anchor">Forgot your password?</Link> <br />
                     <Link to='/logup' className="anchor">No registered yet? Sign Up now!</Link>
                 </form>
+               
             </LoginBox>
         </Container>
     )
