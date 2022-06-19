@@ -2,7 +2,8 @@ import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
     display: flex;
-    width: 50%;
+    width: 100%;
+    max-width: 50rem;
     top: 55vh;
     left: 24vw;
 `

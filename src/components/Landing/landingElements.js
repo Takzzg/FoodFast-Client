@@ -4,7 +4,6 @@ export const GlobalContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     gap: 5rem;
 
     background-image: url(${({ bgImg }) => bgImg});
@@ -13,7 +12,7 @@ export const GlobalContainer = styled.div`
 
     .ornament {
         position: absolute;
-        height: 80vh;
+        height: 75vh;
         z-index: -1;
         top: 0;
         width: 100%;
@@ -35,6 +34,7 @@ export const GlobalContainer = styled.div`
         font-size: 70px;
         /* padding-top: 20vh; */
         z-index: 1;
+        padding: 5rem 1rem;
     }
 `
 
