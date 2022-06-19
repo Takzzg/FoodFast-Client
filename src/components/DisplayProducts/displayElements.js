@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
 export const GlobalContainer = styled.div`
@@ -14,94 +15,63 @@ export const FilterContainer = styled.div`
 export const CardsContainer = styled.section`
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
     justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
     background-color: ${({ theme }) => theme.colors.main};
 `
 
 export const CardContainer = styled.section`
-    margin: 1rem;
-    width: 15%;
-    height: 40vh;
-    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 0.5rem;
+    width: 15rem;
+    border: 3px solid ${({ theme }) => theme.text.highContrast};
     border-radius: 10px;
     background-color: white;
+    color: ${({ theme }) => theme.text.highContrast};
+    background-color: ${({ theme }) => theme.colors.background};
+
+    &:hover {
+        transform: scale(1.05);
+    }
 `
 
 export const TitleDiv = styled.div`
-    height: 15%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
     font-family: "Concert One", cursive;
     font-size: 1.2rem;
     text-transform: uppercase;
 `
 
-export const ImageContainer = styled.div`
-    width: 100%;
-    height: 70%;
+export const ImageContainer = styled(Link)`
     display: flex;
     justify-content: center;
     align-items: center;
-    a {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    img {
-        height: 100%;
-        width: auto;
-        max-width: 90%;
-        border-radius: 1rem;
-        cursor: pointer;
-        &:hover {
-            transform: scale(1.1);
-        }
-    }
+
+    background-image: url(${({ img }) => img});
+    background-size: cover;
+    background-position: center;
+
+    min-height: 10rem;
+    border-radius: 1rem;
 `
 
 export const FooterContainer = styled.div`
-    width: 100%;
-    height: 15%;
     display: flex;
     align-items: center;
-`
-export const PriceContainer = styled.div`
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-evenly;
     font-size: 1.5rem;
     font-family: "Bangers", cursive;
-`
-export const ButtonsContainer = styled.div`
-    height: 100%;
-    width: 50%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    a {
-        height: 100%;
-    }
-    svg {
-        width: auto;
-        color: black;
-        cursor: pointer;
+
+    .iconBtn {
+        color: ${({ theme }) => theme.text.highContrast};
         &:hover {
             transform: scale(1.2);
+            color: ${({ theme }) => theme.colors.main};
         }
-    }
-    #car {
-        height: 70%;
-        width: auto;
-    }
-    #details svg {
-        height: 80%;
-        width: auto;
     }
 `

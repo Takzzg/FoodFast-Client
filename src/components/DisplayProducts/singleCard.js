@@ -3,37 +3,34 @@ import {
     CardContainer,
     TitleDiv,
     ImageContainer,
-    FooterContainer,
-    ButtonsContainer,
-    PriceContainer
+    FooterContainer
 } from "./displayElements"
 import { MdReadMore } from "react-icons/md"
 import { AiOutlineShoppingCart } from "react-icons/ai"
 import { Link } from "react-router-dom"
 import { baseUrl } from "../../redux/actions/async"
+import { useSelector } from "react-redux"
 
 export default function SingleProductCard({ id, name, price, stock }) {
+    const theme = useSelector((state) => state.theme.selectedTheme)
+
     return (
-        <CardContainer>
+        <CardContainer theme={theme}>
             <TitleDiv>{name}</TitleDiv>
 
-            <ImageContainer>
-                <Link to={`/products/${id}`}>
-                    <img src={`${baseUrl}/products/img/${id}`} alt="imagen" />
+            <ImageContainer
+                to={`/products/${id}`}
+                img={`${baseUrl}/products/img/${id}`}
+            />
+
+            <FooterContainer theme={theme}>
+                ${price}
+                <Link to={`/products/${id}`} className="iconBtn">
+                    <AiOutlineShoppingCart id="car" />
                 </Link>
-            </ImageContainer>
-
-            <FooterContainer>
-                <PriceContainer>${price}</PriceContainer>
-                <ButtonsContainer>
-                    <Link to={`/products/${id}`}>
-                        <AiOutlineShoppingCart id="car" />
-                    </Link>
-
-                    <Link to={`/products/${id}`} id="details">
-                        <MdReadMore />
-                    </Link>
-                </ButtonsContainer>
+                <Link to={`/products/${id}`} id="details" className="iconBtn">
+                    <MdReadMore />
+                </Link>
             </FooterContainer>
         </CardContainer>
     )

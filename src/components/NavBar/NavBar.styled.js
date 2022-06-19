@@ -51,6 +51,7 @@ export const CloseButton = styled.div`
 
 export const NavBarContainer = styled.section`
     background-color: ${({ theme }) => theme.colors.bgPage};
+    border-right: 2px solid ${({ theme }) => theme.colors.main};
 
     position: absolute;
     height: 100vh;
