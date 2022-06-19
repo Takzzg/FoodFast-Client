@@ -82,9 +82,7 @@ export const deleteCategory = (id) => (dispatch) =>
 
 
 // USER
-/* en su api/"index" tiene:
-export const login = (data)=> axios.post('http://localhost:3001/api/vi/auth/login')
-export const logup = (data)=> axios.post('http://localhost:3001/api/vi/user/logup') */
+
 export const login = (input)=> async (dispatch)=>{
     try{
         //log in the user...
