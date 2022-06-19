@@ -13,11 +13,11 @@ export const SearchIcon = styled.div`
     border-radius: 10px;
     cursor: pointer;
     height: 2.5rem;
-    margin-left: .4rem;
-    svg{
-        color: white
+    margin-left: 0.4rem;
+    svg {
+        color: white;
     }
-    &:hover svg{
+    &:hover svg {
         transform: scale(1.3);
     }
 `

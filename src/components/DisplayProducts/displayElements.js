@@ -1,23 +1,21 @@
-import styled from "styled-components"; 
+import styled from "styled-components"
 
-export const GlobalContainer = styled.section`
-    height: max-content;
-    width: 100%;
-    background-color: #c9933e;
+export const GlobalContainer = styled.div`
+    background-color: ${({ theme }) => theme.colors.main};
 `
 export const FilterContainer = styled.div`
-    height: 10vh;
-    width: 100%;
-    background-color: white;
+    color: ${({ theme }) => theme.text.highContrast};
+    background-color: ${({ theme }) => theme.colors.bgPage};
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 export const CardsContainer = styled.section`
-    min-height: 100vh;
-    height: max-content;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #c9933e;
+    background-color: ${({ theme }) => theme.colors.main};
 `
 
 export const CardContainer = styled.section`
@@ -36,7 +34,7 @@ export const TitleDiv = styled.div`
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-family: 'Concert One', cursive;
+    font-family: "Concert One", cursive;
     font-size: 1.2rem;
     text-transform: uppercase;
 `
@@ -47,7 +45,7 @@ export const ImageContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    a{
+    a {
         width: 100%;
         height: 100%;
         display: flex;
@@ -60,7 +58,7 @@ export const ImageContainer = styled.div`
         max-width: 90%;
         border-radius: 1rem;
         cursor: pointer;
-        &:hover{
+        &:hover {
             transform: scale(1.1);
         }
     }
@@ -79,7 +77,7 @@ export const PriceContainer = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    font-family: 'Bangers', cursive;
+    font-family: "Bangers", cursive;
 `
 export const ButtonsContainer = styled.div`
     height: 100%;
@@ -87,24 +85,23 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
-    a{ 
+    a {
         height: 100%;
     }
-    svg{
+    svg {
         width: auto;
         color: black;
         cursor: pointer;
-        &:hover{
+        &:hover {
             transform: scale(1.2);
         }
     }
-    #car{
+    #car {
         height: 70%;
         width: auto;
     }
-    #details svg{
+    #details svg {
         height: 80%;
         width: auto;
     }
-   
 `
