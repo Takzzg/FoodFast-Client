@@ -44,12 +44,14 @@ export const CloseButton = styled.div`
 export const NavBarContainer = styled.section`
     background-color: ${({ theme }) => theme.colors.background};
     border-right: 4px solid #00a726;
-    width: 30%;
+    width: 100%;
+    max-width: 20rem;
     height: 100vh;
     position: absolute;
     top: 0px;
-    transition: left 1.5s ease-out;
-    left: ${({ isShowing }) => (isShowing ? "0px" : "-50%")};
+    transition: ${({ isShowing }) =>
+        isShowing ? "left 0.75s ease-out" : "left 0.75s ease-in"};
+    left: ${({ isShowing }) => (isShowing ? "0px" : "-100%")};
     overflow-y: auto;
 `
 export const MainIconContainer = styled.div`
