@@ -2,6 +2,12 @@ import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
     z-index: 2;
+    text-align: center;
+
+    a {
+        color: ${({ theme }) => theme.text.highContrast};
+        text-decoration: none;
+    }
 `
 export const OpenButton = styled.div`
     position: absolute;
@@ -29,6 +35,7 @@ export const CloseButton = styled.div`
     padding: 1rem;
     height: 2rem;
     width: 2rem;
+    z-index: 2;
 
     svg {
         height: 100%;
@@ -42,9 +49,8 @@ export const CloseButton = styled.div`
 `
 
 export const NavBarContainer = styled.section`
-    background-color: ${({ theme }) => theme.colors.background};
+    background-color: ${({ theme }) => theme.colors.bgPage};
     color: ${({ theme }) => theme.text.highContrast};
-    border-right: 4px solid #00a726;
 
     position: absolute;
     height: 100vh;
@@ -59,6 +65,20 @@ export const NavBarContainer = styled.section`
 
     display: flex;
     flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
+
+    .navLink {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        background-color: ${({ theme }) => theme.colors.background};
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.main};
+        }
+    }
 `
 export const MainIconContainer = styled.div`
     position: relative;
@@ -67,7 +87,6 @@ export const MainIconContainer = styled.div`
     justify-content: center;
     height: 10rem;
     z-index: 1;
-    margin: 2rem;
 
     svg {
         position: absolute;
@@ -83,63 +102,52 @@ export const Title = styled.h1`
     font-size: 3rem;
 `
 export const ButtonsContainer = styled.div`
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     align-items: center;
-    height: 3rem;
-    background-color: ${({ theme }) => theme.colors.background};
-    border-bottom: 1px solid black;
-    margin-bottom: 1.5rem;
-    a {
-        text-decoration: none;
-        color: black;
-    }
+    gap: 1rem;
+    padding: 0 1rem;
 `
+
+export const Divider = styled.div`
+    width: 100%;
+    height: 2px;
+    background-color: ${({ theme }) => theme.colors.main}; ;
+`
+
 export const LoginRegisterButton = styled.button`
-    height: 70%;
+    a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.25rem;
+    }
+
+    padding: 0.5rem;
     text-decoration: none;
-    width: 40%;
     cursor: pointer;
     display: flex;
     justify-content: space-around;
     align-items: center;
     font-size: 1rem;
-    background-color: ${({ theme }) => theme.colors.background};
-    border: 1px solid orange;
+    background-color: ${({ theme }) => theme.colors.bgPage};
+    border: 2px solid ${({ theme }) => theme.colors.main};
     border-radius: 8px;
     color: ${({ theme }) => theme.colors.main};
+
     &:hover {
         background-color: ${({ theme }) => theme.colors.main};
-        color: ${({ theme }) => theme.text.highContrast};
-    }
-`
-export const ListRoutes = styled.ul`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    a {
-        text-decoration: none;
-        color: black;
-        width: 100%;
     }
 `
 
 export const RouteItem = styled.li`
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid red;
-    border-top: 1px solid red;
-    list-style: none;
-    height: 3em;
+    padding: 1rem;
+
     &:hover {
-        cursor: pointer;
-        outline: 3px solid red;
-        outline: 3px solid red;
+        background-color: ${({ theme }) => theme.colors.main};
     }
 `

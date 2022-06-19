@@ -1,16 +1,15 @@
 import React, { useState } from "react"
-import { NavLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {
     GlobalContainer,
     MainIconContainer,
     NavBarContainer,
     LoginRegisterButton,
-    ListRoutes,
-    RouteItem,
     Title,
     ButtonsContainer,
     OpenButton,
-    CloseButton
+    CloseButton,
+    Divider
 } from "./NavBar.styled"
 import { IoFastFoodSharp } from "react-icons/io5"
 import { FaUserAlt } from "react-icons/fa"
@@ -29,8 +28,14 @@ const NavBar = () => {
         setShowNavbar(false)
     }
 
+    const NavLink = ({ url, children }) => (
+        <Link className="navLink" to={url} onClick={handleSelectRoute}>
+            {children}
+        </Link>
+    )
+
     return (
-        <GlobalContainer>
+        <GlobalContainer theme={theme}>
             <OpenButton
                 onClick={() => setShowNavbar(true)}
                 isShowing={showNavbar}
@@ -53,47 +58,34 @@ const NavBar = () => {
 
                 <ButtonsContainer theme={theme}>
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to="/login">
+                        <Link to="/login">
                             <FaUserAlt />
                             Login
-                        </NavLink>
+                        </Link>
                     </LoginRegisterButton>
 
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to="/logup">
+                        <Link to="/logup">
                             <GiArchiveRegister />
                             Register
-                        </NavLink>
+                        </Link>
                     </LoginRegisterButton>
                 </ButtonsContainer>
 
-                <ListRoutes>
-                    <hr />
-                    <h3>CONSUMER</h3>
-                    <NavLink to="/" onClick={handleSelectRoute}>
-                        <RouteItem>Home</RouteItem>
-                    </NavLink>
+                <Divider theme={theme} />
 
-                    <NavLink to="/products" onClick={handleSelectRoute}>
-                        <RouteItem>Products</RouteItem>
-                    </NavLink>
+                <h3>CONSUMER</h3>
+                <NavLink url="/">Home</NavLink>
+                <NavLink url="/products">Products</NavLink>
+                <NavLink url="/">My orders</NavLink>
+                <NavLink url="/">Oferts</NavLink>
+                <NavLink url="/">Contact</NavLink>
 
-                    <RouteItem>My orders</RouteItem>
-                    <RouteItem>Oferts</RouteItem>
-                    <RouteItem>Contact</RouteItem>
-                    <hr />
+                <Divider theme={theme} />
 
-                    <hr />
-                    <h3>SELLER</h3>
-                    <NavLink to="/dashboard" onClick={handleSelectRoute}>
-                        <RouteItem onClick={handleSelectRoute}>
-                            DashBoard
-                        </RouteItem>
-                    </NavLink>
-
-                    <RouteItem>Contact</RouteItem>
-                    <hr />
-                </ListRoutes>
+                <h3>SELLER</h3>
+                <NavLink url="/dashboard">DashBoard</NavLink>
+                <NavLink url="/">Contact</NavLink>
 
                 <button onClick={() => dispatch(switchTheme())}>
                     Switch to {theme.name === "light" ? "dark" : "light"} theme
