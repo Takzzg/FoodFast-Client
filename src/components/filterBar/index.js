@@ -127,11 +127,9 @@ export default function FilterBar() {
 
             <SearchBar />
 
-            <UserContainer>
-                <div>
-                    <FaShoppingCart />
-                    <FaUserAlt />
-                </div>
+            <UserContainer theme={theme}>
+                <FaShoppingCart />
+                <FaUserAlt />
             </UserContainer>
         </GlobalContainer>
     )

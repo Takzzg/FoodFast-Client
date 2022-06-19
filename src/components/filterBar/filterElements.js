@@ -9,6 +9,8 @@ export const GlobalContainer = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    gap: 2rem;
+    padding: 0 6rem; /* padding tambien hardcodeado */
 `
 
 export const FilterContainer = styled.section`
@@ -66,25 +68,15 @@ export const FilterButton = styled.button`
 //========================================================
 
 export const UserContainer = styled.section`
-    /* width: 30%; */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     gap: 1rem;
+    cursor: pointer;
 
-    div {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        /* height: 100%;
-        width: 50%; */
-        svg {
-            cursor: pointer;
-            /* height: 60%;
-            width: auto; */
-            &:hover {
-                color: green;
-            }
+    svg {
+        &:hover {
+            color: ${({ theme }) => theme.colors.main};
         }
     }
 `

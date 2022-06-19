@@ -2,10 +2,12 @@ import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
     display: flex;
+    width: 100%;
+    max-width: 30rem;
 `
 
 export const SearchIcon = styled.div`
-    background-color: orange;
+    background-color: ${({ theme }) => theme.colors.main};
     display: flex;
     justify-content: center;
     align-items: center;
