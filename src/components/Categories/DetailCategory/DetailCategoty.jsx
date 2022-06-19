@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
-import { fetchProductsByCat, findCatById } from "../../../redux/actions/async"
+import {
+    baseUrl,
+    fetchProductsByCat,
+    findCatById
+} from "../../../redux/actions/async"
 import { StyledCategoryDetail } from "./DetailCategory.styled"
 import ProductCard from "../../Products/ProductCard/ProductCard"
 import { clean_categories, clean_products } from "../../../redux/actions/sync"
@@ -44,7 +48,12 @@ const DetailCategory = () => {
     })
 
     return !!category ? (
-        <StyledCategoryDetail theme={theme} img={category.img}>
+        <StyledCategoryDetail theme={theme}>
+            <img
+                src={`${baseUrl}/categories/img/${idCategory}`}
+                alt="Category"
+                height={"200"}
+            />
             <div className="banner">{category.name}</div>
             <div className="products">
                 {products().length !== 0 &&

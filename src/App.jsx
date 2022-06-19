@@ -1,31 +1,28 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
-
 import { fetchAllCategories, fetchAllProducts } from "./redux/actions/async"
 import { useDispatch, useSelector } from "react-redux"
-import DisplayProducts from "./components/DisplayProducts/index"
-import {
-    Auth,
-    Categories,
-    CategoryForm,
-    Dashboard,
-    DetailCategory,
-    DetailOrder,
-    DetailProduct,
-    DetailReview,
-    Landing,
-    NavBar,
-    Orders,
-    ProductForm,
-    Products,
-    Profile,
-    Reviews
-} from "./components"
+
 import GlobalStyle from "./GlobalStyles"
+import DisplayProducts from "./components/DisplayProducts/index"
+import ModifyCategory from "./components/Categories/CategoryUpdate"
+import UpdateProduct from "./components/Products/updateProduct"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
 import PasswordReset from "./components/Auth/PasswordReset"
 import NewPassword from "./components/Auth/NewPassword"
+import NavBar from "./components/NavBar/NavBar"
+import Landing from "./components/Landing/Landing"
+import DetailProduct from "./components/Products/DetailProduct/DetailProduct"
+import DetailCategory from "./components/Categories/DetailCategory/DetailCategoty"
+import Dashboard from "./components/User/Dashboard/Dashboard"
+import ProductForm from "./components/Products/ProductForm/ProductForm"
+import CategoryForm from "./components/Categories/CategoryForm"
+import Profile from "./components/User/Profile"
+import Orders from "./components/Orders/Orders"
+import DetailOrder from "./components/Orders/DetailOrder/DetailOrder"
+import Reviews from "./components/Reviews/Reviews"
+import DetailReview from "./components/Reviews/DetailReview/DetailReview"
 
 const ScrollToTop = (props) => {
     const location = useLocation()
@@ -54,7 +51,7 @@ function App() {
                 <ScrollToTop>
                     <NavBar />
 
-                    <Routes> 
+                    <Routes>
                         <Route path="/" element={<Landing />} />
                         <Route path="/products" element={<DisplayProducts />} />
                         <Route
@@ -62,11 +59,10 @@ function App() {
                             element={<DetailProduct />}
                         />
                         <Route
-                            path="/category/:idCategory"
+                            path="/categories/:idCategory"
                             element={<DetailCategory />}
                         />
-                        
-                        
+
                         <Route path="/dashboard">
                             <Route index element={<Dashboard />} />
                             <Route
@@ -77,26 +73,17 @@ function App() {
                                 path="createCategory"
                                 element={<CategoryForm />}
                             />
-                        </Route>
 
-                    {/* Hay dos dashboards */}
-                        <Route path="/dashboard/products">
-                            <Route index element={<Products />} />
                             <Route
-                                path=":idProduct"
-                                element={<DetailProduct />}
+                                path="modifyCategory/:id"
+                                element={<ModifyCategory />}
+                            />
+
+                            <Route
+                                path="updateProduct/:id"
+                                element={<UpdateProduct />}
                             />
                         </Route>
-
-                        <Route path="categories">
-                            <Route index element={<Categories />} />
-                            <Route
-                                path=":idCategory"
-                                element={<DetailCategory />}
-                            />
-                        </Route>
-
-                        <Route path="/auth" element={<Auth />} />
 
                         <Route path="user/:idUser">
                             <Route index element={<Profile />} />
@@ -117,7 +104,7 @@ function App() {
                         </Route>
 
                         {/* LOGIN */}
-                        <Route path="/login" element={<Login/>}/>
+                        <Route path="/login" element={<Login />} />
                         {/* REGISTER */}
                         <Route path="/logup" element={<Logup/>}/>
                         {/* PASS RESET */}
