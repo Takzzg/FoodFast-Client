@@ -26,13 +26,7 @@ export default function DisplayProducts() {
                     <div>No results found</div>
                 ) : (
                     filterProducts.map((p) => (
-                        <SingleProductCard
-                            key={p._id}
-                            id={p._id}
-                            name={p.name}
-                            price={p.price}
-                            stock={p.stock}
-                        />
+                        <SingleProductCard key={p._id} product={p} />
                     ))
                 )}
             </CardsContainer>

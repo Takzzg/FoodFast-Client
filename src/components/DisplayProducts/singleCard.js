@@ -11,7 +11,8 @@ import { Link } from "react-router-dom"
 import { baseUrl } from "../../redux/actions/async"
 import { useSelector } from "react-redux"
 
-export default function SingleProductCard({ id, name, price, stock }) {
+export default function SingleProductCard({ product }) {
+    const { _id, name, price } = product
     const theme = useSelector((state) => state.theme.selectedTheme)
 
     return (
@@ -19,16 +20,16 @@ export default function SingleProductCard({ id, name, price, stock }) {
             <TitleDiv>{name}</TitleDiv>
 
             <ImageContainer
-                to={`/products/${id}`}
-                img={`${baseUrl}/products/img/${id}`}
+                to={`/products/${_id}`}
+                img={`${baseUrl}/products/img/${_id}`}
             />
 
             <FooterContainer theme={theme}>
                 ${price}
-                <Link to={`/products/${id}`} className="iconBtn">
+                <Link to={`/products/${_id}`} className="iconBtn">
                     <AiOutlineShoppingCart id="car" />
                 </Link>
-                <Link to={`/products/${id}`} id="details" className="iconBtn">
+                <Link to={`/products/${_id}`} id="details" className="iconBtn">
                     <MdReadMore />
                 </Link>
             </FooterContainer>
