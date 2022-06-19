@@ -16,8 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
         background-color: ${({ theme }) => theme.colors.background};
 
-        & > * {
+        & > div {
             overflow: auto;
+            min-height: 100%;
         }
     }
 `

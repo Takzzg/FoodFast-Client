@@ -1,28 +1,29 @@
 import styled from "styled-components"
 
 export const MainContainer = styled.section`
-    text-decoration: none;
     border-radius: 10px;
     height: 10rem;
     width: 20rem;
-    margin: 1rem;
     background-color: ${({ backcolor }) => backcolor};
-    background-size: 40%;
+
+    padding: 0.5rem;
+    gap: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: center;
+    justify-content: center;
+`
+
+export const ImageCategory = styled.div`
+    background-image: url(${({ image }) => image});
+    height: 100%;
+    background-position: center;
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: right;
-    transition: background-size 0.3s linear;
-    cursor: pointer;
-    &:hover {
-        background-size: 60%;
-    }
 `
 
 export const NameCategory = styled.div`
-    position: relative;
-    top: 2.8rem;
-    left: 1rem;
     font-size: 30px;
     color: white;
-    height: 100%;
-    width: 50%;
 `
