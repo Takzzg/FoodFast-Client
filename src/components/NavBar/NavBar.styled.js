@@ -3,31 +3,45 @@ import styled from "styled-components"
 export const GlobalContainer = styled.section`
     z-index: 2;
 `
-export const ShowButton = styled.div`
-    right: ${({ isShowing }) => (isShowing ? "10px" : "95vw")};
-    height: 2.5rem;
-    display: flex;
-    justify-content: ${({ isShowing }) => (isShowing ? "flex-end" : "center")};
-    align-items: center;
+export const OpenButton = styled.div`
     position: absolute;
-    top: 10px;
+    top: 0;
+    left: 0;
+    padding: 2rem;
+    height: 2rem;
+    width: 2rem;
+
     svg {
-        height: 70%;
+        height: 100%;
+        width: 100%;
         width: auto;
         cursor: pointer;
         &:hover {
             transform: scale(1.2);
         }
     }
-    #HambugerMenu {
-        display: ${({ isShowing }) => isShowing && "none"};
+`
+
+export const CloseButton = styled.div`
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    height: 2rem;
+    width: 2rem;
+
+    svg {
+        height: 100%;
+        width: 100%;
+        width: auto;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.2);
+        }
     }
 `
+
 export const NavBarContainer = styled.section`
-    * {
-        margin: 0px;
-        padding: 0px;
-    }
     background-color: ${({ theme }) => theme.colors.background};
     border-right: 4px solid #00a726;
     width: 30%;
@@ -64,13 +78,14 @@ export const ButtonsContainer = styled.div`
     background-color: ${({ theme }) => theme.colors.background};
     border-bottom: 1px solid black;
     margin-bottom: 1.5rem;
-    a{
+    a {
         text-decoration: none;
         color: black;
     }
 `
 export const LoginRegisterButton = styled.button`
-    height: 70%; text-decoration: none;
+    height: 70%;
+    text-decoration: none;
     width: 40%;
     cursor: pointer;
     display: flex;

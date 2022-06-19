@@ -9,7 +9,8 @@ import {
     RouteItem,
     Title,
     ButtonsContainer,
-    ShowButton
+    OpenButton,
+    CloseButton
 } from "./NavBar.styled"
 import { IoFastFoodSharp } from "react-icons/io5"
 import { FaUserAlt } from "react-icons/fa"
@@ -30,37 +31,35 @@ const NavBar = () => {
 
     return (
         <GlobalContainer>
-            <ShowButton
+            <OpenButton
                 onClick={() => setShowNavbar(true)}
                 isShowing={showNavbar}
             >
                 <GiHamburgerMenu id={"HambugerMenu"} />
-            </ShowButton>
+            </OpenButton>
 
             <NavBarContainer theme={theme} isShowing={showNavbar}>
-                <ShowButton
+                <CloseButton
                     onClick={() => setShowNavbar(false)}
                     isShowing={showNavbar}
                 >
                     <AiFillCloseCircle id={"close"} />
-                </ShowButton>
+                </CloseButton>
                 <MainIconContainer theme={theme}>
                     <IoFastFoodSharp />
                     <Title theme={theme}>Fast Food APP</Title>
                 </MainIconContainer>
 
                 <ButtonsContainer theme={theme}>
-                
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to='/login'>
+                        <NavLink to="/login">
                             <FaUserAlt />
                             Login
                         </NavLink>
                     </LoginRegisterButton>
-            
 
                     <LoginRegisterButton theme={theme}>
-                        <NavLink to='/logup'>
+                        <NavLink to="/logup">
                             <GiArchiveRegister />
                             Register
                         </NavLink>
@@ -77,7 +76,6 @@ const NavBar = () => {
                     <NavLink to="/products" onClick={handleSelectRoute}>
                         <RouteItem>Products</RouteItem>
                     </NavLink>
-
 
                     <RouteItem>My orders</RouteItem>
                     <RouteItem>Oferts</RouteItem>
