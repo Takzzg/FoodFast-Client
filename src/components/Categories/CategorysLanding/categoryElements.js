@@ -13,6 +13,12 @@ export const MainContainer = styled.section`
     grid-template-columns: 2fr 3fr;
     align-items: center;
     justify-content: center;
+
+    transition: transform 0.1s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
+    }
 `
 
 export const ImageCategory = styled.div`
