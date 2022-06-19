@@ -43,34 +43,44 @@ export const CloseButton = styled.div`
 
 export const NavBarContainer = styled.section`
     background-color: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.text.highContrast};
     border-right: 4px solid #00a726;
+
+    position: absolute;
+    height: 100vh;
     width: 100%;
     max-width: 20rem;
-    height: 100vh;
-    position: absolute;
     top: 0px;
+
     transition: ${({ isShowing }) =>
         isShowing ? "left 0.75s ease-out" : "left 0.75s ease-in"};
     left: ${({ isShowing }) => (isShowing ? "0px" : "-100%")};
     overflow-y: auto;
+
+    display: flex;
+    flex-direction: column;
 `
 export const MainIconContainer = styled.div`
-    height: 20vh;
-    width: 100%;
+    position: relative;
     display: flex;
-    justify-content: space-around;
     align-items: center;
-    margin-bottom: 1rem;
+    justify-content: center;
+    height: 10rem;
+    z-index: 1;
+    margin: 2rem;
+
     svg {
-        height: 70%;
-        width: auto;
-        color: ${({ theme }) => theme.text.highContrast};
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        color: ${({ theme }) => theme.colors.main};
     }
 `
 
 export const Title = styled.h1`
     color: ${({ theme }) => theme.text.highContrast};
-    font-size: 25px;
+    font-size: 3rem;
 `
 export const ButtonsContainer = styled.div`
     display: flex;

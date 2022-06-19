@@ -45,9 +45,10 @@ const NavBar = () => {
                 >
                     <AiFillCloseCircle id={"close"} />
                 </CloseButton>
+
                 <MainIconContainer theme={theme}>
                     <IoFastFoodSharp />
-                    <Title theme={theme}>Fast Food APP</Title>
+                    <Title theme={theme}>Food Fast</Title>
                 </MainIconContainer>
 
                 <ButtonsContainer theme={theme}>
