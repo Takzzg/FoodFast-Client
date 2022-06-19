@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Banner from "./Banner/Banner"
 import CategoryBar from "./UbicationBar/UbicationBar"
@@ -19,6 +18,8 @@ const Landing = () => {
         dispatch(searchCategory(""))
     }, [dispatch])
 
+    const getColor = (i) => `hsl(${(255 / categories.length) * i}, 100%, 33%)`
+
     return (
         <GlobalContainer>
             <Banner />
@@ -33,15 +34,21 @@ const Landing = () => {
             </div>
             <CategoriesContainer>
                 {filterCategories.length === 0
-                    ? categories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
-                              <CategoryCard key={c._id} category={c} />
-                          </Link>
+                    ? categories.map((c, i) => (
+                          <CategoryCard
+                              key={c._id}
+                              category={c}
+                              color={() => getColor(i)}
+                              url={`/categories/${c._id}`}
+                          />
                       ))
-                    : filterCategories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
-                              <CategoryCard key={c._id} category={c} />
-                          </Link>
+                    : filterCategories.map((c, i) => (
+                          <CategoryCard
+                              key={c._id}
+                              category={c}
+                              color={() => getColor(i)}
+                              url={`/categories/${c._id}`}
+                          />
                       ))}
             </CategoriesContainer>
         </GlobalContainer>

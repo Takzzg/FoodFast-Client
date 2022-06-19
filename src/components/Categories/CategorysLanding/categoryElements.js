@@ -1,21 +1,18 @@
 import styled from "styled-components"
 
 export const MainContainer = styled.section`
-a{
     text-decoration: none;
-}
     border-radius: 10px;
     height: 10rem;
     width: 20rem;
     margin: 1rem;
-    background-color: ${({bgColor})=> bgColor};
-    background-image: ${({img})=> `url(${img})`};
+    background-color: ${({ backcolor }) => backcolor};
     background-size: 40%;
     background-repeat: no-repeat;
     background-position: right;
-    transition: background-size .3s linear;
+    transition: background-size 0.3s linear;
     cursor: pointer;
-    &:hover{
+    &:hover {
         background-size: 60%;
     }
 `
