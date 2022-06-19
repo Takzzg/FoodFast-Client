@@ -5,7 +5,8 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
 
-        scrollbar-color: ${({ theme }) => theme.colors.main} lightgray;
+        scrollbar-color: ${({ theme }) => theme.colors.main} ${({ theme }) =>
+    theme.colors.background};
     }
 
     .App {
