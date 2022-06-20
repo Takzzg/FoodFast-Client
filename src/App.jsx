@@ -21,6 +21,7 @@ import Orders from "./components/Orders/Orders"
 import DetailOrder from "./components/Orders/DetailOrder/DetailOrder"
 import Reviews from "./components/Reviews/Reviews"
 import DetailReview from "./components/Reviews/DetailReview/DetailReview"
+import ShoppingCart from "./components/shopCart"
 
 const ScrollToTop = () => {
     const location = useLocation()
@@ -94,11 +95,23 @@ function App() {
                         </Route>
                     </Route>
 
+
                     {/* LOGIN */}
                     <Route path="/login" element={<Login />} />
                     {/* REGISTER */}
                     <Route path="/logup" element={<Logup />} />
                 </Routes>
+
+                        <Route path="/user">
+                            <Route path="shoppingCart" element={<ShoppingCart />}/>
+                        </Route>
+
+                        {/* LOGIN */}
+                        <Route path="/login" element={<Login />} />
+                        {/* REGISTER */}
+                        <Route path="/logup" element={<Logup />} />
+                    </Routes>
+                </ScrollToTop>
             </BrowserRouter>
         </div>
     )
