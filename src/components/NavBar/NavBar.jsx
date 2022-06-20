@@ -1,16 +1,20 @@
+
 import React, { useState, useEffect } from "react"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
 import toast, {Toaster} from "react-hot-toast"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+
 import {
     GlobalContainer,
     MainIconContainer,
     NavBarContainer,
     LoginRegisterButton,
-    ListRoutes,
-    RouteItem,
     Title,
     ButtonsContainer,
-    ShowButton
+    OpenButton,
+    CloseButton,
+    Divider
 } from "./NavBar.styled"
 import { IoFastFoodSharp } from "react-icons/io5"
 /* import { FaUserAlt } from "react-icons/fa" */
@@ -62,29 +66,33 @@ const NavBar = () => {
         navigate('/')
     }
 
+    const NavLink = ({ url, children }) => (
+        <Link className="navLink" to={url} onClick={handleSelectRoute}>
+            {children}
+        </Link>
+    )
+
     return (
-        <GlobalContainer>
-            <Toaster
-              position="top-left"
-              reverseOrder={false}
-            />
-            <ShowButton
-                onClick={() => setShowNavbar(true)}
+
+        <GlobalContainer theme={theme}>
+            <OpenButton
+   onClick={() => setShowNavbar(true)}
                 isShowing={showNavbar}
             >
                 <GiHamburgerMenu id={"HambugerMenu"} />
-            </ShowButton>
+            </OpenButton>
 
             <NavBarContainer theme={theme} isShowing={showNavbar}>
-                <ShowButton
+                <CloseButton
                     onClick={() => setShowNavbar(false)}
                     isShowing={showNavbar}
                 >
                     <AiFillCloseCircle id={"close"} />
-                </ShowButton>
+                </CloseButton>
+
                 <MainIconContainer theme={theme}>
                     <IoFastFoodSharp />
-                    <Title theme={theme}>Fast Food APP</Title>
+                    <Title theme={theme}>Food Fast</Title>
                 </MainIconContainer>
 
                 {user?.displayName ? (
@@ -105,6 +113,7 @@ const NavBar = () => {
                     <LoginRegisterButton onClick={handleLogout} theme={theme}>
                             LogOut
                             <FiLogOut />
+
                     </LoginRegisterButton>
                 </ButtonsContainer>
                 ) : (
@@ -130,10 +139,13 @@ const NavBar = () => {
                     </NavLink>
 
 
-                    <RouteItem>My orders</RouteItem>
-                    <RouteItem>Oferts</RouteItem>
-                    <RouteItem>Contact</RouteItem>
-                    <hr />
+                <h3>CONSUMER</h3>
+                <NavLink url="/">Home</NavLink>
+                <NavLink url="/products">Products</NavLink>
+                <NavLink url="/">My orders</NavLink>
+                <NavLink url="/">Oferts</NavLink>
+                <NavLink url="/">Contact</NavLink>
+
 
                     <hr />
                     <h3>SELLER</h3>
@@ -149,9 +161,10 @@ const NavBar = () => {
                         <h5>Logueate para más funciones! ♥</h5>
                     )}
 
-                    <RouteItem>Contact</RouteItem>
-                    <hr />
-                </ListRoutes>
+
+                <h3>SELLER</h3>
+                <NavLink url="/dashboard">DashBoard</NavLink>
+                <NavLink url="/">Contact</NavLink>
 
                 <button onClick={() => dispatch(switchTheme())}>
                     Switch to {theme.name === "light" ? "dark" : "light"} theme
@@ -163,14 +176,3 @@ const NavBar = () => {
 
 export default NavBar
 
-/* Borrador :v */
-/*  Botón de "Registro" (deprecado)
-
-    <FaUserAlt/>
-                    <LoginRegisterButton theme={theme}>
-                        <NavLink to='/logup'>
-                            <GiArchiveRegister />
-                            Register
-                        </NavLink>
-                    </LoginRegisterButton>
-*/

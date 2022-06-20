@@ -49,6 +49,15 @@ function compareProducts(a, b, form) {
     }
 }
 
+const sortByName = (arr) =>
+    arr.sort((a, b) => {
+        const nameA = a.name?.trim().toLowerCase()
+        const nameB = b.name?.trim().toLowerCase()
+        if (nameA > nameB) return 1
+        if (nameA < nameB) return -1
+        return 0
+    })
+
 const initialState = {
     error: null,
     products: {
@@ -87,16 +96,13 @@ const main = (state = initialState, action) => {
             break
 
         case FETCH_CATEGORIES:
-            newState.categories.all = action.payload
+            newState.categories.all = sortByName(action.payload)
             newState.categories.filtered = action.payload
             break
 
         case SEARCH_CATEGORY:
-            if (action.payload.error) {
-                newState.categories.filtered = []
-            } else {
-                newState.categories.filtered = action.payload
-            }
+            if (action.payload.error) newState.categories.filtered = []
+            else newState.categories.filtered = sortByName(action.payload)
             break
 
         case CLEAN_CATEGORIES:
@@ -115,7 +121,7 @@ const main = (state = initialState, action) => {
         // PRODUCTS
 
         case FETCH_PRODUCTS:
-            newState.products.all = action.payload
+            newState.products.all = sortByName(action.payload)
             newState.products.filtered = action.payload
             break
 
@@ -145,11 +151,8 @@ const main = (state = initialState, action) => {
             break
 
         case SEARCH_PRODUCT:
-            if (action.payload.error) {
-                newState.products.filtered = []
-            } else {
-                newState.products.filtered = action.payload
-            }
+            if (action.payload.error) newState.products.filtered = []
+            else newState.products.filtered = sortByName(action.payload)
             break
 
         case DELETE_PRODUCT:

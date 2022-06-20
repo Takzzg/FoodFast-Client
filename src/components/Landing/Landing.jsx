@@ -1,22 +1,20 @@
 import React from "react"
-import { Link } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import Banner from "./Banner/Banner"
+import { useSelector } from "react-redux"
 import CategoryBar from "./UbicationBar/UbicationBar"
 import { CategoriesContainer, GlobalContainer } from "./landingElements"
 import CategoryCard from "../Categories/CategorysLanding"
-import { useEffect } from "react"
-import { searchCategory, searchProduct } from "../../redux/actions/async"
 
 
 
 const Landing = () => {
-    
+
     const categories = useSelector((state) => state.main.categories.all)
+
+
     const filterCategories = useSelector(
         (state) => state.main.categories.filtered
     )
-    const dispatch = useDispatch()
+
 
     useEffect(() => {
         dispatch(searchProduct(""))
@@ -40,18 +38,29 @@ const Landing = () => {
                 <CategoryBar className="LocationBar" />
             </div>
            
+
+    const getColor = (i) =>
+        `hsl(${(255 / filterCategories.length) * i}, 100%, 33%)`
+
+    return (
+        <GlobalContainer
+            bgImg={
+                "https://www.minervafoods.com/wp-content/uploads/2017/02/como_fazer_hamburguer_caseiro_0.jpg"
+            }
+        >
+            <div className="ornament" />
+            <h1 className="welcome">Everything you want in one place</h1>
+
+            <CategoryBar className="LocationBar" />
             <CategoriesContainer>
-                {filterCategories.length === 0
-                    ? categories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
-                              <CategoryCard key={c._id} category={c} />
-                          </Link>
-                      ))
-                    : filterCategories.map((c) => (
-                          <Link key={c._id} to={`/categories/${c._id}`}>
-                              <CategoryCard key={c._id} category={c} />
-                          </Link>
-                      ))}
+                {filterCategories.map((c, i) => (
+                    <CategoryCard
+                        key={c._id}
+                        category={c}
+                        color={() => getColor(i)}
+                        url={`/categories/${c._id}`}
+                    />
+                ))}
             </CategoriesContainer>
         </GlobalContainer>
     )

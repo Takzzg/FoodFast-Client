@@ -1,31 +1,35 @@
 import styled from "styled-components"
 
 export const MainContainer = styled.section`
-a{
-    text-decoration: none;
-}
     border-radius: 10px;
+    margin: 1rem;
     height: 10rem;
     width: 20rem;
-    margin: 1rem;
-    background-color: ${({bgColor})=> bgColor};
-    background-image: ${({img})=> `url(${img})`};
-    background-size: 40%;
-    background-repeat: no-repeat;
-    background-position: right;
-    transition: background-size .3s linear;
-    cursor: pointer;
-    &:hover{
-        background-size: 60%;
+    background-color: ${({ bgColor }) => bgColor};
+    padding: 0.5rem;
+    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05);
     }
 `
 
+export const ImageCategory = styled.div`
+    background-image: url(${({ image }) => image});
+    height: 100%;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+`
+
 export const NameCategory = styled.div`
-    position: relative;
-    top: 2.8rem;
-    left: 1rem;
     font-size: 30px;
     color: white;
-    height: 100%;
-    width: 50%;
+
 `
+
