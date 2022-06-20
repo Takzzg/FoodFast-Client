@@ -16,5 +16,6 @@ export const CategoriesContainer = styled.section`
 
     a {
         text-decoration: none;
+        color: black
     }
 `
