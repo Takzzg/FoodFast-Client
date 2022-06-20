@@ -5,5 +5,6 @@ import combineReducers from "./reducers/index"
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 export const store = createStore(
     combineReducers,
-    composeEnhancer(applyMiddleware(thunk))
+    composeEnhancer(applyMiddleware(thunk)),
+   
 )

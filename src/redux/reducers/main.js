@@ -13,8 +13,11 @@ import {
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     SEARCH_PRODUCT,
-    SORTBYPRICE
+    SORTBYPRICE, 
+   
 } from "../actions/types"
+
+
 
 function filterProduct(product, categories) {
     if (categories) {
@@ -73,6 +76,8 @@ const initialState = {
     }
 }
 
+
+
 const main = (state = initialState, action) => {
     let newState = { ...state }
 
@@ -83,7 +88,7 @@ const main = (state = initialState, action) => {
         case ERROR:
             newState.error = action.payload
             break
-
+       
         // CATEGORIES
 
         case FIND_CAT_BY_ID:

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"; 
 import toast, { Toaster } from 'react-hot-toast';
 import { IoFastFoodSharp } from "react-icons/io5"
+import { useDispatch } from "react-redux";
 
 import {SignUpContainer, SignUpDivContainer} from "./Logup.styled"
+import { logup } from "../../redux/actions/async";
 
 //valida los datos al ser ingresados y crea un objeto "errors" si falta o es incorrecto alguno.
 function validate(input) {
@@ -21,7 +23,7 @@ function validate(input) {
     errors.password = "Password is required";
   } else if (input.password.length < 4) {
     errors.password = "contraseña demasiado corta";
-  } else if (/[^A-z\s\d][\\\^]?/g.test(input.password)){
+  } else if (/[^A-z\s\d][\\]?/g.test(input.password)){
     errors.password = "no puede contener caracteres especiales."
   }
 
@@ -43,6 +45,7 @@ export default function SignUp() {
   const [errors, setErrors] = useState({});
   
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInputChange = function (e) {
     setInput({
@@ -59,27 +62,16 @@ export default function SignUp() {
 
   const register = (e) => {
     e.preventDefault();
-
     if(Object.keys(errors).length > 0){ 
       return toast.error('Debes rellenar todos los campos de forma correcta.')
-    }else{ //tremendo toast me mandé... :O
-        toast.promise(axios.post("http://localhost:3001/api/v1/user", {
-            name: input.name,
-            email: input.email,
-            password: input.password,
-        }),{
-            loading: "Registrando...",
-            success: (resp)=>{
-                setTimeout(()=>{
-                    navigate("/login");
-                },4000);
-                return (<b>Registrado con éxito. Bienvenido {resp.data.name}!</b>)
-            },
-            error: <b>No se pudo registrar. Intente nuevamente.</b>
-        },{
-            style: { minWidth: '250px'}, success: {duration: 5000, icon: '🔥'}
-        }
-        );
+    }else{
+      /* dispatch una action, donde le pasamos el input del form */
+      dispatch(logup({
+        name: input.name,
+        email: input.email,
+        password: input.password,
+    }));
+    alert("Registrado pai :O"); 
     }
   };
 
@@ -135,3 +127,24 @@ export default function SignUp() {
     </SignUpDivContainer>
   )
 }
+
+/* Borrador toaster register
+
+        toast.promise(axios.post("http://localhost:3001/api/v1/user", {
+            name: input.name,
+            email: input.email,
+            password: input.password,
+        }),{
+            loading: "Registrando...",
+            success: (resp)=>{
+                setTimeout(()=>{
+                    navigate("/login");
+                },4000);
+                return (<b>Registrado con éxito. Bienvenido {resp.data.name}!</b>)
+            },
+            error: <b>No se pudo registrar. Intente nuevamente.</b>
+        },{
+            style: { minWidth: '250px'}, success: {duration: 5000, icon: '🔥'}
+        }
+        );
+*/

@@ -1,6 +1,10 @@
 import axios from "axios"
 import { clean_categories, clean_products } from "./sync"
 
+
+
+
+
 import {
     ERROR,
     FETCH_CATEGORIES,
@@ -10,10 +14,14 @@ import {
     FIND_PRODUCT_BY_ID,
     SEARCH_CATEGORY,
     NEWFILTER_PRODUCTS,
-    FIND_CAT_BY_ID
+    FIND_CAT_BY_ID,
+    AUTH_USER
 } from "./types"
 
-// FUNCTIONS AND CONSTS
+
+
+
+
 
 export const baseUrl = `${
     process.env.NODE_ENV === "production"
@@ -76,3 +84,27 @@ export const deleteCategory = (id) => (dispatch) =>
         .delete(`${baseUrl}/categories/${id}`)
         .then(() => dispatch(fetchAllCategories()))
         .catch((err) => dispatch({ type: ERROR, payload: err }))
+
+
+// USER
+
+export const login = (input)=> async (dispatch)=>{
+    try{
+        //log in the user...
+        const data = await axios.post(`${baseUrl}/auth/login`, input)
+        dispatch({type: AUTH_USER, data: data?.data})
+    }catch(e){
+        console.log("Error en la action login. ",e.message);
+    }
+}
+export const logup = (input)=> async (dispatch)=>{
+    
+    try{
+        //log up the user...
+        const { data } = await axios.post(`${baseUrl}/user/logup`, input)
+        
+        dispatch({type: AUTH_USER, data})
+    }catch(e){
+        console.log("Error en la action logup. ",e);
+    }
+}

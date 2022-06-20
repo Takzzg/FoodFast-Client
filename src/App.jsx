@@ -9,6 +9,8 @@ import ModifyCategory from "./components/Categories/CategoryUpdate"
 import UpdateProduct from "./components/Products/updateProduct"
 import Login from "./components/Auth/Login"
 import Logup from "./components/Auth/Logup"
+import PasswordReset from "./components/Auth/PasswordReset"
+import NewPassword from "./components/Auth/NewPassword"
 import NavBar from "./components/NavBar/NavBar"
 import Landing from "./components/Landing/Landing"
 import DetailProduct from "./components/Products/DetailProduct/DetailProduct"
@@ -31,6 +33,7 @@ const ScrollToTop = () => {
 }
 
 function App() {
+    // const [{isopen,user},dispatch]=useStateValue()
     const dispatch = useDispatch()
     const theme = useSelector((state) => state.theme.selectedTheme)
 
@@ -109,7 +112,11 @@ function App() {
                         {/* LOGIN */}
                         <Route path="/login" element={<Login />} />
                         {/* REGISTER */}
-                        <Route path="/logup" element={<Logup />} />
+                        <Route path="/logup" element={<Logup/>}/>
+                        {/* PASS RESET */}
+                        <Route path="/passwordReset" element={<PasswordReset/>}/>
+                        {/* NEW PASS */}
+                        <Route path="/newPassword" element={<NewPassword/>}/>
                     </Routes>
                 </ScrollToTop>
             </BrowserRouter>
