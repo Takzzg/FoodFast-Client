@@ -10,6 +10,7 @@ export const StyledDashboard = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        color: ${({ theme }) => theme.text.highContrast};
         background-color: ${({ theme }) => theme.colors.main};
     }
 
