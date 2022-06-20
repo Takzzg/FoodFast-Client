@@ -2,10 +2,12 @@ import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
     display: flex;
+    width: 100%;
+    /* max-width: 30rem; */
 `
 
 export const SearchIcon = styled.div`
-    background-color: orange;
+    background-color: ${({ theme }) => theme.colors.main};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,11 +15,11 @@ export const SearchIcon = styled.div`
     border-radius: 10px;
     cursor: pointer;
     height: 2.5rem;
-    margin-left: .4rem;
-    svg{
-        color: white
+    margin-left: 0.4rem;
+    svg {
+        color: white;
     }
-    &:hover svg{
+    &:hover svg {
         transform: scale(1.3);
     }
 `

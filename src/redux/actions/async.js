@@ -1,4 +1,5 @@
 import axios from "axios"
+import { clean_categories, clean_products } from "./sync"
 
 import {
     ERROR,
@@ -38,7 +39,9 @@ export const fetchProductsByCat = (cat) =>
     fetch(`${baseUrl}/categories/category?name=${cat}`, FILTER_PRODUCTS)
 
 export const searchProduct = (name) =>
-    fetch(`${baseUrl}/products?name=${name}`, SEARCH_PRODUCT)
+    name
+        ? fetch(`${baseUrl}/products?name=${name}`, SEARCH_PRODUCT)
+        : clean_products()
 
 export const findProductById = (id) =>
     fetch(`${baseUrl}/products/${id}`, FIND_PRODUCT_BY_ID)
@@ -58,7 +61,9 @@ export const fetchAllCategories = () =>
     fetch(`${baseUrl}/categories`, FETCH_CATEGORIES)
 
 export const searchCategory = (name) =>
-    fetch(`${baseUrl}/categories/category?name=${name}`, SEARCH_CATEGORY)
+    name
+        ? fetch(`${baseUrl}/categories/category?name=${name}`, SEARCH_CATEGORY)
+        : clean_categories()
 
 export const postCategory = (name) => (dispatch) =>
     axios

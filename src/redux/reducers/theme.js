@@ -6,7 +6,7 @@ const themes = {
         colors: {
             main: "#c9933e",
             secondary: "",
-            background: "#e5e5e5",
+            background: "#e0e0e0",
             bgPage: "#f5f5f5"
         },
         text: {
@@ -21,14 +21,14 @@ const themes = {
         colors: {
             main: "#c9933e",
             secondary: "",
-            background: "#161616",
+            background: "#202020",
             bgPage: "#111111"
         },
         text: {
             highContrast: "#ffffff",
             light: "#ffffff",
             dark: "#000000",
-            soft: "#555555"
+            soft: "#999999"
         }
     }
 }
