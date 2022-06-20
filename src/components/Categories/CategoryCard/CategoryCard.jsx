@@ -8,12 +8,13 @@ const CategoryCard = ({ category, url }) => {
     const theme = useSelector((state) => state.theme.selectedTheme)
 
     return (
-        <StyledCategoryCard theme={theme} key={_id} to={url}>
-            <img
-                src={`${baseUrl}/categories/img/${_id}`}
-                alt="XD"
-                height={"100"}
-            />
+        <StyledCategoryCard
+            theme={theme}
+            key={_id}
+            to={url}
+            img={`${baseUrl}/categories/img/${_id}`}
+        >
+            <div className="img" />
             <span className="name">{name}</span>
             <span className="description">
                 {description || "Descripcion categoria"}

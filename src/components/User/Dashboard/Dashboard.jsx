@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import CategoryCard from "../../Categories/CategoryCard/CategoryCard"
 import ProductCard from "../../Products/ProductCard/ProductCard"
-import { StyledDashboard } from "./Dashboard.styled"
+import { StyledCard, StyledDashboard } from "./Dashboard.styled"
 import CategoryBar from "../../Landing/UbicationBar/UbicationBar"
 import SearchBar from "../../searchBar"
 import { useEffect } from "react"
@@ -11,6 +11,8 @@ import {
     fetchAllProducts
 } from "../../../redux/actions/async"
 import useDelete from "../../CustomHooks/useDelete"
+
+import { FaTrashAlt, FaEdit } from "react-icons/fa"
 
 const Dashboard = () => {
     const dispatch = useDispatch()
@@ -29,6 +31,40 @@ const Dashboard = () => {
         !allCategories.length && dispatch(fetchAllProducts())
     }, [allProducts, allCategories, dispatch])
 
+    const Category = ({ c }) => (
+        <StyledCard theme={theme}>
+            <CategoryCard category={c} url={`/categories/${c._id}`} />
+            <button
+                className="deleteBtn"
+                onClick={() => handleDelete("categories", c._id, c.img)}
+            >
+                <FaTrashAlt />
+                Delete
+            </button>
+            <Link className="editBtn" to={`/dashboard/modifyCategory/${c._id}`}>
+                <FaEdit />
+                Edit
+            </Link>
+        </StyledCard>
+    )
+
+    const Product = ({ p }) => (
+        <StyledCard theme={theme}>
+            <ProductCard product={p} />
+            <button
+                className="deleteBtn"
+                onClick={() => handleDelete("products", p._id, p.img)}
+            >
+                <FaTrashAlt />
+                Delete
+            </button>
+            <Link className="editBtn" to={`/dashboard/updateProduct/${p._id}`}>
+                <FaEdit />
+                Edit
+            </Link>
+        </StyledCard>
+    )
+
     return (
         <StyledDashboard theme={theme}>
             <h1 className="title">Dashboard </h1>
@@ -46,28 +82,7 @@ const Dashboard = () => {
                             <div>Not results found</div>
                         ) : (
                             filterCategories.map((c) => (
-                                <div key={c._id}>
-                                    <CategoryCard
-                                        category={c}
-                                        url={`/categories/${c._id}`}
-                                    />
-                                    <button
-                                        onClick={() =>
-                                            handleDelete(
-                                                "categories",
-                                                c._id,
-                                                c.img
-                                            )
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                    <Link
-                                        to={`/dashboard/modifyCategory/${c._id}`}
-                                    >
-                                        <div>Edit</div>
-                                    </Link>
-                                </div>
+                                <Category key={c._id} c={c} />
                             ))
                         )}
                     </div>
@@ -85,25 +100,7 @@ const Dashboard = () => {
                             <div>Not results found</div>
                         ) : (
                             filterProducts.map((p) => (
-                                <div key={p._id}>
-                                    <ProductCard product={p} />
-                                    <button
-                                        onClick={() =>
-                                            handleDelete(
-                                                "products",
-                                                p._id,
-                                                p.img
-                                            )
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                    <Link
-                                        to={`/dashboard/updateProduct/${p._id}`}
-                                    >
-                                        <div>Edit</div>
-                                    </Link>
-                                </div>
+                                <Product p={p} key={p._id} />
                             ))
                         )}
                     </div>
