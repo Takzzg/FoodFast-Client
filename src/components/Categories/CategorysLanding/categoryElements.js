@@ -13,6 +13,7 @@ export const MainContainer = styled.section`
     align-items: center;
     justify-content: center;
     transition: transform 0.1s ease-in-out;
+
     &:hover {
         transform: scale(1.05);
     }
@@ -29,4 +30,6 @@ export const ImageCategory = styled.div`
 export const NameCategory = styled.div`
     font-size: 30px;
     color: white;
+
 `
+

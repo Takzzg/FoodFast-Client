@@ -1,38 +1,45 @@
-import styled from "styled-components"; 
+import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
+    color: ${({ theme }) => theme.text.highContrast};
+    background-color: ${({ theme }) => theme.colors.bgPage};
+    font-size: 1.5rem;
+
+    height: 6rem; /* altura hardcodeada para que el boton del menu desplegable quede centrado */
     display: flex;
-    height: 100%;
-    width: 100%;
-    section {
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+    padding: 0 6rem; /* padding tambien hardcodeado */
+
+    & > * {
+        max-width: 50%;
     }
 `
 
 export const FilterContainer = styled.section`
-    width: 35%;
     div {
-        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        svg {
-            height: 50%;
-            width: auto;
+        padding: 1rem;
+        border-radius: 1rem;
+        background-color: ${({ theme }) => theme.colors.background};
+
+        &:hover {
+            background-color: ${({ theme }) => theme.colors.main};
         }
     }
 `
 //===================== Modal elements Styles =====================
+
 export const IconClose = styled.div`
     height: 5%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    svg{
+    svg {
         height: 100%;
         width: auto;
     }
@@ -44,7 +51,7 @@ export const ListContainer = styled.div`
 
 export const MyH4 = styled.h4`
     color: black;
-    font-family: 'Roboto Mono', monospace;
+    font-family: "Roboto Mono", monospace;
 `
 export const ButtonContainer = styled.div`
     height: 20%;
@@ -63,31 +70,17 @@ export const FilterButton = styled.button`
 `
 
 //========================================================
-export const SearchContainer = styled.section`
-    width: 35%;
-    section {
-        width: 80%;
-        height: 90%;
-    }
-`
+
 export const UserContainer = styled.section`
-    width: 30%;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    div {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        height: 100%;
-        width: 50%;
-        svg {
-            cursor: pointer;
-            height: 60%;
-            width: auto;
-            &:hover {
-                color: green
-            }
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+
+    svg {
+        &:hover {
+            color: ${({ theme }) => theme.colors.main};
         }
     }
 `

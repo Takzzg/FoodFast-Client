@@ -5,7 +5,30 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
 
-        scrollbar-color: ${({ theme }) => theme.colors.main} lightgray;
+        scrollbar-color: ${({ theme }) => theme.colors.main} ${({ theme }) =>
+    theme.colors.background};
+
+        ::-webkit-scrollbar {
+            background: ${({ theme }) => theme.colors.background};
+        }
+
+        /* ::-webkit-scrollbar-button {
+            display: flex;
+            width: 16px;
+            height: 16px;
+            border-style: solid;
+            color: ${({ theme }) => theme.text.highContrast};
+            border-color: red;
+            background-color: red;
+        } */
+
+        ::-webkit-scrollbar-thumb {
+            background: ${({ theme }) => theme.colors.main};;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: ${({ theme }) => theme.colors.background};;
+        }
     }
 
     .App {
@@ -16,8 +39,9 @@ const GlobalStyle = createGlobalStyle`
 
         background-color: ${({ theme }) => theme.colors.background};
 
-        & > * {
+        & > div {
             overflow: auto;
+            min-height: 100%;
         }
     }
 `

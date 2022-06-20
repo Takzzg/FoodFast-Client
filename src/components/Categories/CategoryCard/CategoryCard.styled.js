@@ -8,14 +8,14 @@ export const StyledCategoryCard = styled(Link)`
         "img name"
         "img desc";
 
-    width: 25rem;
-
     color: ${({ theme }) => theme.text.highContrast};
     background-color: ${({ theme }) => theme.colors.background};
     text-decoration: none;
     border-radius: 5px;
-    box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0px 5px 5px 5px rgba(0, 0, 0, 0.2); */
     text-decoration: none;
+
+    width: 100%;
 
     .name {
         grid-area: name;
@@ -31,6 +31,9 @@ export const StyledCategoryCard = styled(Link)`
 
     .img {
         grid-area: img;
+        background-image: url(${({ img }) => img});
+        background-position: center;
+        background-size: cover;
     }
 
     .description {

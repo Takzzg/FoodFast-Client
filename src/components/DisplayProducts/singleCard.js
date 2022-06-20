@@ -3,9 +3,7 @@ import {
     CardContainer,
     TitleDiv,
     ImageContainer,
-    FooterContainer,
-    ButtonsContainer,
-    PriceContainer
+    FooterContainer
 } from "./displayElements"
 import { MdReadMore } from "react-icons/md"
 import {TbShoppingCartPlus, TbShoppingCartX} from "react-icons/tb"
