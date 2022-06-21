@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const GlobalContainer = styled.section`
     width: 100%;
@@ -21,7 +21,7 @@ export const TablesContainer = styled.section`
 export const ShopContainer = styled.div`
     width: 60%;
     display: flex;
-    overflow-y: scroll;
+    overflow-y: auto;
     div {
         margin: auto;
         margin-right: 0;
@@ -41,19 +41,16 @@ export const Header = styled.div`
     div {
         text-align: center;
     }
-    #product{
-
+    #product {
         width: 40%;
     }
-    #quantity{
-
+    #quantity {
         width: 20%;
     }
-    #price{
-
+    #price {
         width: 20%;
-}
-    #total{
+    }
+    #total {
         width: 20%;
     }
 `
