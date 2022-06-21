@@ -46,6 +46,7 @@ const NavBar = () => {
         setUser(JSON.parse(localStorage.getItem("profile")))
     }, [location])
     const [showNavbar, setShowNavbar] = useState(false)
+
     const handleSelectRoute = () => {
         setShowNavbar(false)
     }
@@ -104,6 +105,7 @@ const NavBar = () => {
                         <p>{user?.displayName}</p>
                         <p className={style.auth_google_email}>{user?.email}</p>
                         <LoginRegisterButton
+                            theme={theme}
                             className={style.auth_google_logout}
                             onClick={handleSignOut}
                         >
@@ -154,13 +156,13 @@ const NavBar = () => {
 
                 <hr />
                 <h3>SELLER</h3>
-                {userData?.user.rol === "ADMIN" ? (
+                {userData?.user?.rol === "ADMIN" ? (
                     <NavLink url="/dashboard" onClick={handleSelectRoute}>
                         {/* <RouteItem onClick={handleSelectRoute}> */}
                         DashBoard
                         {/* </RouteItem> */}
                     </NavLink>
-                ) : userData?.user.rol === "USER" ? (
+                ) : userData?.user?.rol === "USER" ? (
                     <h5>Debes tener permisos de Administrador!</h5>
                 ) : (
                     <h5>Logueate para más funciones! ♥</h5>
