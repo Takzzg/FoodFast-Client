@@ -25,12 +25,8 @@ export default function DisplayProducts() {
                 {filterProducts.length === 0 ? (
                     <div>No results found</div>
                 ) : (
-                    filterProducts.map((p) => (
-
-                        <SingleProductCard
-                            key={p._id}
-                            product = {p}
-                        />
+                    filterProducts.map((p, i) => (
+                        <SingleProductCard key={i} product={p} />
                     ))
                 )}
             </CardsContainer>

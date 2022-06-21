@@ -17,6 +17,7 @@ import Select from "react-select"
 import { useDispatch, useSelector } from "react-redux"
 import { filterbyCategories } from "../../redux/actions/sync"
 import { fetchAllProducts } from "../../redux/actions/async"
+import { Link } from "react-router-dom"
 const OptionsTest = [
     { value: "test1", label: "test1" },
     { value: "test2", label: "test2" },
@@ -127,12 +128,12 @@ export default function FilterBar() {
 
             <SearchBar />
 
-        </SearchContainer>
-           
-        <UserContainer>
-            <div>
+            {/* </SearchContainer> */}
+
+            <UserContainer theme={theme}>
+                {/* <div> */}
                 <Link to="/user/shoppingCart">
-                <FaShoppingCart />
+                    <FaShoppingCart />
                 </Link>
 
                 <FaUserAlt />

@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react"
 import { NavLink, useLocation, useNavigate } from "react-router-dom"
-import toast, {Toaster} from "react-hot-toast"
-import React, { useState } from "react"
+import toast, { Toaster } from "react-hot-toast"
+// import React, { useState } from "react"
 import { Link } from "react-router-dom"
 
 import {
@@ -25,45 +24,47 @@ import { FiLogOut, FiLogIn } from "react-icons/fi"
 import { useDispatch, useSelector } from "react-redux"
 import { switchTheme } from "../../redux/actions/sync"
 import { LOG_OUT } from "../../redux/actions/types"
-    
-import { AiOutlineLogout } from 'react-icons/ai'
+
+import { AiOutlineLogout } from "react-icons/ai"
 import { UserAuth } from "../../context/AuthContext"
 import style from "./style/google.module.scss"
 
-
 const NavBar = () => {
     /* const user = null; //{result:{email: "gonza@gmail.com"}} */
-    const [userData, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const { user,logOut } = UserAuth();
+    const [userData, setUser] = useState(
+        JSON.parse(localStorage.getItem("profile"))
+    )
+    const { user, logOut } = UserAuth()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
     const theme = useSelector((state) => state.theme.selectedTheme)
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         //const token = userData?.token;
         //JWT
-        setUser(JSON.parse(localStorage.getItem('profile')))
-    },[location])
+        setUser(JSON.parse(localStorage.getItem("profile")))
+    }, [location])
     const [showNavbar, setShowNavbar] = useState(false)
+
     const handleSelectRoute = () => {
         setShowNavbar(false)
     }
-    
+
     const handleSignOut = async () => {
         try {
-          await logOut()
+            await logOut()
         } catch (error) {
-          console.log(error)
+            console.log(error)
         }
-      }
+    }
 
-    function handleLogout(){
+    function handleLogout() {
         setUser(null)
         setShowNavbar(false)
-        dispatch({type: LOG_OUT})
-        toast.success('Good Bye!',{icon: '👋'})
-        navigate('/')
+        dispatch({ type: LOG_OUT })
+        toast.success("Good Bye!", { icon: "👋" })
+        navigate("/")
     }
 
     const NavLink = ({ url, children }) => (
@@ -73,10 +74,9 @@ const NavBar = () => {
     )
 
     return (
-
         <GlobalContainer theme={theme}>
             <OpenButton
-   onClick={() => setShowNavbar(true)}
+                onClick={() => setShowNavbar(true)}
                 isShowing={showNavbar}
             >
                 <GiHamburgerMenu id={"HambugerMenu"} />
@@ -96,48 +96,56 @@ const NavBar = () => {
                 </MainIconContainer>
 
                 {user?.displayName ? (
-               <ButtonsContainer theme={theme}>   
-          <img className={style.auth_google_photo}src={user?.photoURL} alt="picture" />
-          <p>{user?.displayName}</p>
-          <p className={style.auth_google_email}>{user?.email}</p>
-          <LoginRegisterButton  className={style.auth_google_logout}  onClick={handleSignOut} >
-           <AiOutlineLogout/>
-              Logout
-          </LoginRegisterButton>
-          </ButtonsContainer>  
-      ) : 
-                <ButtonsContainer theme={theme}>
-                {userData ? (
-                <ButtonsContainer theme={theme}>
-                    <span>{userData?.user?.name}  </span>
-                    <LoginRegisterButton onClick={handleLogout} theme={theme}>
-                            LogOut
-                            <FiLogOut />
-
-                    </LoginRegisterButton>
-                </ButtonsContainer>
+                    <ButtonsContainer theme={theme}>
+                        <img
+                            className={style.auth_google_photo}
+                            src={user?.photoURL}
+                            alt="profile"
+                        />
+                        <p>{user?.displayName}</p>
+                        <p className={style.auth_google_email}>{user?.email}</p>
+                        <LoginRegisterButton
+                            theme={theme}
+                            className={style.auth_google_logout}
+                            onClick={handleSignOut}
+                        >
+                            <AiOutlineLogout />
+                            Logout
+                        </LoginRegisterButton>
+                    </ButtonsContainer>
                 ) : (
-                <LoginRegisterButton theme={theme}>
-                    <NavLink to='/login'>
-                        Login
-                     <FiLogIn />
-                    </NavLink>
-                </LoginRegisterButton>
+                    <ButtonsContainer theme={theme}>
+                        {userData ? (
+                            <ButtonsContainer theme={theme}>
+                                <span>{userData?.user?.name} </span>
+                                <LoginRegisterButton
+                                    onClick={handleLogout}
+                                    theme={theme}
+                                >
+                                    LogOut
+                                    <FiLogOut />
+                                </LoginRegisterButton>
+                            </ButtonsContainer>
+                        ) : (
+                            <LoginRegisterButton theme={theme}>
+                                <NavLink url="/login">
+                                    Login
+                                    <FiLogIn />
+                                </NavLink>
+                            </LoginRegisterButton>
+                        )}
+                    </ButtonsContainer>
                 )}
+                {/* <ListRoutes> */}
+                <hr />
+                <h3>CONSUMER</h3>
+                <NavLink url="/" onClick={handleSelectRoute}>
+                    Home
+                </NavLink>
 
-                </ButtonsContainer>
-}
-                <ListRoutes>
-                    <hr />
-                    <h3>CONSUMER</h3>
-                    <NavLink to="/" onClick={handleSelectRoute}>
-                        <RouteItem>Home</RouteItem>
-                    </NavLink>
-
-                    <NavLink to="/products" onClick={handleSelectRoute}>
-                        <RouteItem>Products</RouteItem>
-                    </NavLink>
-
+                <NavLink url="/products" onClick={handleSelectRoute}>
+                    Products
+                </NavLink>
 
                 <h3>CONSUMER</h3>
                 <NavLink url="/">Home</NavLink>
@@ -146,21 +154,19 @@ const NavBar = () => {
                 <NavLink url="/">Oferts</NavLink>
                 <NavLink url="/">Contact</NavLink>
 
-
-                    <hr />
-                    <h3>SELLER</h3>
-                    {userData?.user.rol === 'ADMIN' ? (
-                        <NavLink to="/dashboard" onClick={handleSelectRoute}>
-                        <RouteItem onClick={handleSelectRoute}>
+                <hr />
+                <h3>SELLER</h3>
+                {userData?.user?.rol === "ADMIN" ? (
+                    <NavLink url="/dashboard" onClick={handleSelectRoute}>
+                        {/* <RouteItem onClick={handleSelectRoute}> */}
                         DashBoard
-                        </RouteItem>
-                        </NavLink>
-                    ): userData?.user.rol === 'USER' ? (
-                        <h5>Debes tener permisos de Administrador!</h5>
-                    ):(
-                        <h5>Logueate para más funciones! ♥</h5>
-                    )}
-
+                        {/* </RouteItem> */}
+                    </NavLink>
+                ) : userData?.user?.rol === "USER" ? (
+                    <h5>Debes tener permisos de Administrador!</h5>
+                ) : (
+                    <h5>Logueate para más funciones! ♥</h5>
+                )}
 
                 <h3>SELLER</h3>
                 <NavLink url="/dashboard">DashBoard</NavLink>
@@ -175,4 +181,3 @@ const NavBar = () => {
 }
 
 export default NavBar
-
