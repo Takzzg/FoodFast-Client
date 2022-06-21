@@ -130,7 +130,7 @@ export default function FilterBar() {
 
             {/* </SearchContainer> */}
 
-            <UserContainer>
+            <UserContainer theme={theme}>
                 {/* <div> */}
                 <Link to="/user/shoppingCart">
                     <FaShoppingCart />

@@ -17,6 +17,7 @@ export default function SingleProductCard({ product }) {
     const [isAdded, setIsAdded] = useState(false)
 
     const dispatch = useDispatch()
+    const theme = useSelector((state) => state.theme.selectedTheme)
     const products = useSelector((state) => state.shopCart.shopCart)
     const addItem = (e) => {
         e.preventDefault()
@@ -35,19 +36,22 @@ export default function SingleProductCard({ product }) {
         if (coincidence) setIsAdded(true)
     }, [])
     return (
-        <CardContainer>
+        <CardContainer theme={theme}>
             <TitleDiv>{product.name}</TitleDiv>
 
-            <ImageContainer>
-                <Link to={`/products/${product._id}`}>
+            <ImageContainer
+                to={`/products/${product._id}`}
+                img={`${baseUrl}/products/img/${product._id}`}
+            />
+            {/* <Link to={`/products/${product._id}`}>
                     <img
                         src={`${baseUrl}/products/img/${product._id}`}
                         alt="imagen"
                     />
-                </Link>
-            </ImageContainer>
+                </Link> */}
+            {/* </ImageContainer> */}
 
-            <FooterContainer>
+            <FooterContainer theme={theme}>
                 ${product.price}
                 {!isAdded ? (
                     <TbShoppingCartPlus id="car" onClick={addItem} />
